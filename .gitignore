@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Backups and temporary files
+*.bak
+*.bak_*
+*.tmp
+*.log
+
+# Caches and virtual environments
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+
+# Streamlit local credentials & storage
+.streamlit/secrets.toml
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,6 @@
+Port,Handling ₹/t,Waiting Days,Max Vessel DWT,Port Risk,Coordinates,Berths
+Paradip,85,3,180000,0.05,"20.26° N, 86.67° E",14
+Dhamra,95,2,180000,0.06,"20.80° N, 86.97° E",5
+Visakhapatnam,110,5,125000,0.12,"17.68° N, 83.22° E",24
+Haldia,125,4,90000,0.08,"22.02° N, 88.06° E",12
+Ennore,105,3,150000,0.07,"13.26° N, 80.33° E",8

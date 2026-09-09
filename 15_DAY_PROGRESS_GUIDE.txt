@@ -1,0 +1,64 @@
+VARUNAPATH AI — 15-DAY PROGRESS PRESENTATION GUIDE
+Team: Novara
+
+Use this sequence only for activities your team can demonstrate or document.
+
+Days 1–2: Problem understanding
+- Studied overseas bulk-cargo procurement and vessel-chartering workflow.
+- Identified cost, delay, congestion, inventory and vessel-capacity problems.
+
+Days 3–4: Existing-system research
+- Reviewed freight benchmarks, AIS vessel intelligence and voyage-management platforms.
+- Identified the gap: procurement, forecasting and port/vessel optimization are disconnected.
+
+Days 5–6: User requirements
+- Defined users: procurement, chartering, inventory and logistics teams.
+- Finalized inputs, decisions, constraints and expected outputs.
+
+Days 7–8: Architecture and algorithm design
+- Designed Data → Forecast → Optimize → Explain → Monitor workflow.
+- Defined demand, capacity, deadline, port-compatibility and risk constraints.
+
+Days 9–10: Dataset preparation
+- Prepared simulated demand, supplier, vessel and East Coast port datasets.
+- Added cargo price, capacity, transit, waiting time and risk fields.
+
+Day 11: AI forecasting
+- Implemented a baseline Linear Regression demand forecast.
+- Added a three-month interactive forecast chart.
+
+Day 12: Optimization engine
+- Built constraint-based supplier–vessel–port plan generation.
+- Added total landed-cost, utilization, waiting and risk calculations.
+
+Day 13: Dashboard integration
+- Added command-center metrics, recommendation summary and plan comparison.
+
+Day 14: Disruption simulation
+- Added fuel-price, demand-shock and unavailable-port scenarios.
+- Implemented automatic re-optimization and alternative recommendations.
+
+Day 15: Testing and documentation
+- Checked feasible/infeasible deadlines and multiple disruption scenarios.
+- Prepared the SIH presentation, demo flow and technical explanation.
+
+WHAT TO SHOW AS EVIDENCE
+1. Working dashboard and sidebar inputs.
+2. Forecast graph with three predicted months.
+3. Ranked feasible plans and cost breakdown.
+4. Downloaded recommendation report.
+5. What-If Lab: block Paradip and show a revised plan.
+6. Source files, README and calculation logic.
+
+30-SECOND PROGRESS STATEMENT
+“During the last 15 days, we moved from domain research and requirement analysis
+to a functional proof of concept. We prepared simulated maritime datasets,
+implemented a baseline cargo-demand forecast, built a constraint-based optimizer,
+and integrated the results into an interactive dashboard. The prototype can
+compare supplier–vessel–port combinations and automatically re-optimize the plan
+when demand, fuel price or port availability changes.”
+
+3-DAY POLISH PLAN
+Day 1: Run the supplied prototype; learn each tab and verify all scenarios.
+Day 2: Update team/PPT details, take screenshots and practise the explanation.
+Day 3: Rehearse the complete 5-minute demo and prepare judge Q&A.
