@@ -96,6 +96,7 @@ MODULE_DESCRIPTIONS = {
 st.markdown(
     """
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
     /* Prevent horizontal scrolling & set base styling */
     html, body, .stApp, [data-testid="stAppViewContainer"], .main {
         overflow-x: hidden !important;
@@ -104,9 +105,9 @@ st.markdown(
     }
 
     .stApp {
-        background-color: #06172b !important;
-        color: #edf7ff !important;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+        background-color: #0b1320 !important;
+        color: #f8fafc !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
     }
 
     /* Enterprise Typography - Body text at least 16px */
@@ -119,7 +120,7 @@ st.markdown(
     [data-testid="stHeader"] {
         background-color: rgba(6, 23, 43, 0.95) !important;
         backdrop-filter: blur(8px) !important;
-        border-bottom: 1px solid #164e63 !important;
+        border-bottom: 1px solid #26374f !important;
         height: 58px !important;
         z-index: 99999 !important;
     }
@@ -130,8 +131,8 @@ st.markdown(
     /* Enterprise Header Card */
     .enterprise-header-container {
         padding: 18px 22px;
-        background: #09233c;
-        border: 1px solid #164e63;
+        background: #141e2e;
+        border: 1px solid #26374f;
         border-radius: 12px;
         margin-bottom: 18px;
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
@@ -158,7 +159,7 @@ st.markdown(
     .prototype-badge {
         display: inline-block;
         background: rgba(45, 212, 191, 0.15);
-        color: #2dd4bf;
+        color: #10b981;
         border: 1px solid rgba(45, 212, 191, 0.4);
         padding: 3px 10px;
         border-radius: 999px;
@@ -175,8 +176,8 @@ st.markdown(
 
     /* Desktop Sidebar */
     [data-testid="stSidebar"] {
-        background-color: #06192d !important;
-        border-right: 1px solid #164e63 !important;
+        background-color: #0d1726 !important;
+        border-right: 1px solid #26374f !important;
     }
     [data-testid="stSidebar"] > div:first-child {
         padding-top: 16px !important;
@@ -193,8 +194,8 @@ st.markdown(
     .sidebar-brand-logo {
         font-size: 1.85rem;
         line-height: 1;
-        background: #0c3352;
-        border: 1px solid #1c607b;
+        background: #1a283c;
+        border: 1px solid #2a3f5a;
         width: 44px;
         height: 44px;
         display: flex;
@@ -212,7 +213,7 @@ st.markdown(
     .sidebar-brand-sub {
         font-size: 0.76rem;
         font-weight: 600;
-        color: #38bdf8;
+        color: #60a5fa;
         letter-spacing: 0.02em;
     }
 
@@ -244,13 +245,13 @@ st.markdown(
     /* Clearly highlight active module */
     div[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="true"],
     div[data-testid="stSidebar"] div[data-testid="stRadio"] label:has(input:checked) {
-        background-color: #0b3454 !important;
-        border-left: 3px solid #06b6d4 !important;
+        background-color: #1d2e45 !important;
+        border-left: 3px solid #2563eb !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
     }
     div[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="true"] p,
     div[data-testid="stSidebar"] div[data-testid="stRadio"] label:has(input:checked) p {
-        color: #38bdf8 !important;
+        color: #60a5fa !important;
         font-weight: 700 !important;
     }
     div[data-testid="stSidebar"] div[data-testid="stRadio"] label div:first-child:not(:last-child) {
@@ -266,8 +267,8 @@ st.markdown(
     .sidebar-engine-card {
         margin-top: 22px;
         padding: 12px 14px;
-        background: #082136;
-        border: 1px solid #164e63;
+        background: #121b2a;
+        border: 1px solid #26374f;
         border-radius: 10px;
     }
     .engine-status-row {
@@ -281,7 +282,7 @@ st.markdown(
         height: 8px;
         border-radius: 50%;
         background-color: #10b981;
-        box-shadow: 0 0 8px #10b981;
+        box-shadow: 0 0 4px rgba(16, 185, 129, 0.4);
     }
     .engine-title {
         font-size: 0.82rem;
@@ -296,15 +297,15 @@ st.markdown(
 
     /* Enterprise Cards & Metric Boxes */
     [data-testid="stMetric"] {
-        background: #0a253c !important;
-        border: 1px solid #164e63 !important;
+        background: #141e2e !important;
+        border: 1px solid #26374f !important;
         padding: 16px !important;
         border-radius: 12px !important;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
     }
     .panel-card {
-        background: #0a253c;
-        border: 1px solid #164e63;
+        background: #141e2e;
+        border: 1px solid #26374f;
         padding: 18px 20px;
         border-radius: 12px;
         margin-bottom: 14px;
@@ -313,19 +314,19 @@ st.markdown(
     .recommend {
         padding: 18px 20px;
         border-radius: 12px;
-        background: #082f37;
-        border-left: 5px solid #2dd4bf;
-        border-top: 1px solid #115e59;
-        border-right: 1px solid #115e59;
-        border-bottom: 1px solid #115e59;
-        color: #e6fffa;
+        background: #0f232e;
+        border-left: 5px solid #10b981;
+        border-top: 1px solid #1e3a47;
+        border-right: 1px solid #1e3a47;
+        border-bottom: 1px solid #1e3a47;
+        color: #f0fdf4;
         margin-bottom: 14px;
         font-size: 1rem;
     }
     .warning {
         padding: 16px 20px;
         border-radius: 12px;
-        background: #39240e;
+        background: #261a0e;
         border-left: 5px solid #f59e0b;
         border-top: 1px solid #78350f;
         border-right: 1px solid #78350f;
@@ -340,16 +341,16 @@ st.markdown(
 
     /* Shared Scenario Control Bar */
     .scenario-control-bar {
-        background: #09233c;
-        border: 1px solid #164e63;
+        background: #141e2e;
+        border: 1px solid #26374f;
         border-radius: 12px;
         padding: 16px 20px;
         margin-bottom: 20px;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
     }
     div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) {
-        background: #09233c !important;
-        border: 1px solid #164e63 !important;
+        background: #141e2e !important;
+        border: 1px solid #26374f !important;
         border-radius: 12px !important;
         padding: 14px 18px 16px 18px !important;
         margin-bottom: 22px !important;
@@ -403,7 +404,7 @@ st.markdown(
         height: 7px;
         border-radius: 50%;
         background-color: #10b981;
-        box-shadow: 0 0 8px #10b981;
+        box-shadow: 0 0 4px rgba(16, 185, 129, 0.4);
         animation: pulseGreen 2s infinite;
     }
     @keyframes pulseGreen {
@@ -421,13 +422,13 @@ st.markdown(
         border-radius: 999px;
         font-size: 0.78rem;
         font-weight: 600;
-        color: #38bdf8;
+        color: #60a5fa;
         width: fit-content;
         height: 23px;
         box-sizing: border-box;
     }
     .confidence-val {
-        color: #2dd4bf;
+        color: #10b981;
         font-weight: 700;
     }
 
@@ -447,25 +448,25 @@ st.markdown(
         white-space: nowrap !important;
     }
     div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) div.stButton > button[kind="primary"] {
-        background: linear-gradient(135deg, #0284c7 0%, #0891b2 100%) !important;
-        border: 1px solid #38bdf8 !important;
+        background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%) !important;
+        border: 1px solid #60a5fa !important;
         color: #ffffff !important;
         font-weight: 700 !important;
-        box-shadow: 0 2px 10px rgba(6, 182, 212, 0.35) !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) !important;
     }
     div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) div.stButton > button[kind="primary"]:hover {
-        background: linear-gradient(135deg, #0369a1 0%, #0e7490 100%) !important;
-        box-shadow: 0 4px 14px rgba(6, 182, 212, 0.5) !important;
-        border-color: #67e8f9 !important;
+        background: linear-gradient(180deg, #1d4ed8 0%, #1e40af 100%) !important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+        border-color: #93c5fd !important;
     }
     div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) div.stButton > button[kind="secondary"] {
-        background: #0c2b48 !important;
-        border: 1.5px solid #1e4976 !important;
+        background: #182436 !important;
+        border: 1.5px solid #2e425d !important;
         color: #e2e8f0 !important;
     }
     div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) div.stButton > button[kind="secondary"]:hover {
-        background: #13395e !important;
-        border-color: #38bdf8 !important;
+        background: #24344d !important;
+        border-color: #60a5fa !important;
         color: #ffffff !important;
     }
 
@@ -487,14 +488,14 @@ st.markdown(
     }
     /* Dark navy rounded rectangular dropdown, 52px height, 12px border radius */
     div[data-testid="stSelectbox"] [data-baseweb="select"] > div:first-child {
-        background-color: #0c2b48 !important;
-        background: #0c2b48 !important;
+        background-color: #182436 !important;
+        background: #182436 !important;
         min-width: 0 !important;
         width: 100% !important;
         min-height: 52px !important;
         height: 52px !important;
         border-radius: 12px !important;
-        border: 1.5px solid #1e4976 !important;
+        border: 1.5px solid #2e425d !important;
         box-sizing: border-box !important;
         position: relative !important;
         display: flex !important;
@@ -506,8 +507,8 @@ st.markdown(
 
     /* Forecasting Studio Control Spacing & Layout */
     #forecasting-control-bar {
-        background: #09233c !important;
-        border: 1px solid #164e63 !important;
+        background: #141e2e !important;
+        border: 1px solid #26374f !important;
         border-radius: 12px !important;
         padding: 16px 20px !important;
         margin-bottom: 22px !important;
@@ -544,26 +545,26 @@ st.markdown(
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        background: linear-gradient(135deg, #0284c7 0%, #0891b2 100%) !important;
-        border: 1px solid #38bdf8 !important;
+        background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%) !important;
+        border: 1px solid #60a5fa !important;
         color: #ffffff !important;
-        box-shadow: 0 2px 10px rgba(6, 182, 212, 0.35) !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) !important;
     }
     #forecasting-control-bar div.stButton > button:hover {
-        background: linear-gradient(135deg, #0369a1 0%, #0e7490 100%) !important;
-        box-shadow: 0 4px 14px rgba(6, 182, 212, 0.5) !important;
-        border-color: #67e8f9 !important;
+        background: linear-gradient(180deg, #1d4ed8 0%, #1e40af 100%) !important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+        border-color: #93c5fd !important;
     }
     div[data-testid="stSelectbox"] [data-baseweb="select"] > div:first-child:hover {
-        border-color: #38bdf8 !important;
+        border-color: #60a5fa !important;
     }
     /* Cyan focus ring */
     div[data-testid="stSelectbox"] [data-baseweb="select"] > div:first-child:focus,
     div[data-testid="stSelectbox"] [data-baseweb="select"] > div:first-child:focus-within,
     div[data-testid="stSelectbox"] [data-baseweb="select"][aria-expanded="true"] > div:first-child,
     div[data-testid="stSelectbox"] [data-baseweb="select"]:focus-within > div:first-child {
-        border-color: #06b6d4 !important;
-        box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.45) !important;
+        border-color: #2563eb !important;
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.35) !important;
         outline: none !important;
     }
 
@@ -593,9 +594,9 @@ st.markdown(
     /* Clearly visible cyan/blue chevron */
     div[data-testid="stSelectbox"] [data-baseweb="select"] svg,
     div[data-testid="stSelectbox"] [data-baseweb="select"] svg path {
-        color: #38bdf8 !important;
-        fill: #38bdf8 !important;
-        stroke: #38bdf8 !important;
+        color: #60a5fa !important;
+        fill: #60a5fa !important;
+        stroke: #60a5fa !important;
         width: 20px !important;
         height: 20px !important;
         position: absolute !important;
@@ -611,10 +612,10 @@ st.markdown(
     div[data-baseweb="popover"] > div,
     ul[role="listbox"],
     [data-baseweb="menu"] {
-        background-color: #0c2b48 !important;
-        background: #0c2b48 !important;
+        background-color: #182436 !important;
+        background: #182436 !important;
         border-radius: 12px !important;
-        border: 1.5px solid #1e4976 !important;
+        border: 1.5px solid #2e425d !important;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
         padding: 6px !important;
         z-index: 999999 !important;
@@ -622,7 +623,7 @@ st.markdown(
 
     li[role="option"],
     li[role="option"] * {
-        background-color: #0c2b48 !important;
+        background-color: #182436 !important;
         color: #f1f5f9 !important;
         -webkit-text-fill-color: #f1f5f9 !important;
         font-size: 0.95rem !important;
@@ -631,15 +632,15 @@ st.markdown(
     }
     li[role="option"]:hover,
     li[role="option"]:hover * {
-        background-color: #164e63 !important;
-        color: #38bdf8 !important;
-        -webkit-text-fill-color: #38bdf8 !important;
+        background-color: #26374f !important;
+        color: #60a5fa !important;
+        -webkit-text-fill-color: #60a5fa !important;
     }
     li[role="option"][aria-selected="true"],
     li[role="option"][aria-selected="true"] * {
-        background-color: #0e3d5e !important;
-        color: #22d3ee !important;
-        -webkit-text-fill-color: #22d3ee !important;
+        background-color: #1d304a !important;
+        color: #93c5fd !important;
+        -webkit-text-fill-color: #93c5fd !important;
         font-weight: 700 !important;
     }
 
@@ -651,25 +652,25 @@ st.markdown(
         padding: 8px 16px !important;
         min-height: 42px !important;
         transition: all 0.2s ease !important;
-        border: 1px solid #1e5a7b !important;
-        background: #0d3251 !important;
+        border: 1px solid #2e4462 !important;
+        background: #1a283a !important;
         color: #e2e8f0 !important;
     }
     div.stButton > button:hover {
-        border-color: #38bdf8 !important;
-        background: #13426b !important;
+        border-color: #60a5fa !important;
+        background: #263852 !important;
         color: #ffffff !important;
-        box-shadow: 0 4px 12px rgba(6, 182, 212, 0.25) !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
     }
     div.stButton > button[kind="primary"] {
-        background: linear-gradient(135deg, #0891b2 0%, #0284c7 100%) !important;
-        border: 1px solid #38bdf8 !important;
+        background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%) !important;
+        border: 1px solid #60a5fa !important;
         color: #ffffff !important;
-        box-shadow: 0 4px 14px rgba(8, 145, 178, 0.35) !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25) !important;
     }
     div.stButton > button[kind="primary"]:hover {
-        background: linear-gradient(135deg, #06b6d4 0%, #0369a1 100%) !important;
-        box-shadow: 0 6px 18px rgba(6, 182, 212, 0.5) !important;
+        background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%) !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
     }
 
     /* Responsive Mobile Navigation & Full-height Overlay Drawer */
@@ -723,7 +724,7 @@ st.markdown(
             z-index: 99998 !important;
             background: rgba(6, 23, 43, 0.96) !important;
             backdrop-filter: blur(10px) !important;
-            border-bottom: 1px solid #164e63 !important;
+            border-bottom: 1px solid #26374f !important;
         }
         /* Hamburger button inside sticky header */
         [data-testid="stSidebarCollapsedControl"],
@@ -732,8 +733,8 @@ st.markdown(
             top: 10px !important;
             left: 12px !important;
             z-index: 100001 !important;
-            background: #09233c !important;
-            border: 1px solid #164e63 !important;
+            background: #141e2e !important;
+            border: 1px solid #26374f !important;
             border-radius: 8px !important;
             display: flex !important;
             align-items: center !important;
@@ -794,8 +795,8 @@ st.markdown(
     
     /* Executive Command Centre Styling */
     .kpi-card-exec {
-        background: #09233c;
-        border: 1px solid #164e63;
+        background: #141e2e;
+        border: 1px solid #26374f;
         border-radius: 12px;
         padding: 16px 18px;
         height: 100%;
@@ -829,8 +830,8 @@ st.markdown(
         text-overflow: ellipsis;
     }
     .snapshot-card {
-        background: #09233c;
-        border: 1px solid #164e63;
+        background: #141e2e;
+        border: 1px solid #26374f;
         border-radius: 12px;
         padding: 18px 20px;
         height: 100%;
@@ -844,7 +845,7 @@ st.markdown(
     .snapshot-title {
         font-size: 1.05rem;
         font-weight: 700;
-        color: #38bdf8;
+        color: #60a5fa;
         margin-bottom: 10px;
     }
     .snapshot-list {
@@ -875,7 +876,7 @@ st.markdown(
     .severity-badge-normal {
         display: inline-block;
         background: rgba(56, 189, 248, 0.15);
-        color: #38bdf8;
+        color: #60a5fa;
         border: 1px solid rgba(56, 189, 248, 0.4);
         padding: 2px 8px;
         border-radius: 6px;
@@ -896,7 +897,7 @@ st.markdown(
     
     /* Hub Module Cards - Visual Depth, Gradients & Perspective */
     .hub-module-card {
-        background: linear-gradient(145deg, #0d304f 0%, #061c2e 100%) !important;
+        background: linear-gradient(145deg, #162234 0%, #0e1624 100%) !important;
         border: 1px solid rgba(56, 189, 248, 0.22) !important;
         border-radius: 14px !important;
         padding: 20px 18px !important;
@@ -917,13 +918,13 @@ st.markdown(
         left: 0;
         right: 0;
         height: 2px;
-        background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.6), transparent);
+        background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.35), transparent);
         opacity: 0.75;
     }
     .hub-module-card:hover {
         transform: translateY(-4px) !important;
         border-color: rgba(56, 189, 248, 0.65) !important;
-        box-shadow: 0 12px 28px rgba(6, 182, 212, 0.2), 0 4px 10px rgba(0, 0, 0, 0.4) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35) !important;
     }
 
     /* Subtle Maritime Animations */
@@ -951,7 +952,7 @@ st.markdown(
 
     /* Vessel Silhouette Card */
     .vessel-card-container {
-        background: linear-gradient(145deg, #0c2b48 0%, #06192d 100%);
+        background: linear-gradient(145deg, #182436 0%, #0d1726 100%);
         border: 1px solid rgba(56, 189, 248, 0.2);
         border-radius: 12px;
         padding: 14px 12px;
@@ -1264,7 +1265,7 @@ def render_level2_header(module_name):
             st.markdown(
                 f"""
                 <div style="padding-top: 8px; font-size: 0.88rem; color: #94a3b8;">
-                    <span style="color: #38bdf8; font-weight: 500;">Home</span>
+                    <span style="color: #60a5fa; font-weight: 500;">Home</span>
                     <span style="color: #64748b; margin: 0 6px;">/</span>
                     <span style="color: #f1f5f9; font-weight: 600;">{module_name}</span>
                 </div>
@@ -1331,9 +1332,9 @@ def render_level2_header(module_name):
     if st.session_state.get("show_alerts_panel", False):
         st.markdown(
             """
-            <div class="panel-card" style="border-left: 4px solid #38bdf8; margin-bottom: 16px;">
+            <div class="panel-card" style="border-left: 4px solid #60a5fa; margin-bottom: 16px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                    <b style="color: #38bdf8; font-size: 1.02rem;">🔔 Active Maritime Alerts (3 Unresolved)</b>
+                    <b style="color: #60a5fa; font-size: 1.02rem;">🔔 Active Maritime Alerts (3 Unresolved)</b>
                 </div>
                 <ul style="margin: 0; padding-left: 20px; color: #cbd5e1; font-size: 0.94rem;">
                     <li><b>Port Notice:</b> Paradip waiting days average 3 days with maximum vessel draft clearance 180,000 DWT.</li>
@@ -1374,12 +1375,12 @@ def render_landing_hub():
     # Lightweight Isometric Maritime Hero Visual
     st.markdown(
         """
-        <div style="width: 100%; max-width: 900px; margin: 0 auto 24px auto; overflow: hidden; border-radius: 16px; border: 1px solid rgba(56,189,248,0.25); background: linear-gradient(180deg, #071f34 0%, #051829 100%); box-shadow: 0 10px 30px rgba(0,0,0,0.35);">
+        <div style="width: 100%; max-width: 900px; margin: 0 auto 24px auto; overflow: hidden; border-radius: 16px; border: 1px solid rgba(56,189,248,0.25); background: linear-gradient(180deg, #0e1827 0%, #051829 100%); box-shadow: 0 10px 30px rgba(0,0,0,0.35);">
         <svg class="maritime-hero-svg" viewBox="0 0 900 185" width="100%" height="185" xmlns="http://www.w3.org/2000/svg" style="display: block;">
           <defs>
             <linearGradient id="routeGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.3" />
-              <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.95" />
+              <stop offset="0%" stop-color="#2563eb" stop-opacity="0.3" />
+              <stop offset="50%" stop-color="#60a5fa" stop-opacity="0.95" />
               <stop offset="100%" stop-color="#10b981" stop-opacity="0.9" />
             </linearGradient>
             <filter id="cyanGlow" x="-20%" y="-20%" width="140%" height="140%">
@@ -1389,7 +1390,7 @@ def render_landing_hub():
           </defs>
 
           <!-- Nautical Grid Lines -->
-          <g opacity="0.1" stroke="#38bdf8" stroke-width="1" stroke-dasharray="4,6">
+          <g opacity="0.1" stroke="#60a5fa" stroke-width="1" stroke-dasharray="4,6">
             <line x1="50" y1="35" x2="850" y2="35" />
             <line x1="50" y1="90" x2="850" y2="90" />
             <line x1="50" y1="145" x2="850" y2="145" />
@@ -1407,11 +1408,11 @@ def render_landing_hub():
 
           <!-- Origin: Richards Bay -->
           <g transform="translate(120, 115)">
-            <circle r="12" fill="#06b6d4" opacity="0.2" />
-            <circle r="6" fill="#0284c7" stroke="#38bdf8" stroke-width="2" />
+            <circle r="12" fill="#2563eb" opacity="0.2" />
+            <circle r="6" fill="#0284c7" stroke="#60a5fa" stroke-width="2" />
             <circle r="2.5" fill="#ffffff" />
             <text x="-10" y="24" fill="#94a3b8" font-size="11" font-weight="600" font-family="system-ui, sans-serif" text-anchor="middle">Richards Bay</text>
-            <text x="-10" y="36" fill="#38bdf8" font-size="9" font-family="system-ui, sans-serif" text-anchor="middle">ORIGIN (ZA)</text>
+            <text x="-10" y="36" fill="#60a5fa" font-size="9" font-family="system-ui, sans-serif" text-anchor="middle">ORIGIN (ZA)</text>
           </g>
 
           <!-- Animated Cargo Vessel (Mid-Voyage) -->
@@ -1419,23 +1420,23 @@ def render_landing_hub():
             <!-- Vessel Shadow -->
             <ellipse cx="0" cy="18" rx="42" ry="7" fill="#020d18" opacity="0.5" />
             <!-- Hull Profile -->
-            <path d="M -36,8 L 26,8 L 38,-2 L -34,-2 Z" fill="#0d3b59" stroke="#1c607b" stroke-width="1.2" />
+            <path d="M -36,8 L 26,8 L 38,-2 L -34,-2 Z" fill="#0d3b59" stroke="#2a3f5a" stroke-width="1.2" />
             <!-- Red/Orange Waterline -->
             <line x1="-36" y1="8" x2="26" y2="8" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
             <!-- Deck Hatches (Isometric cargo holds) -->
-            <rect x="-24" y="-8" width="10" height="6" rx="1.5" fill="#0284c7" stroke="#38bdf8" stroke-width="0.8" />
-            <rect x="-10" y="-8" width="10" height="6" rx="1.5" fill="#0284c7" stroke="#38bdf8" stroke-width="0.8" />
-            <rect x="4" y="-8" width="10" height="6" rx="1.5" fill="#0284c7" stroke="#38bdf8" stroke-width="0.8" />
+            <rect x="-24" y="-8" width="10" height="6" rx="1.5" fill="#0284c7" stroke="#60a5fa" stroke-width="0.8" />
+            <rect x="-10" y="-8" width="10" height="6" rx="1.5" fill="#0284c7" stroke="#60a5fa" stroke-width="0.8" />
+            <rect x="4" y="-8" width="10" height="6" rx="1.5" fill="#0284c7" stroke="#60a5fa" stroke-width="0.8" />
             <!-- Bridge / Accommodation Tower -->
             <polygon points="-33,-2 -33,-16 -23,-16 -23,-2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.8" />
             <rect x="-31" y="-14" width="6" height="3" fill="#0284c7" />
             <!-- Radar Mast -->
             <line x1="-28" y1="-16" x2="-28" y2="-22" stroke="#94a3b8" stroke-width="1.2" />
             <!-- Bow Wave spray -->
-            <path d="M 38,-2 Q 44,4 40,9" fill="none" stroke="#67e8f9" stroke-width="1.5" opacity="0.75" />
+            <path d="M 38,-2 Q 44,4 40,9" fill="none" stroke="#93c5fd" stroke-width="1.5" opacity="0.75" />
             <!-- Ship Label Badge -->
-            <rect x="-32" y="-34" width="64" height="14" rx="4" fill="rgba(6,27,46,0.85)" stroke="#38bdf8" stroke-width="0.8" />
-            <text x="0" y="-24" fill="#67e8f9" font-size="9" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">PANAMAX 2x</text>
+            <rect x="-32" y="-34" width="64" height="14" rx="4" fill="rgba(6,27,46,0.85)" stroke="#60a5fa" stroke-width="0.8" />
+            <text x="0" y="-24" fill="#93c5fd" font-size="9" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">PANAMAX 2x</text>
           </g>
 
           <!-- Destination: East Coast Ports -->
@@ -1476,7 +1477,7 @@ def render_landing_hub():
     st.markdown(
         """
         <div style="margin-top: 10px; margin-bottom: 14px;">
-            <span style="font-size: 0.82rem; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; background: rgba(56,189,248,0.12); padding: 4px 12px; border-radius: 6px; border-left: 3px solid #38bdf8;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.06em; background: rgba(56,189,248,0.12); padding: 4px 12px; border-radius: 6px; border-left: 3px solid #60a5fa;">
                 Category 1 • Planning & Decision
             </span>
         </div>
@@ -1507,7 +1508,7 @@ def render_landing_hub():
     st.markdown(
         """
         <div style="margin-top: 10px; margin-bottom: 14px;">
-            <span style="font-size: 0.82rem; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; background: rgba(56,189,248,0.12); padding: 4px 12px; border-radius: 6px; border-left: 3px solid #38bdf8;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.06em; background: rgba(56,189,248,0.12); padding: 4px 12px; border-radius: 6px; border-left: 3px solid #60a5fa;">
                 Category 2 • Maritime Intelligence
             </span>
         </div>
@@ -1533,7 +1534,7 @@ def render_landing_hub():
     st.markdown(
         """
         <div style="margin-top: 10px; margin-bottom: 14px;">
-            <span style="font-size: 0.82rem; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; background: rgba(56,189,248,0.12); padding: 4px 12px; border-radius: 6px; border-left: 3px solid #38bdf8;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.06em; background: rgba(56,189,248,0.12); padding: 4px 12px; border-radius: 6px; border-left: 3px solid #60a5fa;">
                 Category 3 • Analysis & Management
             </span>
         </div>
@@ -1556,7 +1557,7 @@ def render_landing_hub():
     # Landing Hub Footer
     st.markdown(
         """
-        <div style="text-align: center; padding: 36px 16px 16px 16px; margin-top: 40px; border-top: 1px solid #1c607b;">
+        <div style="text-align: center; padding: 36px 16px 16px 16px; margin-top: 40px; border-top: 1px solid #2a3f5a;">
             <p style="margin: 0; color: #94a3b8; font-size: 0.92rem; font-weight: 500;">
                 VarunaPath AI • Maritime Decision Intelligence • Team Novara
             </p>
@@ -1818,9 +1819,9 @@ def render_optimization_hub_controls(commodity, forecast_horizon, active_scenari
                 <span style="color: #94a3b8; font-weight: 700; letter-spacing: 0.05em;">SCENARIO SNAPSHOT:</span>
                 <span style="color: #ffffff; font-weight: 700;">📦 {commodity}</span>
                 <span style="color: #475569;">•</span>
-                <span style="color: #38bdf8; font-weight: 600;">📅 {forecast_horizon}</span>
+                <span style="color: #60a5fa; font-weight: 600;">📅 {forecast_horizon}</span>
                 <span style="color: #475569;">•</span>
-                <span style="color: #2dd4bf; font-weight: 600;">🧪 {active_scenario}</span>
+                <span style="color: #10b981; font-weight: 600;">🧪 {active_scenario}</span>
                 <span style="color: #475569;">•</span>
                 <span style="color: #fbbf24; font-weight: 600;">⚡ Shortfall: {cargo_shortfall:,} tonnes</span>
                 <span style="color: #475569;">•</span>
@@ -1995,7 +1996,7 @@ def render_reports_view(base_plans, commodity, forecast_horizon, horizon_days, c
     st.markdown(
         f"""
         <div class="recommend" style="margin-bottom: 20px;">
-            <b style="font-size: 1.05rem; color: #38bdf8;">⚓ Current Recommended Voyage Plan Summary ({rep_status}):</b><br>
+            <b style="font-size: 1.05rem; color: #60a5fa;">⚓ Current Recommended Voyage Plan Summary ({rep_status}):</b><br>
             Procure <b>{cargo_shortfall:,} tonnes</b> of {commodity} from <b>{rep_supplier}</b> ({rep_origin}).<br>
             Charter <b>{rep_vessels} × {rep_class}</b> ({rep_vessel_name}) with <b>{rep_capacity:,} tonnes</b> combined capacity (<b>{rep_util}%</b> utilization).<br>
             Discharge at <b>{rep_port} Port</b> with total voyage turnaround of <b>{rep_eta} days</b>.<br>
@@ -2012,7 +2013,7 @@ def render_reports_view(base_plans, commodity, forecast_horizon, horizon_days, c
         st.markdown(
             f"""
             <div class="panel-card" style="margin-bottom: 16px;">
-                <h4 style="color: #38bdf8; margin-top: 0;">📋 Executive Summary Report</h4>
+                <h4 style="color: #60a5fa; margin-top: 0;">📋 Executive Summary Report</h4>
                 <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.5;">
                     This audit document establishes the least-cost, risk-hedged bulk logistics plan for <b>{cargo_shortfall:,} tonnes</b> of <b>{commodity}</b>.
                     Dual Panamax carrier allocation achieves the optimal DWT threshold without incurring excess demurrage penalties or exceeding East Coast port draft constraints.
@@ -2031,7 +2032,7 @@ def render_reports_view(base_plans, commodity, forecast_horizon, horizon_days, c
         st.markdown(
             f"""
             <div class="panel-card" style="margin-bottom: 16px;">
-                <h4 style="color: #2dd4bf; margin-top: 0;">💰 Cost Analysis Report</h4>
+                <h4 style="color: #10b981; margin-top: 0;">💰 Cost Analysis Report</h4>
                 <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.5;">
                     Comparative cost breakdown demonstrating a net reduction of <b>₹{saving:.2f} Cr ({saving_pct:.1f}%)</b> against the conventional single-fixture baseline.
                 </p>
@@ -2040,7 +2041,7 @@ def render_reports_view(base_plans, commodity, forecast_horizon, horizon_days, c
                     <tr><td style="padding: 4px 0; color: #94a3b8;">Vessel Charter Cost</td><td style="text-align: right; font-weight: 600;">₹{best['Charter Cost Cr']:.2f} Cr</td></tr>
                     <tr><td style="padding: 4px 0; color: #94a3b8;">Port Tariff & Anchorage</td><td style="text-align: right; font-weight: 600;">₹{best['Port & Waiting Cr']:.2f} Cr</td></tr>
                     <tr><td style="padding: 4px 0; color: #94a3b8;">Operational Risk Reserve</td><td style="text-align: right; font-weight: 600;">₹{best['Risk Cost Cr']:.2f} Cr</td></tr>
-                    <tr style="border-top: 1px solid #164e63;"><td style="padding: 6px 0; color: #38bdf8; font-weight: 700;">Total Optimized Logistics Cost</td><td style="text-align: right; font-weight: 700; color: #38bdf8;">₹{best['Total Cost Cr']:.2f} Cr</td></tr>
+                    <tr style="border-top: 1px solid #26374f;"><td style="padding: 6px 0; color: #60a5fa; font-weight: 700;">Total Optimized Logistics Cost</td><td style="text-align: right; font-weight: 700; color: #60a5fa;">₹{best['Total Cost Cr']:.2f} Cr</td></tr>
                 </table>
             </div>
             """,
@@ -2059,7 +2060,7 @@ def render_reports_view(base_plans, commodity, forecast_horizon, horizon_days, c
                     <tr><td style="padding: 4px 0; color: #94a3b8;">Vessel Seaworthiness & Class Age</td><td style="text-align: right; font-weight: 600; color: #a7f3d0;">91% (Tier 1)</td></tr>
                     <tr><td style="padding: 4px 0; color: #94a3b8;">Berth Congestion Exposure</td><td style="text-align: right; font-weight: 600; color: #facc15;">3.0 Days (Moderate)</td></tr>
                     <tr><td style="padding: 4px 0; color: #94a3b8;">Cyclonic / Weather Hazard Factor</td><td style="text-align: right; font-weight: 600; color: #a7f3d0;">35/100 (Normal Season)</td></tr>
-                    <tr style="border-top: 1px solid #164e63;"><td style="padding: 6px 0; color: #f59e0b; font-weight: 700;">Composite Risk Rating</td><td style="text-align: right; font-weight: 700; color: #f59e0b;">24 / 100 (Optimal)</td></tr>
+                    <tr style="border-top: 1px solid #26374f;"><td style="padding: 6px 0; color: #f59e0b; font-weight: 700;">Composite Risk Rating</td><td style="text-align: right; font-weight: 700; color: #f59e0b;">24 / 100 (Optimal)</td></tr>
                 </table>
             </div>
             """,
@@ -2076,7 +2077,7 @@ def render_reports_view(base_plans, commodity, forecast_horizon, horizon_days, c
                     <tr><td style="padding: 4px 0; color: #94a3b8;">Paradip (Selected)</td><td style="text-align: right; font-weight: 600;">₹85/t • 3d wait • 180k DWT max</td></tr>
                     <tr><td style="padding: 4px 0; color: #94a3b8;">Dhamra Port</td><td style="text-align: right; font-weight: 600;">₹95/t • 2d wait • 180k DWT max</td></tr>
                     <tr><td style="padding: 4px 0; color: #94a3b8;">Visakhapatnam Port</td><td style="text-align: right; font-weight: 600;">₹110/t • 5d wait • 125k DWT max</td></tr>
-                    <tr style="border-top: 1px solid #164e63;"><td style="padding: 6px 0; color: #818cf8; font-weight: 700;">Optimal Port Choice</td><td style="text-align: right; font-weight: 700; color: #818cf8;">Paradip Port</td></tr>
+                    <tr style="border-top: 1px solid #26374f;"><td style="padding: 6px 0; color: #818cf8; font-weight: 700;">Optimal Port Choice</td><td style="text-align: right; font-weight: 700; color: #818cf8;">Paradip Port</td></tr>
                 </table>
             </div>
             """,
@@ -2122,8 +2123,8 @@ def render_data_settings_view():
             st.markdown(
                 """
                 <div class="panel-card">
-                    <b style="color: #38bdf8;">Open-Meteo Marine & Weather API Connector</b><br>
-                    <span style="color: #38bdf8;">● Integration Ready</span> • East Coast Indian Ports Simulated Telemetry (Prototype Dataset)<br>
+                    <b style="color: #60a5fa;">Open-Meteo Marine & Weather API Connector</b><br>
+                    <span style="color: #60a5fa;">● Integration Ready</span> • East Coast Indian Ports Simulated Telemetry (Prototype Dataset)<br>
                     <span style="color: #94a3b8; font-size: 0.85rem;">Endpoint: <code>https://api.open-meteo.com/v1/forecast</code></span><br>
                     <span style="color: #94a3b8; font-size: 0.85rem;">Mode: Prototype Dataset • Telemetry: Simulated Data</span>
                 </div>
@@ -2134,8 +2135,8 @@ def render_data_settings_view():
             st.markdown(
                 """
                 <div class="panel-card">
-                    <b style="color: #38bdf8;">Frankfurter Central Bank FX API Connector</b><br>
-                    <span style="color: #38bdf8;">● Integration Ready</span> • Reference Currency Conversion (USD/INR Simulated Data)<br>
+                    <b style="color: #60a5fa;">Frankfurter Central Bank FX API Connector</b><br>
+                    <span style="color: #60a5fa;">● Integration Ready</span> • Reference Currency Conversion (USD/INR Simulated Data)<br>
                     <span style="color: #94a3b8; font-size: 0.85rem;">Endpoint: <code>https://api.frankfurter.app/latest?from=USD&to=INR</code></span><br>
                     <span style="color: #94a3b8; font-size: 0.85rem;">Mode: Prototype Dataset • Not Live Connected</span>
                 </div>
@@ -2203,7 +2204,7 @@ def render_data_settings_view():
     st.markdown("---")
     st.markdown(
         """
-        <div class="panel-card" style="border-left: 4px solid #06b6d4; display: flex; justify-content: space-between; align-items: center;">
+        <div class="panel-card" style="border-left: 4px solid #2563eb; display: flex; justify-content: space-between; align-items: center;">
             <div>
                 <span class="prototype-badge" style="margin-bottom: 4px; display: inline-block;">PROTOTYPE DATA ACTIVE</span><br>
                 <span style="color: #cbd5e1; font-size: 0.88rem;">VarunaPath AI Maritime Intelligence Platform • Demonstration Version 2.4</span>
@@ -2356,7 +2357,7 @@ def render_command_centre():
                 <div class="kpi-card-exec">
                     <span class="kpi-exec-label">Cargo Requirement</span>
                     <div class="kpi-exec-val">{cargo_requirement:,.0f} tonnes</div>
-                    <div class="kpi-exec-sub" style="color: #38bdf8;">Demand Horizon: 90 Days</div>
+                    <div class="kpi-exec-sub" style="color: #60a5fa;">Demand Horizon: 90 Days</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -2378,7 +2379,7 @@ def render_command_centre():
                 <div class="kpi-card-exec">
                     <span class="kpi-exec-label">Recommended Cost</span>
                     <div class="kpi-exec-val">₹{best['Total Cost Cr']:.2f} Cr</div>
-                    <div class="kpi-exec-sub" style="color: #2dd4bf;">Savings: ₹{saving:.2f} Cr ({saving_pct:.1f}%)</div>
+                    <div class="kpi-exec-sub" style="color: #10b981;">Savings: ₹{saving:.2f} Cr ({saving_pct:.1f}%)</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -2481,7 +2482,7 @@ def render_command_centre():
         st.markdown('<div style="margin-top: 10px; margin-bottom: 22px;">', unsafe_allow_html=True)
         v1, v2 = st.columns(2, gap="medium")
         with v1:
-            st.markdown('<h4 style="color: #38bdf8; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">📦 90-Day Inventory Projection & Replenishment</h4>', unsafe_allow_html=True)
+            st.markdown('<h4 style="color: #60a5fa; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">📦 90-Day Inventory Projection & Replenishment</h4>', unsafe_allow_html=True)
             # Generate 90-day trajectory
             days_arr = list(range(0, 91, 5))
             burn_rate = cargo_requirement / 90.0  # daily consumption
@@ -2505,8 +2506,8 @@ def render_command_centre():
                 y=inv_plot_df["Projected Inventory (t)"],
                 mode="lines+markers",
                 name="Projected Inventory",
-                line=dict(color="#38bdf8", width=3),
-                marker=dict(size=5, color="#2dd4bf"),
+                line=dict(color="#60a5fa", width=3),
+                marker=dict(size=5, color="#10b981"),
             ))
             fig_inv.add_trace(go.Scatter(
                 x=inv_plot_df["Day"],
@@ -2522,20 +2523,20 @@ def render_command_centre():
                 height=300,
                 margin=dict(l=30, r=20, t=25, b=25),
                 paper_bgcolor="rgba(0,0,0,0)",
-                plot_bgcolor="rgba(7,27,46,.55)",
+                plot_bgcolor="rgba(15,23,42,0.5)",
                 font_color="white",
                 legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-                xaxis=dict(title="Days from Today", gridcolor="rgba(22,78,99,0.3)"),
-                yaxis=dict(title="Tonnes", gridcolor="rgba(22,78,99,0.3)"),
+                xaxis=dict(title="Days from Today", gridcolor="rgba(51,65,85,0.3)"),
+                yaxis=dict(title="Tonnes", gridcolor="rgba(51,65,85,0.3)"),
             )
             st.plotly_chart(fig_inv, use_container_width=True)
 
         with v2:
-            st.markdown('<h4 style="color: #2dd4bf; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">💰 Baseline vs. Optimized Cost Comparison</h4>', unsafe_allow_html=True)
+            st.markdown('<h4 style="color: #10b981; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">💰 Baseline vs. Optimized Cost Comparison</h4>', unsafe_allow_html=True)
             cost_comp_df = pd.DataFrame({
                 "Strategy": ["Conventional Baseline", "VarunaPath Optimized"],
                 "Cost (₹ Cr)": [baseline_cost, round(best["Total Cost Cr"], 2)],
-                "Color": ["#0c2b48", "#0891b2"],
+                "Color": ["#182436", "#1d4ed8"],
             })
             fig_cost = go.Figure()
             fig_cost.add_trace(go.Bar(
@@ -2547,8 +2548,8 @@ def render_command_centre():
                 insidetextanchor="middle",
                 textfont=dict(color="#ffffff", size=12, family="sans-serif"),
                 marker=dict(
-                    color=["#1e4976", "#06b6d4"],
-                    line=dict(color=["#38bdf8", "#22d3ee"], width=1.5),
+                    color=["#2e425d", "#2563eb"],
+                    line=dict(color=["#60a5fa", "#93c5fd"], width=1.5),
                 ),
             ))
             fig_cost.add_annotation(
@@ -2566,10 +2567,10 @@ def render_command_centre():
                 height=300,
                 margin=dict(l=30, r=20, t=25, b=25),
                 paper_bgcolor="rgba(0,0,0,0)",
-                plot_bgcolor="rgba(7,27,46,.55)",
+                plot_bgcolor="rgba(15,23,42,0.5)",
                 font_color="white",
-                xaxis=dict(title="Total Cost (₹ Cr)", range=[0, 36], gridcolor="rgba(22,78,99,0.3)"),
-                yaxis=dict(gridcolor="rgba(22,78,99,0.3)"),
+                xaxis=dict(title="Total Cost (₹ Cr)", range=[0, 36], gridcolor="rgba(51,65,85,0.3)"),
+                yaxis=dict(gridcolor="rgba(51,65,85,0.3)"),
             )
             st.plotly_chart(fig_cost, use_container_width=True)
         st.markdown('</div>', unsafe_allow_html=True)
@@ -2590,7 +2591,7 @@ def render_command_centre():
                     <span style="color: #94a3b8; font-size: 0.78rem;">Updated 15m ago</span>
                 </div>
             </div>
-            <div class="panel-card" style="margin-bottom: 10px; padding: 12px 18px; border-left: 4px solid #38bdf8;">
+            <div class="panel-card" style="margin-bottom: 10px; padding: 12px 18px; border-left: 4px solid #60a5fa;">
                 <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
                     <div>
                         <span class="severity-badge-normal">NORMAL</span>
@@ -2622,10 +2623,10 @@ def render_command_centre():
         # SECTION 7 — Why This Plan? (Concise explainable-AI card with maritime navy & cyan styling)
         st.markdown(
             f"""
-            <div class="panel-card" style="border-left: 4px solid #2dd4bf; background: #09233c; padding: 18px 22px; margin-top: 18px; margin-bottom: 24px;">
+            <div class="panel-card" style="border-left: 4px solid #10b981; background: #141e2e; padding: 18px 22px; margin-top: 18px; margin-bottom: 24px;">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
                     <span style="font-size: 1.25rem;">🤖</span>
-                    <h4 style="color: #2dd4bf; margin: 0; font-size: 1.05rem;">Why This Plan? — AI Decision Rationale</h4>
+                    <h4 style="color: #10b981; margin: 0; font-size: 1.05rem;">Why This Plan? — AI Decision Rationale</h4>
                 </div>
                 <ul style="margin: 0; padding-left: 22px; color: #cbd5e1; font-size: 0.93rem; line-height: 1.65;">
                     <li><b>Panamax Capacity Coverage:</b> Dual Panamax vessels provide <b>164,000 tonnes</b> combined carrying capacity, safely covering the <b>130,000-tonne cargo shortfall</b> with an optimal <b>79.3% utilization</b> and zero cargo spillage.</li>
@@ -2654,7 +2655,7 @@ def render_forecasting_studio():
         """
         <div class="panel-card" style="margin-top: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
             <div>
-                <b style="color: #38bdf8; font-size: 1.05rem;">AI Demand Forecasting Studio</b>
+                <b style="color: #60a5fa; font-size: 1.05rem;">AI Demand Forecasting Studio</b>
                 <span style="color: #94a3b8; font-size: 0.88rem; margin-left: 8px;">— Multi-model predictive demand & freight rate forward curves.</span>
             </div>
             <span class="prototype-badge">PROTOTYPE DATA</span>
@@ -2754,7 +2755,7 @@ def render_forecasting_studio():
             <div class="kpi-card-exec">
                 <span class="kpi-exec-label">Forecasted Demand</span>
                 <div class="kpi-exec-val">{forecasted_demand:,.0f} tonnes</div>
-                <div class="kpi-exec-sub" style="color: #38bdf8;">{cur_horizon} Target Total</div>
+                <div class="kpi-exec-sub" style="color: #60a5fa;">{cur_horizon} Target Total</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -2787,7 +2788,7 @@ def render_forecasting_studio():
             <div class="kpi-card-exec">
                 <span class="kpi-exec-label">Forecast MAPE</span>
                 <div class="kpi-exec-val">{forecast_mape:.2f}%</div>
-                <div class="kpi-exec-sub" style="color: #2dd4bf;">High Model Precision</div>
+                <div class="kpi-exec-sub" style="color: #10b981;">High Model Precision</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -2798,7 +2799,7 @@ def render_forecasting_studio():
             <div class="kpi-card-exec">
                 <span class="kpi-exec-label">Confidence Score</span>
                 <div class="kpi-exec-val">{confidence_score}%</div>
-                <div class="kpi-exec-sub" style="color: #38bdf8;">{cur_model}</div>
+                <div class="kpi-exec-sub" style="color: #60a5fa;">{cur_model}</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -2812,15 +2813,15 @@ def render_forecasting_studio():
 
     # CHART 1: Actual versus Forecast Demand
     with ch_row1_c1:
-        st.markdown('<h4 style="color: #38bdf8; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">📊 Actual vs Forecast Demand</h4>', unsafe_allow_html=True)
+        st.markdown('<h4 style="color: #60a5fa; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">📊 Actual vs Forecast Demand</h4>', unsafe_allow_html=True)
         fig_act_fc = go.Figure()
         fig_act_fc.add_trace(go.Scatter(
             x=hist_months,
             y=hist_demand,
             mode="lines+markers",
             name="Actual Consumption",
-            line=dict(color="#38bdf8", width=2.5),
-            marker=dict(size=5, color="#38bdf8"),
+            line=dict(color="#60a5fa", width=2.5),
+            marker=dict(size=5, color="#60a5fa"),
             hovertemplate="<b>Actual:</b> %{y:.1f}K tonnes<br><b>Month:</b> %{x|%b %Y}<extra></extra>",
         ))
         fig_act_fc.add_trace(go.Scatter(
@@ -2828,25 +2829,25 @@ def render_forecasting_studio():
             y=future_demand,
             mode="lines+markers",
             name="AI Forecast",
-            line=dict(color="#2dd4bf", width=2.5, dash="dash"),
-            marker=dict(size=7, color="#2dd4bf", symbol="diamond"),
+            line=dict(color="#10b981", width=2.5, dash="dash"),
+            marker=dict(size=7, color="#10b981", symbol="diamond"),
             hovertemplate="<b>AI Forecast:</b> %{y:.1f}K tonnes<br><b>Month:</b> %{x|%b %Y}<extra></extra>",
         ))
         fig_act_fc.update_layout(
             height=320,
             margin=dict(l=35, r=20, t=25, b=30),
             paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="rgba(7,27,46,.55)",
+            plot_bgcolor="rgba(15,23,42,0.5)",
             font_color="white",
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-            xaxis=dict(title="Month", gridcolor="rgba(22,78,99,0.3)"),
-            yaxis=dict(title="Demand ('000 tonnes)", gridcolor="rgba(22,78,99,0.3)"),
+            xaxis=dict(title="Month", gridcolor="rgba(51,65,85,0.3)"),
+            yaxis=dict(title="Demand ('000 tonnes)", gridcolor="rgba(51,65,85,0.3)"),
         )
         st.plotly_chart(fig_act_fc, use_container_width=True)
 
     # CHART 2: Forecast Confidence Band
     with ch_row1_c2:
-        st.markdown(f'<h4 style="color: #2dd4bf; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">🎯 Forecast Confidence Band ({confidence_score}% CI)</h4>', unsafe_allow_html=True)
+        st.markdown(f'<h4 style="color: #10b981; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">🎯 Forecast Confidence Band ({confidence_score}% CI)</h4>', unsafe_allow_html=True)
         upper_bound = [round(d * 1.05, 1) for d in future_demand]
         lower_bound = [round(d * 0.95, 1) for d in future_demand]
 
@@ -2866,8 +2867,8 @@ def render_forecasting_studio():
             y=future_demand,
             mode="lines+markers",
             name="Forecast Mean",
-            line=dict(color="#06b6d4", width=3),
-            marker=dict(size=7, color="#22d3ee"),
+            line=dict(color="#2563eb", width=3),
+            marker=dict(size=7, color="#93c5fd"),
             hovertemplate="<b>Mean Forecast:</b> %{y:.1f}K tonnes<br><b>Month:</b> %{x|%b %Y}<extra></extra>",
         ))
         fig_conf.add_trace(go.Scatter(
@@ -2890,11 +2891,11 @@ def render_forecasting_studio():
             height=320,
             margin=dict(l=35, r=20, t=25, b=30),
             paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="rgba(7,27,46,.55)",
+            plot_bgcolor="rgba(15,23,42,0.5)",
             font_color="white",
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-            xaxis=dict(title="Forward Months", gridcolor="rgba(22,78,99,0.3)"),
-            yaxis=dict(title="Projected Volume ('000 t)", gridcolor="rgba(22,78,99,0.3)"),
+            xaxis=dict(title="Forward Months", gridcolor="rgba(51,65,85,0.3)"),
+            yaxis=dict(title="Projected Volume ('000 t)", gridcolor="rgba(51,65,85,0.3)"),
         )
         st.plotly_chart(fig_conf, use_container_width=True)
 
@@ -2930,11 +2931,11 @@ def render_forecasting_studio():
             height=320,
             margin=dict(l=35, r=20, t=25, b=30),
             paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="rgba(7,27,46,.55)",
+            plot_bgcolor="rgba(15,23,42,0.5)",
             font_color="white",
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-            xaxis=dict(title="Planning Horizon (Days)", gridcolor="rgba(22,78,99,0.3)"),
-            yaxis=dict(title="Freight Rate (₹/tonne)", gridcolor="rgba(22,78,99,0.3)"),
+            xaxis=dict(title="Planning Horizon (Days)", gridcolor="rgba(51,65,85,0.3)"),
+            yaxis=dict(title="Freight Rate (₹/tonne)", gridcolor="rgba(51,65,85,0.3)"),
         )
         st.plotly_chart(fig_fr, use_container_width=True)
 
@@ -2960,8 +2961,8 @@ def render_forecasting_studio():
             y=inv_sim,
             mode="lines+markers",
             name="Plant Inventory",
-            line=dict(color="#38bdf8", width=3),
-            marker=dict(size=5, color="#2dd4bf"),
+            line=dict(color="#60a5fa", width=3),
+            marker=dict(size=5, color="#10b981"),
             hovertemplate="<b>Stock:</b> %{y:,.0f} tonnes<br><b>Day:</b> %{x}<extra></extra>",
         ))
         fig_inv_studio.add_trace(go.Scatter(
@@ -2979,11 +2980,11 @@ def render_forecasting_studio():
             height=320,
             margin=dict(l=35, r=20, t=25, b=30),
             paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="rgba(7,27,46,.55)",
+            plot_bgcolor="rgba(15,23,42,0.5)",
             font_color="white",
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-            xaxis=dict(title="Horizon Timeline (Days)", gridcolor="rgba(22,78,99,0.3)"),
-            yaxis=dict(title="Stock Volume (Tonnes)", gridcolor="rgba(22,78,99,0.3)"),
+            xaxis=dict(title="Horizon Timeline (Days)", gridcolor="rgba(51,65,85,0.3)"),
+            yaxis=dict(title="Stock Volume (Tonnes)", gridcolor="rgba(51,65,85,0.3)"),
         )
         st.plotly_chart(fig_inv_studio, use_container_width=True)
 
@@ -2994,8 +2995,8 @@ def render_forecasting_studio():
 
     st.markdown(
         f"""
-        <div class="panel-card" style="margin-top: 8px; margin-bottom: 20px; border-left: 4px solid #06b6d4;">
-            <h4 style="color: #38bdf8; margin-top: 0; margin-bottom: 10px; font-size: 1.05rem;">🧠 AI Predictive Demand & Freight Insights</h4>
+        <div class="panel-card" style="margin-top: 8px; margin-bottom: 20px; border-left: 4px solid #2563eb;">
+            <h4 style="color: #60a5fa; margin-top: 0; margin-bottom: 10px; font-size: 1.05rem;">🧠 AI Predictive Demand & Freight Insights</h4>
             <ul style="margin: 0; padding-left: 20px; color: #cbd5e1; font-size: 0.93rem; line-height: 1.7;">
                 <li><b>Projected Demand Change:</b> Target consumption for <b>{cur_cargo}</b> over the <b>{cur_horizon}</b> window is calibrated at <b>{forecasted_demand:,} tonnes</b> (burn rate: <b>{daily_consumption:,.0f} tonnes/day</b>), incorporating a <b>+{demand_growth:.1f}%</b> seasonal expansion factor.</li>
                 <li><b>Inventory Shortage Date:</b> Without replenishment, existing stock ({curr_stock:,} t) will breach the critical <b>{safety_stock:,}-tonne safety buffer</b> in <b>{stockout_day} days</b>, necessitating prompt charter commitment.</li>
@@ -3055,7 +3056,7 @@ def render_shipment_planner():
         """
         <div class="panel-card" style="margin-top: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
             <div>
-                <b style="color: #38bdf8; font-size: 1.05rem;">Interactive Shipment Planner & Voyage Architect</b>
+                <b style="color: #60a5fa; font-size: 1.05rem;">Interactive Shipment Planner & Voyage Architect</b>
                 <span style="color: #94a3b8; font-size: 0.88rem; margin-left: 8px;">— Multi-step constraint-driven vessel fixture and procurement scheduling.</span>
             </div>
             <span class="prototype-badge">PROTOTYPE DATA</span>
@@ -3070,8 +3071,8 @@ def render_shipment_planner():
     st.markdown(
         """
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-            <span style="background: #0891b2; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 1</span>
-            <h3 style="margin: 0; color: #38bdf8; font-size: 1.15rem;">Cargo Requirement & Inventory Balance</h3>
+            <span style="background: #1d4ed8; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 1</span>
+            <h3 style="margin: 0; color: #60a5fa; font-size: 1.15rem;">Cargo Requirement & Inventory Balance</h3>
         </div>
         """,
         unsafe_allow_html=True,
@@ -3096,7 +3097,7 @@ def render_shipment_planner():
             <div class="kpi-card-exec">
                 <span class="kpi-exec-label">Required Quantity</span>
                 <div class="kpi-exec-val">{sp_req:,} t</div>
-                <div class="kpi-exec-sub" style="color: #38bdf8;">Base Demand Target</div>
+                <div class="kpi-exec-sub" style="color: #60a5fa;">Base Demand Target</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -3126,9 +3127,9 @@ def render_shipment_planner():
     with eq_c4:
         st.markdown(
             f"""
-            <div class="kpi-card-exec" style="border: 1px solid #06b6d4; background: linear-gradient(180deg, #092a47 0%, #06192d 100%);">
-                <span class="kpi-exec-label" style="color: #22d3ee; font-weight: 700;">Cargo Shortfall (=)</span>
-                <div class="kpi-exec-val" style="color: #22d3ee;">{calc_shortfall:,} tonnes</div>
+            <div class="kpi-card-exec" style="border: 1px solid #2563eb; background: linear-gradient(180deg, #152336 0%, #0d1726 100%);">
+                <span class="kpi-exec-label" style="color: #93c5fd; font-weight: 700;">Cargo Shortfall (=)</span>
+                <div class="kpi-exec-val" style="color: #93c5fd;">{calc_shortfall:,} tonnes</div>
                 <div class="kpi-exec-sub" style="color: #34d399;">Net Procurement Need</div>
             </div>
             """,
@@ -3138,9 +3139,9 @@ def render_shipment_planner():
     # Highlight equation banner
     st.markdown(
         f"""
-        <div class="panel-card" style="margin-top: 10px; margin-bottom: 22px; padding: 12px 18px; border-left: 4px solid #22d3ee;">
+        <div class="panel-card" style="margin-top: 10px; margin-bottom: 22px; padding: 12px 18px; border-left: 4px solid #93c5fd;">
             <span style="color: #94a3b8; font-size: 0.9rem;">Automated Procurement Formula:</span>
-            <b style="color: #edf7ff; font-size: 0.96rem; margin-left: 6px;">Cargo Shortfall = Required Quantity ({sp_req:,} t) + Safety Stock ({sp_saf:,} t) - Current Inventory ({sp_inv:,} t) = <span style="color: #38bdf8;">{calc_shortfall:,} tonnes</span></b>
+            <b style="color: #f8fafc; font-size: 0.96rem; margin-left: 6px;">Cargo Shortfall = Required Quantity ({sp_req:,} t) + Safety Stock ({sp_saf:,} t) - Current Inventory ({sp_inv:,} t) = <span style="color: #60a5fa;">{calc_shortfall:,} tonnes</span></b>
             <span style="color: #94a3b8; font-size: 0.88rem; margin-left: 10px;">(Delivery Deadline: <b>{sp_dl} days</b> | Origin: <b>{sp_origin.split(',')[0]}</b>)</span>
         </div>
         """,
@@ -3153,8 +3154,8 @@ def render_shipment_planner():
     st.markdown(
         """
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-            <span style="background: #0891b2; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 2</span>
-            <h3 style="margin: 0; color: #38bdf8; font-size: 1.15rem;">Operational Constraints & Vessel Criteria</h3>
+            <span style="background: #1d4ed8; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 2</span>
+            <h3 style="margin: 0; color: #60a5fa; font-size: 1.15rem;">Operational Constraints & Vessel Criteria</h3>
         </div>
         """,
         unsafe_allow_html=True,
@@ -3187,8 +3188,8 @@ def render_shipment_planner():
         """
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="background: #0891b2; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 3</span>
-                <h3 style="margin: 0; color: #38bdf8; font-size: 1.15rem;">Generated Voyage Procurement Plans</h3>
+                <span style="background: #1d4ed8; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 3</span>
+                <h3 style="margin: 0; color: #60a5fa; font-size: 1.15rem;">Generated Voyage Procurement Plans</h3>
             </div>
             <span style="color: #94a3b8; font-size: 0.85rem;">Evaluation Engine: <b>3 Strategic Options Generated</b></span>
         </div>
@@ -3209,8 +3210,8 @@ def render_shipment_planner():
     # Automated Capacity Feasibility Audit Callout
     st.markdown(
         f"""
-        <div class="panel-card" style="margin-bottom: 16px; padding: 12px 18px; border-left: 4px solid #38bdf8;">
-            <b style="color: #38bdf8; font-size: 0.95rem;">Fleet Capacity Feasibility Check (Cargo Shortfall: {calc_shortfall:,} tonnes):</b>
+        <div class="panel-card" style="margin-bottom: 16px; padding: 12px 18px; border-left: 4px solid #60a5fa;">
+            <b style="color: #60a5fa; font-size: 0.95rem;">Fleet Capacity Feasibility Check (Cargo Shortfall: {calc_shortfall:,} tonnes):</b>
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 8px; font-size: 0.88rem;">
                 <div style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 8px 12px;">
                     <b style="color: #f87171;">2 × Supramax (116,000 t)</b><br>
@@ -3258,7 +3259,7 @@ def render_shipment_planner():
         "Lowest Cost": {
             "name": "Lowest Cost",
             "badge": "LOWEST COST",
-            "badge_color": "#2dd4bf",
+            "badge_color": "#10b981",
             "vessel_type": "Capesize",
             "vessel_count": 1,
             "combined_capacity": p1_cap,
@@ -3276,7 +3277,7 @@ def render_shipment_planner():
         "Lowest Risk": {
             "name": "Lowest Risk",
             "badge": "LOWEST RISK",
-            "badge_color": "#38bdf8",
+            "badge_color": "#60a5fa",
             "vessel_type": "Panamax",
             "vessel_count": 2,
             "combined_capacity": p2_cap,
@@ -3319,20 +3320,20 @@ def render_shipment_planner():
         p1 = PLAN_DATA["Lowest Cost"]
         st.markdown(
             f"""
-            <div class="panel-card" style="height: 100%; border-top: 4px solid #2dd4bf;">
+            <div class="panel-card" style="height: 100%; border-top: 4px solid #10b981;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <b style="color: #2dd4bf; font-size: 1.05rem;">1. Lowest Cost</b>
-                    <span style="background: rgba(45,212,191,0.15); color: #2dd4bf; font-size: 0.72rem; font-weight: 700; padding: 2px 7px; border-radius: 4px;">{p1['badge']}</span>
+                    <b style="color: #10b981; font-size: 1.05rem;">1. Lowest Cost</b>
+                    <span style="background: rgba(45,212,191,0.15); color: #10b981; font-size: 0.72rem; font-weight: 700; padding: 2px 7px; border-radius: 4px;">{p1['badge']}</span>
                 </div>
                 <div style="font-size: 1.35rem; font-weight: 700; color: #ffffff; margin-bottom: 2px;">{p1['vessel_count']} × {p1['vessel_type']}</div>
                 <div style="color: #94a3b8; font-size: 0.84rem; margin-bottom: 12px;">Discharge: <b>{p1['port']} Port</b></div>
-                <hr style="border: none; border-top: 1px solid #164e63; margin: 8px 0;" />
+                <hr style="border: none; border-top: 1px solid #26374f; margin: 8px 0;" />
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 0.85rem;">
                     <div><span style="color: #94a3b8;">Capacity:</span> <b style="color: #f1f5f9;">{p1['combined_capacity']:,} t</b></div>
-                    <div><span style="color: #94a3b8;">Utilization:</span> <b style="color: #38bdf8;">{p1['utilization']}%</b></div>
+                    <div><span style="color: #94a3b8;">Utilization:</span> <b style="color: #60a5fa;">{p1['utilization']}%</b></div>
                     <div><span style="color: #94a3b8;">Charter Date:</span> <b style="color: #f1f5f9;">{p1['charter_date']}</b></div>
                     <div><span style="color: #94a3b8;">Arrival:</span> <b style="color: #34d399;">{p1['expected_arrival']}</b></div>
-                    <div><span style="color: #94a3b8;">Est. Cost:</span> <b style="color: #2dd4bf;">₹{p1['cost_cr']:.2f} Cr</b></div>
+                    <div><span style="color: #94a3b8;">Est. Cost:</span> <b style="color: #10b981;">₹{p1['cost_cr']:.2f} Cr</b></div>
                     <div><span style="color: #94a3b8;">Savings:</span> <b style="color: #34d399;">₹{p1['savings_cr']:.2f} Cr</b></div>
                     <div><span style="color: #94a3b8;">Risk Score:</span> <b style="color: #fbbf24;">{p1['risk_score']}/100</b></div>
                     <div><span style="color: #94a3b8;">Duration:</span> <b style="color: #f1f5f9;">{p1['duration']} days</b></div>
@@ -3350,22 +3351,22 @@ def render_shipment_planner():
         p2 = PLAN_DATA["Lowest Risk"]
         st.markdown(
             f"""
-            <div class="panel-card" style="height: 100%; border-top: 4px solid #38bdf8;">
+            <div class="panel-card" style="height: 100%; border-top: 4px solid #60a5fa;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <b style="color: #38bdf8; font-size: 1.05rem;">2. Lowest Risk</b>
-                    <span style="background: rgba(56,189,248,0.15); color: #38bdf8; font-size: 0.72rem; font-weight: 700; padding: 2px 7px; border-radius: 4px;">{p2['badge']}</span>
+                    <b style="color: #60a5fa; font-size: 1.05rem;">2. Lowest Risk</b>
+                    <span style="background: rgba(56,189,248,0.15); color: #60a5fa; font-size: 0.72rem; font-weight: 700; padding: 2px 7px; border-radius: 4px;">{p2['badge']}</span>
                 </div>
                 <div style="font-size: 1.35rem; font-weight: 700; color: #ffffff; margin-bottom: 2px;">{p2['vessel_count']} × {p2['vessel_type']}</div>
                 <div style="color: #94a3b8; font-size: 0.84rem; margin-bottom: 12px;">Discharge: <b>{p2['port']} Port</b></div>
-                <hr style="border: none; border-top: 1px solid #164e63; margin: 8px 0;" />
+                <hr style="border: none; border-top: 1px solid #26374f; margin: 8px 0;" />
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 0.85rem;">
                     <div><span style="color: #94a3b8;">Capacity:</span> <b style="color: #f1f5f9;">{p2['combined_capacity']:,} t</b></div>
-                    <div><span style="color: #94a3b8;">Utilization:</span> <b style="color: #38bdf8;">{p2['utilization']}%</b></div>
+                    <div><span style="color: #94a3b8;">Utilization:</span> <b style="color: #60a5fa;">{p2['utilization']}%</b></div>
                     <div><span style="color: #94a3b8;">Charter Date:</span> <b style="color: #f1f5f9;">{p2['charter_date']}</b></div>
                     <div><span style="color: #94a3b8;">Arrival:</span> <b style="color: #34d399;">{p2['expected_arrival']}</b></div>
-                    <div><span style="color: #94a3b8;">Est. Cost:</span> <b style="color: #2dd4bf;">₹{p2['cost_cr']:.2f} Cr</b></div>
+                    <div><span style="color: #94a3b8;">Est. Cost:</span> <b style="color: #10b981;">₹{p2['cost_cr']:.2f} Cr</b></div>
                     <div><span style="color: #94a3b8;">Savings:</span> <b style="color: #34d399;">₹{p2['savings_cr']:.2f} Cr</b></div>
-                    <div><span style="color: #94a3b8;">Risk Score:</span> <b style="color: #38bdf8;">{p2['risk_score']}/100</b></div>
+                    <div><span style="color: #94a3b8;">Risk Score:</span> <b style="color: #60a5fa;">{p2['risk_score']}/100</b></div>
                     <div><span style="color: #94a3b8;">Duration:</span> <b style="color: #f1f5f9;">{p2['duration']} days</b></div>
                 </div>
                 <div style="margin-top: 12px; text-align: center; padding: 4px 8px; border-radius: 6px; background: rgba(52,211,153,0.1); color: #34d399; font-weight: 700; font-size: 0.84rem;">
@@ -3381,20 +3382,20 @@ def render_shipment_planner():
         p3 = PLAN_DATA["Balanced Recommended"]
         st.markdown(
             f"""
-            <div class="panel-card" style="height: 100%; border: 2px solid #06b6d4; background: linear-gradient(180deg, #092c4c 0%, #06192d 100%);">
+            <div class="panel-card" style="height: 100%; border: 2px solid #2563eb; background: linear-gradient(180deg, #16253a 0%, #0d1726 100%);">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                     <b style="color: #34d399; font-size: 1.05rem;">3. Balanced Recommended</b>
                     <span style="background: rgba(52,211,153,0.2); color: #34d399; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; border: 1px solid #34d399;">{p3['badge']}</span>
                 </div>
                 <div style="font-size: 1.35rem; font-weight: 700; color: #ffffff; margin-bottom: 2px;">{p3['vessel_count']} × {p3['vessel_type']}</div>
-                <div style="color: #38bdf8; font-size: 0.84rem; margin-bottom: 12px;">Discharge: <b>{p3['port']} Port</b></div>
-                <hr style="border: none; border-top: 1px solid #0891b2; margin: 8px 0;" />
+                <div style="color: #60a5fa; font-size: 0.84rem; margin-bottom: 12px;">Discharge: <b>{p3['port']} Port</b></div>
+                <hr style="border: none; border-top: 1px solid #1d4ed8; margin: 8px 0;" />
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 0.85rem;">
                     <div><span style="color: #94a3b8;">Capacity:</span> <b style="color: #f1f5f9;">{p3['combined_capacity']:,} t</b></div>
                     <div><span style="color: #94a3b8;">Utilization:</span> <b style="color: #34d399; font-weight: 700;">{p3['utilization']}%</b></div>
                     <div><span style="color: #94a3b8;">Charter Date:</span> <b style="color: #f1f5f9;">{p3['charter_date']}</b></div>
                     <div><span style="color: #94a3b8;">Arrival:</span> <b style="color: #34d399;">{p3['expected_arrival']}</b></div>
-                    <div><span style="color: #94a3b8;">Est. Cost:</span> <b style="color: #22d3ee; font-weight: 700;">₹{p3['cost_cr']:.2f} Cr</b></div>
+                    <div><span style="color: #94a3b8;">Est. Cost:</span> <b style="color: #93c5fd; font-weight: 700;">₹{p3['cost_cr']:.2f} Cr</b></div>
                     <div><span style="color: #94a3b8;">Savings:</span> <b style="color: #34d399; font-weight: 700;">₹{p3['savings_cr']:.2f} Cr</b></div>
                     <div><span style="color: #94a3b8;">Risk Score:</span> <b style="color: #34d399;">{p3['risk_score']}/100</b></div>
                     <div><span style="color: #94a3b8;">Duration:</span> <b style="color: #f1f5f9;">{p3['duration']} days</b></div>
@@ -3413,8 +3414,8 @@ def render_shipment_planner():
     st.markdown(
         """
         <div style="display: flex; align-items: center; gap: 10px; margin-top: 24px; margin-bottom: 12px;">
-            <span style="background: #0891b2; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 4</span>
-            <h3 style="margin: 0; color: #38bdf8; font-size: 1.15rem;">Confirm & Commit Voyage Execution</h3>
+            <span style="background: #1d4ed8; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 4</span>
+            <h3 style="margin: 0; color: #60a5fa; font-size: 1.15rem;">Confirm & Commit Voyage Execution</h3>
         </div>
         """,
         unsafe_allow_html=True,
@@ -3450,8 +3451,8 @@ def render_shipment_planner():
 
         st.markdown(
             f"""
-            <div style="background: rgba(8, 145, 178, 0.12); border-left: 4px solid #06b6d4; padding: 12px 16px; border-radius: 6px; margin-top: 12px; margin-bottom: 16px;">
-                <b style="color: #38bdf8; font-size: 0.95rem;">Why This Plan ({selected_plan['name']}):</b>
+            <div style="background: rgba(8, 145, 178, 0.12); border-left: 4px solid #2563eb; padding: 12px 16px; border-radius: 6px; margin-top: 12px; margin-bottom: 16px;">
+                <b style="color: #60a5fa; font-size: 0.95rem;">Why This Plan ({selected_plan['name']}):</b>
                 <div style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; margin-top: 4px;">{why_text.strip()}</div>
             </div>
             """,
@@ -3580,7 +3581,7 @@ def render_optimization_hub():
         with left:
             st.subheader("Cost Component Breakdown")
             fig2 = px.bar(cost_df, x="Cost (₹ Cr)", y="Component", orientation="h", color="Component")
-            fig2.update_layout(showlegend=False, height=350, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(7,27,46,.55)", font_color="white")
+            fig2.update_layout(showlegend=False, height=350, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(15,23,42,0.5)", font_color="white")
             st.plotly_chart(fig2, width="stretch")
         with right:
             st.subheader("Top Ranked Feasible Voyage Plans")
@@ -3604,11 +3605,11 @@ def render_vessel_intelligence():
     st.markdown('<div class="panel-card"><b>Vessel Fleet Intelligence</b> — Dry bulk carrier specifications, charter tariffs, capacity classes, and deadweight optimization.</div>', unsafe_allow_html=True)
 
     # Isometric Vessel Silhouettes Grid
-    st.markdown('<h4 style="color: #38bdf8; font-size: 1.05rem; margin-top: 14px; margin-bottom: 8px;">🚢 Bulk Carrier Class Silhouettes & Scale Specifications</h4>', unsafe_allow_html=True)
+    st.markdown('<h4 style="color: #60a5fa; font-size: 1.05rem; margin-top: 14px; margin-bottom: 8px;">🚢 Bulk Carrier Class Silhouettes & Scale Specifications</h4>', unsafe_allow_html=True)
     vc1, vc2, vc3, vc4 = st.columns(4, gap="medium")
     v_classes = [
-        {"name": "Handysize", "cap": "35,000 DWT", "hatches": 4, "w": 95, "charter": "₹1.45 Cr", "draft": "10.0m", "badge": "Shallow Port", "color": "#38bdf8"},
-        {"name": "Supramax", "cap": "58,000 DWT", "hatches": 5, "w": 125, "charter": "₹1.85 Cr", "draft": "12.8m", "badge": "Geared", "color": "#06b6d4"},
+        {"name": "Handysize", "cap": "35,000 DWT", "hatches": 4, "w": 95, "charter": "₹1.45 Cr", "draft": "10.0m", "badge": "Shallow Port", "color": "#60a5fa"},
+        {"name": "Supramax", "cap": "58,000 DWT", "hatches": 5, "w": 125, "charter": "₹1.85 Cr", "draft": "12.8m", "badge": "Geared", "color": "#2563eb"},
         {"name": "Panamax", "cap": "82,000 DWT", "hatches": 7, "w": 160, "charter": "₹2.20 Cr", "draft": "14.5m", "badge": "★ Optimal", "color": "#10b981"},
         {"name": "Capesize", "cap": "180,000 DWT", "hatches": 9, "w": 210, "charter": "₹3.80 Cr", "draft": "18.2m", "badge": "Deepwater", "color": "#f59e0b"},
     ]
@@ -3620,13 +3621,13 @@ def render_vessel_intelligence():
         hatch_rects = []
         for i in range(hatches):
             hx = 16 + i * hatch_w + 1.5
-            hatch_rects.append(f'<rect x="{hx:.1f}" y="9" width="{hatch_w - 3:.1f}" height="9" rx="1.5" fill="#0284c7" stroke="#38bdf8" stroke-width="0.8" />')
+            hatch_rects.append(f'<rect x="{hx:.1f}" y="9" width="{hatch_w - 3:.1f}" height="9" rx="1.5" fill="#0284c7" stroke="#60a5fa" stroke-width="0.8" />')
         hatch_svg = "".join(hatch_rects)
 
         svg_markup = f'''
         <svg viewBox="0 0 240 42" width="100%" height="42" xmlns="http://www.w3.org/2000/svg" style="display: block; margin: 6px auto;">
-          <line x1="8" y1="32" x2="232" y2="32" stroke="#164e63" stroke-width="1.2" stroke-dasharray="3,3" />
-          <path d="M 12 28 L {w - 14} 28 L {w} 16 L 15 16 Z" fill="#0c3859" stroke="#1c607b" stroke-width="1.2" />
+          <line x1="8" y1="32" x2="232" y2="32" stroke="#26374f" stroke-width="1.2" stroke-dasharray="3,3" />
+          <path d="M 12 28 L {w - 14} 28 L {w} 16 L 15 16 Z" fill="#1b2b3f" stroke="#2a3f5a" stroke-width="1.2" />
           <line x1="12" y1="28" x2="{w - 14}" y2="28" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
           {hatch_svg}
           <polygon points="15,16 15,6 23,6 23,16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.8" />
@@ -3642,7 +3643,7 @@ def render_vessel_intelligence():
                         <b style="color: #f8fafc; font-size: 1.05rem;">{vc["name"]}</b>
                         <span style="background: rgba(56,189,248,0.15); color: {vc["color"]}; border: 1px solid {vc["color"]}55; padding: 1px 6px; border-radius: 4px; font-size: 0.72rem; font-weight: 600;">{vc["badge"]}</span>
                     </div>
-                    <div style="color: #38bdf8; font-size: 0.95rem; font-weight: 700;">{vc["cap"]}</div>
+                    <div style="color: #60a5fa; font-size: 0.95rem; font-weight: 700;">{vc["cap"]}</div>
                     {svg_markup}
                     <div style="font-size: 0.82rem; color: #94a3b8; margin-top: 4px; border-top: 1px solid rgba(28,96,123,0.3); padding-top: 6px;">
                         <div style="display: flex; justify-content: space-between;"><span>Charter Cost:</span><b style="color: #f1f5f9;">{vc["charter"]}</b></div>
@@ -3675,7 +3676,7 @@ def render_vessel_intelligence():
         st.dataframe(pd.DataFrame(class_stats), hide_index=True, width="stretch")
         st.markdown(
             """
-            <div style="margin-top: 8px; padding: 8px 12px; border-radius: 6px; background: rgba(8,145,178,0.12); border-left: 3px solid #06b6d4; font-size: 0.82rem; color: #cbd5e1;">
+            <div style="margin-top: 8px; padding: 8px 12px; border-radius: 6px; background: rgba(8,145,178,0.12); border-left: 3px solid #2563eb; font-size: 0.82rem; color: #cbd5e1;">
                 <b>Feasibility Rule:</b> 2 × Supramax (116,000 t) is <span style="color: #f87171; font-weight: 700;">Infeasible (Deficit: 14,000 t)</span> for 130,000 t shortfall. 2 × Panamax (164,000 t, 79.3% util) and 1 × Capesize (180,000 t, 72.2% util) are Feasible.
             </div>
             """,
@@ -3693,7 +3694,7 @@ def render_vessel_intelligence():
         title="Vessel Capacity (DWT) vs Charter Cost per Voyage (₹ Cr)",
     )
     v_fig.update_traces(textposition="top center")
-    v_fig.update_layout(height=380, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(7,27,46,.55)", font_color="white")
+    v_fig.update_layout(height=380, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(15,23,42,0.5)", font_color="white")
     st.plotly_chart(v_fig, width="stretch")
 
 
@@ -3707,23 +3708,23 @@ def render_port_intelligence():
     # Lightweight Pseudo-3D Maritime Route Simulation Visual
     st.markdown(
         """
-        <div style="width: 100%; margin: 12px 0 20px 0; border-radius: 14px; border: 1px solid rgba(56,189,248,0.25); background: linear-gradient(180deg, #071f34 0%, #041424 100%); padding: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
+        <div style="width: 100%; margin: 12px 0 20px 0; border-radius: 14px; border: 1px solid rgba(56,189,248,0.25); background: linear-gradient(180deg, #0e1827 0%, #09101a 100%); padding: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(28,96,123,0.4); padding-bottom: 8px; flex-wrap: wrap; gap: 8px;">
             <div>
-                <b style="color: #38bdf8; font-size: 1.02rem;">🚢 Indian Ocean Shipping Corridor Simulation</b>
+                <b style="color: #60a5fa; font-size: 1.02rem;">🚢 Indian Ocean Shipping Corridor Simulation</b>
                 <span style="color: #94a3b8; font-size: 0.85rem; margin-left: 8px;">Richards Bay (ZA) → Indian East Coast</span>
             </div>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                 <span style="background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Sea State: Normal (1.4m)</span>
-                <span style="background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Distance: 4,620 NM</span>
+                <span style="background: rgba(56,189,248,0.15); color: #60a5fa; border: 1px solid rgba(56,189,248,0.3); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Distance: 4,620 NM</span>
             </div>
         </div>
         <svg class="maritime-route-svg" viewBox="0 0 920 250" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" style="display: block;">
           <defs>
             <linearGradient id="corridorGlow" x1="0%" y1="100%" x2="100%" y2="0%">
               <stop offset="0%" stop-color="#0284c7" stop-opacity="0.4" />
-              <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.9" />
-              <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0.9" />
+              <stop offset="50%" stop-color="#60a5fa" stop-opacity="0.9" />
+              <stop offset="100%" stop-color="#10b981" stop-opacity="0.9" />
             </linearGradient>
             <filter id="routeBlur">
               <feGaussianBlur stdDeviation="2.5" result="blur" />
@@ -3732,7 +3733,7 @@ def render_port_intelligence():
           </defs>
 
           <!-- Nautical grid & bathymetry rings -->
-          <g stroke="#164e63" stroke-width="0.8" opacity="0.3" fill="none">
+          <g stroke="#26374f" stroke-width="0.8" opacity="0.3" fill="none">
             <circle cx="110" cy="190" r="40" stroke-dasharray="2,4" />
             <circle cx="110" cy="190" r="80" stroke-dasharray="2,4" />
             <circle cx="780" cy="75" r="50" stroke-dasharray="2,4" />
@@ -3747,7 +3748,7 @@ def render_port_intelligence():
 
           <!-- Animated Vessel traversing route -->
           <g>
-            <path d="M -16,5 L 14,5 L 20,-1 L -14,-1 Z" fill="#0284c7" stroke="#38bdf8" stroke-width="1" />
+            <path d="M -16,5 L 14,5 L 20,-1 L -14,-1 Z" fill="#0284c7" stroke="#60a5fa" stroke-width="1" />
             <rect x="-10" y="-5" width="6" height="4" fill="#f8fafc" />
             <rect x="0" y="-5" width="6" height="4" fill="#f8fafc" />
             <polygon points="-14,-1 -14,-9 -9,-9 -9,-1" fill="#ffffff" />
@@ -3759,15 +3760,15 @@ def render_port_intelligence():
           <!-- Origin Marker: Richards Bay -->
           <g transform="translate(110, 190)">
             <circle r="16" fill="#0284c7" opacity="0.15" />
-            <circle r="7" fill="#0369a1" stroke="#38bdf8" stroke-width="2" />
+            <circle r="7" fill="#0369a1" stroke="#60a5fa" stroke-width="2" />
             <circle r="2.5" fill="#ffffff" />
             <text x="-12" y="24" fill="#f8fafc" font-size="12" font-weight="700" font-family="system-ui, sans-serif">Richards Bay</text>
-            <text x="-12" y="38" fill="#38bdf8" font-size="10" font-family="system-ui, sans-serif">28°48'S, 32°06'E • Coal Terminal</text>
+            <text x="-12" y="38" fill="#60a5fa" font-size="10" font-family="system-ui, sans-serif">28°48'S, 32°06'E • Coal Terminal</text>
           </g>
 
           <!-- Waypoint Indicator: Equator Transit -->
           <g transform="translate(480, 120)">
-            <circle r="4" fill="#38bdf8" opacity="0.8" />
+            <circle r="4" fill="#60a5fa" opacity="0.8" />
             <text x="0" y="-12" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="system-ui, sans-serif">Mid-Ocean Corridor</text>
             <text x="0" y="20" fill="#64748b" font-size="9" text-anchor="middle" font-family="system-ui, sans-serif">Transit Day 8 • Fair Seas</text>
           </g>
@@ -3794,10 +3795,10 @@ def render_port_intelligence():
 
           <!-- 3. Dhamra (Alternative) -->
           <g transform="translate(800, 30)">
-            <circle r="5" fill="#38bdf8" stroke="#0284c7" stroke-width="1.5" />
+            <circle r="5" fill="#60a5fa" stroke="#0284c7" stroke-width="1.5" />
             <rect x="12" y="-12" width="105" height="30" rx="4" fill="rgba(6,27,46,0.85)" stroke="#0284c7" stroke-width="0.8" />
             <text x="18" y="-1" fill="#f8fafc" font-size="10" font-weight="600" font-family="system-ui, sans-serif">Dhamra Port</text>
-            <text x="18" y="10" fill="#38bdf8" font-size="8.5" font-family="system-ui, sans-serif">Draft: 180K • Waiting: 2.0d</text>
+            <text x="18" y="10" fill="#60a5fa" font-size="8.5" font-family="system-ui, sans-serif">Draft: 180K • Waiting: 2.0d</text>
           </g>
         </svg>
         </div>
