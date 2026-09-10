@@ -155,7 +155,7 @@ st.markdown(
         overflow-x: hidden !important;
         max-width: 100vw !important;
         box-sizing: border-box !important;
-        background-color: #0F172A !important;
+        background-color: var(--bg-main) !important;
         color: var(--text-primary) !important;
         font-family: var(--font-stack) !important;
     }
