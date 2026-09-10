@@ -54,6 +54,11 @@ SCENARIO_OPTIONS = [
     "High Inflation Peak",
 ]
 
+# Module-level aliases for external and script compatibility
+cargo_options = CARGO_OPTIONS
+HORIZON_DAYS = HORIZON_MAP
+scenario_options = SCENARIO_OPTIONS
+
 MODULE_NAMES = [
     "Command Centre",
     "Forecasting Studio",
@@ -917,6 +922,12 @@ active_page = st.session_state["active_page"]
 st.session_state["active_module"] = active_page if active_page in MODULE_NAMES else "Command Centre"
 active_module = st.session_state["active_module"]
 
+if st.session_state.get("_reset_controls", False):
+    st.session_state["cargo_type"] = "Thermal Coal"
+    st.session_state["forecast_horizon"] = "90 Days"
+    st.session_state["operational_scenario"] = "Base Scenario"
+    st.session_state["_reset_controls"] = False
+
 if "cargo" not in st.session_state:
     st.session_state["cargo"] = "Thermal Coal"
 if "horizon" not in st.session_state:
@@ -941,6 +952,14 @@ if "fuel_price" not in st.session_state:
     st.session_state["fuel_price"] = 54000
 if "show_alerts_panel" not in st.session_state:
     st.session_state["show_alerts_panel"] = False
+
+# Compatibility session state initialization
+if "cargo_type" not in st.session_state:
+    st.session_state["cargo_type"] = st.session_state["cargo"]
+if "forecast_horizon" not in st.session_state:
+    st.session_state["forecast_horizon"] = st.session_state["horizon"]
+if "operational_scenario" not in st.session_state:
+    st.session_state["operational_scenario"] = st.session_state["scenario"]
 
 # Desktop Sidebar
 with st.sidebar:
@@ -1117,6 +1136,7 @@ def render_level2_header(module_name):
                 st.session_state["deadline"] = 45
                 st.session_state["fuel_change"] = 0
                 st.session_state["fuel_price"] = 54000
+                st.session_state["_reset_controls"] = True
                 st.toast("Prototype data settings reset to demo defaults.", icon="🔄")
                 st.rerun()
         else:
@@ -1372,38 +1392,42 @@ def render_landing_hub():
 def render_command_centre_controls():
     """Renders the complete Scenario Control Bar exclusively for Command Centre."""
     st.markdown('<div class="scenario-control-bar">', unsafe_allow_html=True)
+    
+    # Initialize control keys from current session state if returning from another module
+    if "cargo_type" not in st.session_state:
+        st.session_state["cargo_type"] = st.session_state["cargo"]
+    if "forecast_horizon" not in st.session_state:
+        st.session_state["forecast_horizon"] = st.session_state["horizon"]
+    if "operational_scenario" not in st.session_state:
+        st.session_state["operational_scenario"] = st.session_state["scenario"]
+
     r1_c1, r1_c2, r1_c3, r1_c4 = st.columns([1.15, 1.0, 1.45, 1.1], gap="medium")
     with r1_c1:
-        sel_cargo = st.selectbox(
+        cargo_type = st.selectbox(
             "CARGO TYPE",
-            options=CARGO_OPTIONS,
-            index=CARGO_OPTIONS.index(st.session_state["cargo"]) if st.session_state["cargo"] in CARGO_OPTIONS else 0,
-            key="cc_cargo_select",
+            cargo_options,
+            key="cargo_type"
         )
-        if sel_cargo != st.session_state["cargo"]:
-            st.session_state["cargo"] = sel_cargo
+        if cargo_type != st.session_state["cargo"]:
+            st.session_state["cargo"] = cargo_type
             st.rerun()
     with r1_c2:
-        sel_horizon = st.selectbox(
+        forecast_horizon = st.selectbox(
             "FORECAST PERIOD",
-            options=FORECAST_OPTIONS,
-            index=FORECAST_OPTIONS.index(st.session_state["horizon"]) if st.session_state["horizon"] in FORECAST_OPTIONS else 2,
-            key="cc_horizon_select",
+            list(HORIZON_DAYS.keys()),
+            key="forecast_horizon"
         )
-        if sel_horizon != st.session_state["horizon"]:
-            st.session_state["horizon"] = sel_horizon
+        if forecast_horizon != st.session_state["horizon"]:
+            st.session_state["horizon"] = forecast_horizon
             st.rerun()
     with r1_c3:
-        current_scen = st.session_state.get("scenario", "Base Scenario")
-        scen_idx = SCENARIO_OPTIONS.index(current_scen) if current_scen in SCENARIO_OPTIONS else 0
-        sel_scenario = st.selectbox(
+        operational_scenario = st.selectbox(
             "OPERATIONAL SCENARIO",
-            options=SCENARIO_OPTIONS,
-            index=scen_idx,
-            key="cc_scenario_select",
+            scenario_options,
+            key="operational_scenario"
         )
-        if sel_scenario != st.session_state.get("scenario"):
-            st.session_state["scenario"] = sel_scenario
+        if operational_scenario != st.session_state.get("scenario"):
+            st.session_state["scenario"] = operational_scenario
             st.rerun()
     with r1_c4:
         st.markdown('<div class="ctrl-label">AI ENGINE STATUS</div>', unsafe_allow_html=True)
@@ -1437,6 +1461,7 @@ def render_command_centre_controls():
             st.session_state["deadline"] = 45
             st.session_state["fuel_change"] = 0
             st.session_state["fuel_price"] = 54000
+            st.session_state["_reset_controls"] = True
             st.toast("Scenario reset to demo defaults (Thermal Coal, 90 Days, Base Scenario)", icon="↺")
             st.rerun()
     with r2_c2:
@@ -2096,6 +2121,7 @@ def render_data_settings_view():
                 st.session_state["deadline"] = 45
                 st.session_state["fuel_change"] = 0
                 st.session_state["fuel_price"] = 54000
+                st.session_state["_reset_controls"] = True
                 st.toast("System restored to official demo defaults!", icon="↺")
                 st.rerun()
         with rc2:
