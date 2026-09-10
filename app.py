@@ -2972,6 +2972,627 @@ def get_scenario_calculations():
         "input_errors": input_errors,
     }
 
+def render_export_command_centre():
+    """Renders the comprehensive, fully interactive Export from India Command Centre view."""
+    # 1. Prototype Disclaimer Banner
+    st.markdown(
+        """
+        <div class="panel-card" style="margin-bottom: 14px; border-left: 4px solid #372580; background: #FFFFFF; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+            <div>
+                <span class="prototype-badge" style="margin-bottom: 3px; display: inline-block;">PROTOTYPE EXPORT PLANNING • LOCAL/SIMULATED DATA</span><br>
+                <span style="color: #6B6B73; font-size: 0.85rem;">Interactive Bulk Commodity Export Decision Support System • Team Novara</span>
+            </div>
+            <div style="text-align: right; color: #6B6B73; font-size: 0.82rem;">
+                Export Corridors: <b>Indian Coastal Loading ➔ Global Discharge Ports</b><br>
+                Simulation Engine: <b>Calibrated Freight & Port Rules Active</b>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # 2. Initialize Session State Defaults
+    if "export_cargo_type" not in st.session_state:
+        st.session_state["export_cargo_type"] = "Finished Steel"
+    if "export_loading_port" not in st.session_state:
+        st.session_state["export_loading_port"] = "Paradip"
+    if "export_destination_port" not in st.session_state:
+        st.session_state["export_destination_port"] = "Newcastle, Australia"
+    if "export_scenario" not in st.session_state:
+        st.session_state["export_scenario"] = "Base Scenario"
+    if "export_order_quantity" not in st.session_state:
+        st.session_state["export_order_quantity"] = 150000
+    if "export_ready_stock" not in st.session_state:
+        st.session_state["export_ready_stock"] = 120000
+    if "export_expected_production" not in st.session_state:
+        st.session_state["export_expected_production"] = 50000
+    if "export_safety_reserve" not in st.session_state:
+        st.session_state["export_safety_reserve"] = 20000
+    if "export_vessel_class" not in st.session_state:
+        st.session_state["export_vessel_class"] = "Panamax"
+    if "export_vessel_availability" not in st.session_state:
+        st.session_state["export_vessel_availability"] = 3
+    if "export_vessel_draft" not in st.session_state:
+        st.session_state["export_vessel_draft"] = 14.5
+    if "export_deadline" not in st.session_state:
+        st.session_state["export_deadline"] = 35
+    if "export_optimization_priority" not in st.session_state:
+        st.session_state["export_optimization_priority"] = "Balanced Recommended"
+
+    if st.session_state.pop("_reset_export_controls", False):
+        st.session_state["ecc_cargo_type"] = "Finished Steel"
+        st.session_state["ecc_loading_port"] = "Paradip"
+        st.session_state["ecc_destination_port"] = "Newcastle, Australia"
+        st.session_state["ecc_scenario"] = "Base Scenario"
+        st.session_state["ecc_order_qty"] = 150000
+        st.session_state["ecc_ready_stock"] = 120000
+        st.session_state["ecc_expected_prod"] = 50000
+        st.session_state["ecc_safety_res"] = 20000
+        st.session_state["ecc_vessel_class"] = "Panamax"
+        st.session_state["ecc_vessel_avail"] = 3
+        st.session_state["ecc_vessel_draft"] = 14.5
+        st.session_state["ecc_deadline"] = 35
+        st.session_state["ecc_priority"] = "Balanced Recommended"
+
+    # Pre-populate widget keys if not present
+    if "ecc_cargo_type" not in st.session_state:
+        st.session_state["ecc_cargo_type"] = st.session_state["export_cargo_type"]
+    if "ecc_loading_port" not in st.session_state:
+        st.session_state["ecc_loading_port"] = st.session_state["export_loading_port"]
+    if "ecc_destination_port" not in st.session_state:
+        st.session_state["ecc_destination_port"] = st.session_state["export_destination_port"]
+    if "ecc_scenario" not in st.session_state:
+        st.session_state["ecc_scenario"] = st.session_state["export_scenario"]
+    if "ecc_order_qty" not in st.session_state:
+        st.session_state["ecc_order_qty"] = int(st.session_state["export_order_quantity"])
+    if "ecc_ready_stock" not in st.session_state:
+        st.session_state["ecc_ready_stock"] = int(st.session_state["export_ready_stock"])
+    if "ecc_expected_prod" not in st.session_state:
+        st.session_state["ecc_expected_prod"] = int(st.session_state["export_expected_production"])
+    if "ecc_safety_res" not in st.session_state:
+        st.session_state["ecc_safety_res"] = int(st.session_state["export_safety_reserve"])
+    if "ecc_vessel_class" not in st.session_state:
+        st.session_state["ecc_vessel_class"] = st.session_state["export_vessel_class"]
+    if "ecc_vessel_avail" not in st.session_state:
+        st.session_state["ecc_vessel_avail"] = int(st.session_state["export_vessel_availability"])
+    if "ecc_vessel_draft" not in st.session_state:
+        st.session_state["ecc_vessel_draft"] = float(st.session_state["export_vessel_draft"])
+    if "ecc_deadline" not in st.session_state:
+        st.session_state["ecc_deadline"] = int(st.session_state["export_deadline"])
+    if "ecc_priority" not in st.session_state:
+        st.session_state["ecc_priority"] = st.session_state["export_optimization_priority"]
+
+    cargo_opts = ["Finished Steel", "Thermal Coal", "Iron Ore", "Bauxite", "Cement", "Grain", "Petroleum Coke", "Limestone"]
+    load_ports = ["Paradip", "Visakhapatnam", "Gangavaram", "Dhamra", "Gopalpur", "Haldia", "Chennai", "Kamarajar", "Krishnapatnam"]
+    dest_ports = [
+        "Newcastle, Australia", "Port Hedland, Australia", "Samarinda, Indonesia",
+        "Tanjung Bara, Indonesia", "Maputo, Mozambique", "Vladivostok, Russia",
+        "Norfolk, United States", "Houston, United States", "Richards Bay, South Africa",
+        "Durban, South Africa"
+    ]
+    scen_opts = [
+        "Base Scenario",
+        "Monsoon / Adverse Weather (+15% Transit)",
+        "Bunker Fuel Spike (+15% Freight)",
+        "Port Congestion (+1.5x Waiting)"
+    ]
+    vessel_classes = ["Panamax", "Supramax", "Capesize"]
+    priority_opts = ["Balanced Recommended", "Lowest Cost", "Fastest Delivery", "Lowest Risk"]
+
+    # 3. Export Control Bar
+    st.markdown('<div class="scenario-control-bar">', unsafe_allow_html=True)
+    st.markdown('<div style="font-size: 0.82rem; font-weight: 700; color: #372580; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">⚙️ Export Voyage & Scenario Control Bar</div>', unsafe_allow_html=True)
+    
+    # Row 1: Commodity & Corridor
+    r1_c1, r1_c2, r1_c3, r1_c4 = st.columns([1.1, 1.2, 1.4, 1.3], gap="medium")
+    with r1_c1:
+        sel_cargo = st.selectbox("EXPORT COMMODITY", cargo_opts, key="ecc_cargo_type")
+        if sel_cargo != st.session_state.get("export_cargo_type"):
+            st.session_state["export_cargo_type"] = sel_cargo
+            st.session_state["export_commodity"] = sel_cargo
+            st.rerun()
+    with r1_c2:
+        sel_lp = st.selectbox("INDIAN LOADING PORT", load_ports, key="ecc_loading_port")
+        if sel_lp != st.session_state.get("export_loading_port"):
+            st.session_state["export_loading_port"] = sel_lp
+            st.rerun()
+    with r1_c3:
+        sel_dp = st.selectbox("BUYER / DISCHARGE PORT", dest_ports, key="ecc_destination_port")
+        if sel_dp != st.session_state.get("export_destination_port"):
+            st.session_state["export_destination_port"] = sel_dp
+            st.session_state["export_dest_port"] = sel_dp
+            st.rerun()
+    with r1_c4:
+        sel_sc = st.selectbox("OPERATIONAL SCENARIO", scen_opts, key="ecc_scenario")
+        if sel_sc != st.session_state.get("export_scenario"):
+            st.session_state["export_scenario"] = sel_sc
+            st.rerun()
+
+    st.markdown('<div style="height: 10px;"></div>', unsafe_allow_html=True)
+    # Row 2: Inventory & Balance Equation Controls
+    r2_c1, r2_c2, r2_c3, r2_c4 = st.columns([1.2, 1.2, 1.2, 1.2], gap="medium")
+    with r2_c1:
+        sel_order = st.number_input(
+            "EXPORT ORDER QTY (T)",
+            min_value=1000,
+            max_value=500000,
+            step=5000,
+            key="ecc_order_qty",
+            help="Total export cargo committed under commercial contract / Letter of Credit"
+        )
+        if sel_order != st.session_state.get("export_order_quantity"):
+            st.session_state["export_order_quantity"] = sel_order
+    with r2_c2:
+        sel_stock = st.number_input(
+            "CURRENT READY STOCK (T)",
+            min_value=0,
+            max_value=500000,
+            step=5000,
+            key="ecc_ready_stock",
+            help="Physically available inventory at plant stockpile or port terminal"
+        )
+        if sel_stock != st.session_state.get("export_ready_stock"):
+            st.session_state["export_ready_stock"] = sel_stock
+            st.session_state["current_export_inventory"] = sel_stock
+    with r2_c3:
+        sel_prod = st.number_input(
+            "EXPECTED PRODUCTION (T)",
+            min_value=0,
+            max_value=500000,
+            step=5000,
+            key="ecc_expected_prod",
+            help="Scheduled mill/mine production batches before laycan vessel loading"
+        )
+        if sel_prod != st.session_state.get("export_expected_production"):
+            st.session_state["export_expected_production"] = sel_prod
+            st.session_state["planned_production"] = sel_prod
+    with r2_c4:
+        sel_res = st.number_input(
+            "DOMESTIC / SAFETY RESERVE (T)",
+            min_value=0,
+            max_value=200000,
+            step=2000,
+            key="ecc_safety_res",
+            help="Stock reserved exclusively for domestic customer obligations or strategic buffers"
+        )
+        if sel_res != st.session_state.get("export_safety_reserve"):
+            st.session_state["export_safety_reserve"] = sel_res
+            st.session_state["reserved_domestic_stock"] = sel_res
+
+    st.markdown('<div style="height: 10px;"></div>', unsafe_allow_html=True)
+    # Row 3: Vessel & Constraints
+    r3_c1, r3_c2, r3_c3, r3_c4, r3_c5 = st.columns([1.1, 0.9, 0.9, 0.9, 1.2], gap="medium")
+    with r3_c1:
+        sel_vc = st.selectbox("PREFERRED VESSEL CLASS", vessel_classes, key="ecc_vessel_class")
+        if sel_vc != st.session_state.get("export_vessel_class"):
+            st.session_state["export_vessel_class"] = sel_vc
+    with r3_c2:
+        sel_va = st.number_input(
+            "VESSEL POOL",
+            min_value=1,
+            max_value=10,
+            step=1,
+            key="ecc_vessel_avail",
+            help="Number of chartered vessels available in position"
+        )
+        if sel_va != st.session_state.get("export_vessel_availability"):
+            st.session_state["export_vessel_availability"] = sel_va
+    with r3_c3:
+        sel_vd = st.number_input(
+            "VESSEL DRAFT (M)",
+            min_value=8.0,
+            max_value=22.0,
+            step=0.5,
+            key="ecc_vessel_draft",
+            help="Fully laden draft requirement in meters"
+        )
+        if sel_vd != st.session_state.get("export_vessel_draft"):
+            st.session_state["export_vessel_draft"] = sel_vd
+    with r3_c4:
+        sel_dl = st.number_input(
+            "DEADLINE (DAYS)",
+            min_value=5,
+            max_value=90,
+            step=1,
+            key="ecc_deadline",
+            help="Maximum acceptable buyer delivery window in calendar days"
+        )
+        if sel_dl != st.session_state.get("export_deadline"):
+            st.session_state["export_deadline"] = sel_dl
+    with r3_c5:
+        sel_pr = st.selectbox("OPTIMIZATION PRIORITY", priority_opts, key="ecc_priority")
+        if sel_pr != st.session_state.get("export_optimization_priority"):
+            st.session_state["export_optimization_priority"] = sel_pr
+
+    st.markdown('<div style="height: 14px;"></div>', unsafe_allow_html=True)
+    # Row 4: Action Buttons
+    b1, b2, b3, b4, b5, b6 = st.columns([1.3, 1.2, 1.2, 1.3, 1.3, 1.3], gap="small")
+    with b1:
+        if st.button("⚡ Generate Export Plan", key="ecc_gen_plan_btn", type="primary", help="Trigger full export optimization and feasibility solver"):
+            st.toast("Export Plan generated! All constraints and landed logistics costs calculated.", icon="⚡")
+            st.rerun()
+    with b2:
+        if st.button("↺ Reset Inputs", key="ecc_reset_inputs_btn", help="Restore export parameters to default demo baseline"):
+            st.session_state["export_cargo_type"] = "Finished Steel"
+            st.session_state["export_loading_port"] = "Paradip"
+            st.session_state["export_destination_port"] = "Newcastle, Australia"
+            st.session_state["export_dest_port"] = "Newcastle, Australia"
+            st.session_state["export_commodity"] = "Finished Steel"
+            st.session_state["export_scenario"] = "Base Scenario"
+            st.session_state["export_order_quantity"] = 150000
+            st.session_state["export_ready_stock"] = 120000
+            st.session_state["current_export_inventory"] = 120000
+            st.session_state["export_expected_production"] = 50000
+            st.session_state["planned_production"] = 50000
+            st.session_state["export_safety_reserve"] = 20000
+            st.session_state["reserved_domestic_stock"] = 20000
+            st.session_state["export_vessel_class"] = "Panamax"
+            st.session_state["export_vessel_availability"] = 3
+            st.session_state["export_vessel_draft"] = 14.5
+            st.session_state["export_deadline"] = 35
+            st.session_state["export_optimization_priority"] = "Balanced Recommended"
+            st.session_state["_reset_export_controls"] = True
+            st.toast("Export inputs reset to default baseline (Finished Steel, Paradip → Newcastle, 150k t)", icon="🔄")
+            st.rerun()
+    with b3:
+        if st.button("💾 Save Scenario", key="ecc_save_scenario_btn", help="Snapshot current export scenario to session state"):
+            st.session_state["saved_export_scenario"] = {
+                "cargo": sel_cargo, "loading_port": sel_lp, "dest_port": sel_dp,
+                "order_qty": sel_order, "ready_stock": sel_stock, "expected_prod": sel_prod,
+                "safety_res": sel_res, "scenario": sel_sc, "priority": sel_pr
+            }
+            st.toast(f"Export scenario saved: {sel_cargo} • {sel_lp} → {sel_dp} ({sel_order:,} t)", icon="💾")
+    with b4:
+        if st.button("📋 Shipment Planner", key="ecc_open_sp_btn", help="Open Shipment Planner module"):
+            st.session_state["active_page"] = "Shipment Planner"
+            st.rerun()
+    with b5:
+        if st.button("⚡ Optimization Hub", key="ecc_open_opt_btn", help="Open AI Fleet Optimization Hub"):
+            st.session_state["active_page"] = "Optimization Hub"
+            st.rerun()
+    with b6:
+        if st.button("🗺️ Route Intelligence", key="ecc_open_route_btn", help="Open Maritime Route Intelligence"):
+            st.session_state["active_page"] = "Route Intelligence"
+            st.rerun()
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    # 4. Scenario Execution & Computation
+    scenario_dict = {
+        "export_order_quantity": sel_order,
+        "export_ready_stock": sel_stock,
+        "export_expected_production": sel_prod,
+        "export_safety_reserve": sel_res,
+        "export_loading_port": sel_lp,
+        "export_destination_port": sel_dp,
+        "export_cargo_type": sel_cargo,
+        "export_vessel_class": sel_vc,
+        "export_vessel_availability": sel_va,
+        "export_vessel_draft": sel_vd,
+        "export_deadline": sel_dl,
+        "export_scenario": sel_sc,
+        "export_optimization_priority": sel_pr,
+    }
+    exp_res = engine.generate_export_plans(scenario_dict)
+
+    # Check for validation errors
+    if exp_res.get("validation_errors"):
+        for err in exp_res["validation_errors"]:
+            st.error(f"⚠️ Input Validation Warning: {err}")
+        if not exp_res.get("feasible_plans"):
+            st.warning("Please adjust your order quantities or domestic reserves to proceed with export optimization.")
+            return
+
+    rec_plan = exp_res.get("recommended_plan")
+    if not rec_plan:
+        st.error("No feasible export plan satisfies all operational, vessel draft, and deadline constraints.")
+        return
+
+    # Synchronize Session State for Other Modules
+    st.session_state["export_commodity"] = sel_cargo
+    st.session_state["export_loading_port"] = sel_lp
+    st.session_state["export_destination_port"] = sel_dp
+    st.session_state["export_dest_port"] = sel_dp
+    st.session_state["export_order_quantity"] = sel_order
+    st.session_state["current_export_inventory"] = sel_stock
+    st.session_state["planned_production"] = sel_prod
+    st.session_state["reserved_domestic_stock"] = sel_res
+    st.session_state["export_recommended_vessel"] = rec_plan["vessel_display"]
+    st.session_state["export_recommended_cost"] = rec_plan["total_cost_cr"]
+    st.session_state["export_recommended_eta"] = rec_plan["final_eta_days"]
+    st.session_state["export_recommended_risk"] = rec_plan["risk_score"]
+
+    exportable_cargo = exp_res["exportable_cargo"]
+    export_balance = exp_res["export_balance"]
+    export_status = exp_res["export_status"]
+    readiness_pct = exp_res["readiness"]["order_readiness_percentage"]
+    port_meta = PORTS_CONFIG.get(sel_lp, {})
+    max_draft = port_meta.get("draft_limit_meters", 18.0)
+    v_spec = VESSEL_CLASSES.get(rec_plan["vessel_class"], {})
+    rec_draft = v_spec.get("draft_meters", 14.5)
+
+    # Status color coding
+    if export_status == "Export Shortfall":
+        status_color = "#EF4444"
+        status_bg = "#FEF2F2"
+    elif export_status == "Exact Export Readiness":
+        status_color = "#F59E0B"
+        status_bg = "#FFFBEB"
+    else:
+        status_color = "#16A34A"
+        status_bg = "#ECFDF5"
+
+    # 5. Outbound Export Maritime Corridor Banner
+    st.markdown(
+        f"""
+        <div class="panel-card" style="margin-top: 14px; margin-bottom: 18px; padding: 12px 18px; border-left: 4px solid #372580; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <div>
+                    <span style="font-size: 0.76rem; font-weight: 700; color: #372580; text-transform: uppercase; letter-spacing: 0.05em;">Outbound Export Maritime Corridor</span>
+                    <div style="font-size: 1.18rem; font-weight: 700; color: #18181B; margin-top: 2px;">
+                        🇮🇳 Indian Loading Port ({sel_lp}) ──▶ 🌐 Foreign Destination ({sel_dp})
+                    </div>
+                    <div style="font-size: 0.84rem; color: #6B6B73; margin-top: 3px;">
+                        Nautical Distance: <b>{rec_plan['route_distance_nm']:,} NM</b> • Commercial Incoterm: <b>CFR / CIF Buyer Delivery</b> • Loading Berth Depth: <b>{max_draft}m</b>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                    <span style="background: {status_bg}; color: {status_color}; font-weight: 700; font-size: 0.80rem; padding: 5px 12px; border-radius: 4px; border: 1px solid {status_color};">
+                        {export_status.upper()}
+                    </span>
+                    <span style="background: #F4F1FB; color: #372580; font-weight: 700; font-size: 0.80rem; padding: 5px 12px; border-radius: 4px; border: 1px solid #D8C7F8;">
+                        {readiness_pct:.1f}% ORDER READINESS
+                    </span>
+                </div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # 6. 10 Dynamic Export KPI Cards (2 rows of 5)
+    st.markdown('<div style="margin-top: 6px; margin-bottom: 8px;">', unsafe_allow_html=True)
+    k1, k2, k3, k4, k5 = st.columns(5, gap="medium")
+    with k1:
+        st.markdown(
+            f"""
+            <div class="kpi-card-exec">
+                <span class="kpi-exec-label">1. Export Order Qty</span>
+                <div class="kpi-exec-val">{sel_order:,.0f} tonnes</div>
+                <div class="kpi-exec-sub" style="color: #6B6B73;">Commodity: {sel_cargo}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with k2:
+        st.markdown(
+            f"""
+            <div class="kpi-card-exec">
+                <span class="kpi-exec-label">2. Exportable Cargo</span>
+                <div class="kpi-exec-val">{exportable_cargo:,.0f} tonnes</div>
+                <div class="kpi-exec-sub" style="color: #48A868;">Stock ({sel_stock:,.0f}) + Prod ({sel_prod:,.0f}) - Res ({sel_res:,.0f})</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with k3:
+        bal_text = f"-{abs(export_balance):,.0f} t Shortfall" if export_balance < 0 else (f"+{export_balance:,.0f} t Surplus" if export_balance > 0 else "0 t Exact Balance")
+        st.markdown(
+            f"""
+            <div class="kpi-card-exec">
+                <span class="kpi-exec-label">3. Export Balance</span>
+                <div class="kpi-exec-val" style="color: {status_color};">{bal_text}</div>
+                <div class="kpi-exec-sub" style="color: {status_color}; font-weight: 600;">{export_status}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with k4:
+        st.markdown(
+            f"""
+            <div class="kpi-card-exec">
+                <span class="kpi-exec-label">4. Order Readiness %</span>
+                <div class="kpi-exec-val">{readiness_pct:.1f}%</div>
+                <div class="kpi-exec-sub" style="color: #48A868;">Threshold: 100% Target</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with k5:
+        st.markdown(
+            f"""
+            <div class="kpi-card-exec">
+                <span class="kpi-exec-label">5. Recommended Vessel</span>
+                <div class="kpi-exec-val">{rec_plan['vessel_display']}</div>
+                <div class="kpi-exec-sub" style="color: #372580;">Combined Hold: {rec_plan['combined_capacity']:,} t</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    st.markdown('<div style="height: 12px;"></div>', unsafe_allow_html=True)
+    k6, k7, k8, k9, k10 = st.columns(5, gap="medium")
+    with k6:
+        st.markdown(
+            f"""
+            <div class="kpi-card-exec">
+                <span class="kpi-exec-label">6. Vessel Utilization %</span>
+                <div class="kpi-exec-val">{rec_plan['utilization']:.1f}%</div>
+                <div class="kpi-exec-sub" style="color: #6B6B73;">Unused Capacity: {rec_plan['unused_capacity']:,} t</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with k7:
+        st.markdown(
+            f"""
+            <div class="kpi-card-exec">
+                <span class="kpi-exec-label">7. Landed Logistics Cost</span>
+                <div class="kpi-exec-val">₹{rec_plan['total_cost_cr']:.2f} Cr</div>
+                <div class="kpi-exec-sub" style="color: #372580;">₹{rec_plan['cost_per_tonne']:,.1f}/t • CFR/CIF Basis</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with k8:
+        eta_margin = sel_dl - rec_plan['final_eta_days']
+        eta_color = "#48A868" if eta_margin >= 0 else "#EF4444"
+        eta_msg = f"{eta_margin}d Safe Buffer" if eta_margin >= 0 else f"{abs(eta_margin)}d Overdue"
+        st.markdown(
+            f"""
+            <div class="kpi-card-exec">
+                <span class="kpi-exec-label">8. Buyer Delivery ETA</span>
+                <div class="kpi-exec-val">{rec_plan['final_eta_days']} days</div>
+                <div class="kpi-exec-sub" style="color: {eta_color};">Within {sel_dl}d Deadline • {eta_msg}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with k9:
+        draft_margin = max_draft - rec_draft
+        st.markdown(
+            f"""
+            <div class="kpi-card-exec">
+                <span class="kpi-exec-label">9. Port Draft Clearance</span>
+                <div class="kpi-exec-val">{sel_lp} ({max_draft}m)</div>
+                <div class="kpi-exec-sub" style="color: #48A868;">Safe Draft Margin: +{draft_margin:.1f}m</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with k10:
+        st.markdown(
+            f"""
+            <div class="kpi-card-exec">
+                <span class="kpi-exec-label">10. Operational Risk</span>
+                <div class="kpi-exec-val">{rec_plan['risk_score']:.0f}/100 — Low</div>
+                <div class="kpi-exec-sub" style="color: #16A34A;">Corridor: {sel_lp} → {sel_dp.split(',')[0]}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    # 7. Strategic Plan Comparison (3 Strategic Alternatives)
+    st.markdown('<div class="section-title" style="margin-top: 22px; margin-bottom: 12px;">⚖️ Strategic Export Plan Comparison</div>', unsafe_allow_html=True)
+    p1, p2, p3 = st.columns(3, gap="medium")
+
+    lowest_c = exp_res.get("lowest_cost_plan")
+    fastest_d = exp_res.get("fastest_delivery_plan")
+    balanced_p = exp_res.get("balanced_plan")
+
+    is_lc_rec = (rec_plan["plan_type"] == "Lowest Cost Plan")
+    is_fd_rec = (rec_plan["plan_type"] == "Fastest Delivery Plan")
+    is_bp_rec = (rec_plan["plan_type"] in ["Balanced Recommended Plan", "Lowest Risk Plan"])
+
+    with p1:
+        border_s = "border: 2px solid #372580;" if is_lc_rec else "border: 1px solid #E4E4E8;"
+        badge_html = '<span style="background: #372580; color: #FFFFFF; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 4px;">ACTIVE RECOMMENDED</span>' if is_lc_rec else '<span style="background: #F4F1FB; color: #372580; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 4px;">LOWEST COST</span>'
+        st.markdown(
+            f"""
+            <div class="panel-card" style="{border_s} padding: 14px; background: #FFFFFF; border-radius: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 700; font-size: 0.95rem; color: #18181B;">💰 Lowest Cost Plan</span>
+                    {badge_html}
+                </div>
+                <div style="font-size: 1.15rem; font-weight: 700; color: #372580; margin-bottom: 8px;">
+                    {lowest_c['vessel_display']}
+                </div>
+                <ul style="list-style-type: none; padding-left: 0; margin: 0; font-size: 0.86rem; color: #27272A; line-height: 1.6;">
+                    <li>• Total Landed Cost: <b>₹{lowest_c['total_cost_cr']:.2f} Cr</b> (₹{lowest_c['cost_per_tonne']:,.1f}/t)</li>
+                    <li>• Transit Duration: <b>{lowest_c['final_eta_days']} days</b></li>
+                    <li>• Fleet Utilization: <b>{lowest_c['utilization']:.1f}%</b> ({lowest_c['combined_capacity']:,} t)</li>
+                    <li>• Operational Risk: <b>{lowest_c['risk_score']:.0f}/100</b> (Low Risk)</li>
+                </ul>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with p2:
+        border_s = "border: 2px solid #372580;" if is_fd_rec else "border: 1px solid #E4E4E8;"
+        badge_html = '<span style="background: #372580; color: #FFFFFF; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 4px;">ACTIVE RECOMMENDED</span>' if is_fd_rec else '<span style="background: #ECFDF5; color: #16A34A; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 4px;">FASTEST DELIVERY</span>'
+        st.markdown(
+            f"""
+            <div class="panel-card" style="{border_s} padding: 14px; background: #FFFFFF; border-radius: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 700; font-size: 0.95rem; color: #18181B;">⚡ Fastest Delivery Plan</span>
+                    {badge_html}
+                </div>
+                <div style="font-size: 1.15rem; font-weight: 700; color: #372580; margin-bottom: 8px;">
+                    {fastest_d['vessel_display']}
+                </div>
+                <ul style="list-style-type: none; padding-left: 0; margin: 0; font-size: 0.86rem; color: #27272A; line-height: 1.6;">
+                    <li>• Total Landed Cost: <b>₹{fastest_d['total_cost_cr']:.2f} Cr</b> (₹{fastest_d['cost_per_tonne']:,.1f}/t)</li>
+                    <li>• Transit Duration: <b>{fastest_d['final_eta_days']} days</b> (Fastest Transit)</li>
+                    <li>• Fleet Utilization: <b>{fastest_d['utilization']:.1f}%</b> ({fastest_d['combined_capacity']:,} t)</li>
+                    <li>• Operational Risk: <b>{fastest_d['risk_score']:.0f}/100</b> (Low Risk)</li>
+                </ul>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with p3:
+        border_s = "border: 2px solid #372580;" if is_bp_rec else "border: 1px solid #E4E4E8;"
+        badge_html = '<span style="background: #372580; color: #FFFFFF; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 4px;">ACTIVE RECOMMENDED</span>' if is_bp_rec else '<span style="background: #F4F1FB; color: #372580; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 4px;">BALANCED OPTIMAL</span>'
+        st.markdown(
+            f"""
+            <div class="panel-card" style="{border_s} padding: 14px; background: #FFFFFF; border-radius: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 700; font-size: 0.95rem; color: #18181B;">🎯 Balanced Recommended Plan</span>
+                    {badge_html}
+                </div>
+                <div style="font-size: 1.15rem; font-weight: 700; color: #372580; margin-bottom: 8px;">
+                    {balanced_p['vessel_display']}
+                </div>
+                <ul style="list-style-type: none; padding-left: 0; margin: 0; font-size: 0.86rem; color: #27272A; line-height: 1.6;">
+                    <li>• Total Landed Cost: <b>₹{balanced_p['total_cost_cr']:.2f} Cr</b> (₹{balanced_p['cost_per_tonne']:,.1f}/t)</li>
+                    <li>• Transit Duration: <b>{balanced_p['final_eta_days']} days</b></li>
+                    <li>• Fleet Utilization: <b>{balanced_p['utilization']:.1f}%</b> ({balanced_p['combined_capacity']:,} t)</li>
+                    <li>• Balanced Score: <b>{balanced_p.get('balanced_score', 0.12):.4f}</b> (Multi-Criteria Optimal)</li>
+                </ul>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    # 8. Dynamic Natural-Language Explainability Panel
+    st.markdown('<div class="section-title" style="margin-top: 24px; margin-bottom: 12px;">💡 Why This Export Plan? (Decision Explainability)</div>', unsafe_allow_html=True)
+    why_items = exp_res["explanation"]["why_this_plan"]
+    why_html = "".join([f"<li style='margin-bottom: 6px;'>{item}</li>" for item in why_items])
+
+    st.markdown(
+        f"""
+        <div class="recommend" style="padding: 16px 20px; background: #FFFFFF; border-left: 4px solid #372580; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+            <div style="font-weight: 700; font-size: 1.02rem; color: #18181B; margin-bottom: 10px;">
+                Selected Strategy: {exp_res['recommendation_title']} ({rec_plan['vessel_display']})
+            </div>
+            <ul style="padding-left: 18px; margin: 0; font-size: 0.88rem; color: #27272A; line-height: 1.55;">
+                {why_html}
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Rejection & Superseding Transparency
+    why_not = exp_res["explanation"]["why_not_alternatives"]
+    if why_not:
+        with st.expander("🔍 Evaluation of Alternative Vessel Configurations (Why Options Were Rejected or Superseded)"):
+            alt_rows = []
+            for v_name, reason in why_not.items():
+                is_rej = reason.startswith("Rejected:")
+                status_badge = "❌ INFEASIBLE" if is_rej else "ℹ️ FEASIBLE ALTERNATIVE"
+                clean_reason = reason.replace("Rejected: ", "").replace("Feasible alternative: ", "")
+                alt_rows.append({
+                    "Fleet Candidate": v_name,
+                    "Feasibility Status": status_badge,
+                    "Optimization Assessment": clean_reason
+                })
+            st.dataframe(pd.DataFrame(alt_rows), hide_index=True, use_container_width=True)
+
+
 def render_command_centre():
     """Renders the complete Command Centre executive overview."""
     render_level2_header("Command Centre")
@@ -3112,168 +3733,7 @@ def render_command_centre():
 
     else:
         # EXPORT FROM INDIA WORKFLOW
-        order_qty = st.session_state.get("export_order_quantity", 100000)
-        inv = st.session_state.get("current_export_inventory", 70000)
-        prod = st.session_state.get("planned_production", 20000)
-        res = st.session_state.get("reserved_domestic_stock", 10000)
-        ready_qty, shortfall, readiness_pct = calculate_export_availability(order_qty, inv, prod, res)
-        
-        incoterm = st.session_state.get("export_incoterm", "CFR")
-        load_port = st.session_state.get("export_loading_port", "Paradip")
-        dest_port = st.session_state.get("export_dest_port", "Singapore")
-        deadline = st.session_state.get("export_deadline", 30)
-        
-        # 8 KPI CARDS FOR EXPORT
-        st.markdown('<div style="margin-top: 6px; margin-bottom: 18px;">', unsafe_allow_html=True)
-        r1_c1, r1_c2, r1_c3, r1_c4 = st.columns(4, gap="medium")
-        with r1_c1:
-            st.markdown(
-                f"""
-                <div class="kpi-card-exec">
-                    <span class="kpi-exec-label">1. Export Order Qty</span>
-                    <div class="kpi-exec-val">{order_qty:,.0f} tonnes</div>
-                    <div class="kpi-exec-sub" style="color: #6B6B73;">Source: Export Order Ledger</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        with r1_c2:
-            st.markdown(
-                f"""
-                <div class="kpi-card-exec">
-                    <span class="kpi-exec-label">2. Export-Ready Qty</span>
-                    <div class="kpi-exec-val">{ready_qty:,.0f} tonnes</div>
-                    <div class="kpi-exec-sub" style="color: #48A868;">Source: Plant Inventory & Production Math</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        with r1_c3:
-            st.markdown(
-                f"""
-                <div class="kpi-card-exec">
-                    <span class="kpi-exec-label">3. Fulfilment Shortfall</span>
-                    <div class="kpi-exec-val">{shortfall:,.0f} tonnes</div>
-                    <div class="kpi-exec-sub" style="color: #F6B51B;">Source: Readiness Gap Analysis</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        with r1_c4:
-            st.markdown(
-                f"""
-                <div class="kpi-card-exec">
-                    <span class="kpi-exec-label">4. Recommended Cost</span>
-                    <div class="kpi-exec-val">₹15.10 Cr</div>
-                    <div class="kpi-exec-sub" style="color: #372580;">Source: Incoterm Logistics Engine ({incoterm})</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
-        st.markdown('<div style="height: 12px;"></div>', unsafe_allow_html=True)
-        r2_c1, r2_c2, r2_c3, r2_c4 = st.columns(4, gap="medium")
-        with r2_c1:
-            st.markdown(
-                """
-                <div class="kpi-card-exec">
-                    <span class="kpi-exec-label">5. Export Risk Score</span>
-                    <div class="kpi-exec-val">22/100 — Low Risk</div>
-                    <div class="kpi-exec-sub" style="color: #16A34A;">Source: Route & Port Risk Model</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        with r2_c2:
-            st.markdown(
-                f"""
-                <div class="kpi-card-exec">
-                    <span class="kpi-exec-label">6. Buyer Delivery ETA</span>
-                    <div class="kpi-exec-val">7 days — On Schedule</div>
-                    <div class="kpi-exec-sub" style="color: #48A868;">Within {deadline}d Deadline • Source: Vessel Model</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        with r2_c3:
-            st.markdown(
-                f"""
-                <div class="kpi-card-exec">
-                    <span class="kpi-exec-label">7. Order Readiness %</span>
-                    <div class="kpi-exec-val">{readiness_pct:.1f}%</div>
-                    <div class="kpi-exec-sub" style="color: #48A868;">Source: Plant Availability</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        with r2_c4:
-            st.markdown(
-                f"""
-                <div class="kpi-card-exec">
-                    <span class="kpi-exec-label">8. Recommended Vessel</span>
-                    <div class="kpi-exec-val">2 × Supramax • {load_port}</div>
-                    <div class="kpi-exec-sub" style="color: #372580;">Source: Optimization Engine</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        st.markdown('</div>', unsafe_allow_html=True)
-
-        # 3 EXPORT DECISION SNAPSHOTS
-        st.markdown('<div style="margin-top: 10px; margin-bottom: 22px;">', unsafe_allow_html=True)
-        es1, es2, es3 = st.columns(3, gap="medium")
-        with es1:
-            st.markdown(
-                f"""
-                <div class="snapshot-card">
-                    <div>
-                        <div class="snapshot-title">📈 Export Demand Snapshot</div>
-                        <ul class="snapshot-list">
-                            <li>Export Cargo: <b>{st.session_state.get('export_commodity', 'Finished Steel')}</b></li>
-                            <li>Destination: <b>{dest_port}</b></li>
-                            <li>Projected Demand: <b>125,000 t / 90d</b></li>
-                            <li>Forecast Confidence: <b>92% (±4% Band)</b></li>
-                        </ul>
-                    </div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        with es2:
-            st.markdown(
-                f"""
-                <div class="snapshot-card">
-                    <div>
-                        <div class="snapshot-title">🏭 Plant Readiness Pipeline</div>
-                        <ul class="snapshot-list">
-                            <li>Ready Stockpile: <b>{inv:,} tonnes</b></li>
-                            <li>Production Run: <b>+{prod:,} tonnes</b></li>
-                            <li>Domestic Buffer: <b>-{res:,} tonnes</b></li>
-                            <li>Available to Export: <b>{ready_qty:,} tonnes</b></li>
-                        </ul>
-                    </div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        with es3:
-            st.markdown(
-                f"""
-                <div class="snapshot-card">
-                    <div>
-                        <div class="snapshot-title">🚢 Export Fixture & Port</div>
-                        <ul class="snapshot-list">
-                            <li>Loading Port: <b>{load_port} (India)</b></li>
-                            <li>Trade Incoterm: <b>{incoterm}</b></li>
-                            <li>Laycan Window: <b>7-14 Days from Today</b></li>
-                            <li>Documentation: <b>ICEGATE Shipping Bill Ready</b></li>
-                        </ul>
-                    </div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        st.markdown('</div>', unsafe_allow_html=True)
+        render_export_command_centre()
 
 
 def render_forecasting_studio():

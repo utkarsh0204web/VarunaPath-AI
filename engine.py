@@ -184,6 +184,173 @@ PORTS_CONFIG: Dict[str, Dict[str, Any]] = {
         "supported_cargos": ["Thermal Coal", "Iron Ore", "Grain", "Cement"],
         "supported_vessels": ["Supramax", "Panamax", "Capesize"],
     },
+    # Additional Indian Loading Ports for Export Mode
+    "Gangavaram": {
+        "type": "Indian East Coast",
+        "max_vessel_capacity": 200000,
+        "draft_limit_meters": 20.0,
+        "max_loa_meters": 320.0,
+        "waiting_days": 2.5,
+        "handling_inr_per_tonne": 115.0,
+        "port_risk": 0.05,
+        "supported_cargos": ["Thermal Coal", "Coking Coal", "Iron Ore", "Finished Steel", "Bauxite", "Limestone", "Grain", "Cement", "Petroleum Coke"],
+        "supported_vessels": ["Supramax", "Panamax", "Capesize"],
+    },
+    "Gopalpur": {
+        "type": "Indian East Coast",
+        "max_vessel_capacity": 120000,
+        "draft_limit_meters": 14.5,
+        "max_loa_meters": 230.0,
+        "waiting_days": 1.5,
+        "handling_inr_per_tonne": 105.0,
+        "port_risk": 0.06,
+        "supported_cargos": ["Thermal Coal", "Iron Ore", "Finished Steel", "Bauxite", "Limestone", "Grain", "Cement"],
+        "supported_vessels": ["Supramax", "Panamax"],
+    },
+    "Haldia": {
+        "type": "Indian East Coast",
+        "max_vessel_capacity": 65000,
+        "draft_limit_meters": 10.5,
+        "max_loa_meters": 210.0,
+        "waiting_days": 4.5,
+        "handling_inr_per_tonne": 140.0,
+        "port_risk": 0.12,
+        "supported_cargos": ["Thermal Coal", "Coking Coal", "Iron Ore", "Finished Steel", "Petroleum Coke"],
+        "supported_vessels": ["Supramax"],
+    },
+    "Kamarajar": {
+        "type": "Indian East Coast",
+        "max_vessel_capacity": 180000,
+        "draft_limit_meters": 18.0,
+        "max_loa_meters": 300.0,
+        "waiting_days": 2.0,
+        "handling_inr_per_tonne": 100.0,
+        "port_risk": 0.05,
+        "supported_cargos": ["Thermal Coal", "Iron Ore", "Finished Steel", "Grain", "Cement"],
+        "supported_vessels": ["Supramax", "Panamax", "Capesize"],
+    },
+    "Krishnapatnam": {
+        "type": "Indian East Coast",
+        "max_vessel_capacity": 180000,
+        "draft_limit_meters": 18.5,
+        "max_loa_meters": 310.0,
+        "waiting_days": 2.0,
+        "handling_inr_per_tonne": 95.0,
+        "port_risk": 0.05,
+        "supported_cargos": ["Thermal Coal", "Coking Coal", "Iron Ore", "Finished Steel", "Bauxite", "Cement"],
+        "supported_vessels": ["Supramax", "Panamax", "Capesize"],
+    },
+    # Additional Representative Foreign Destinations
+    "Newcastle, Australia": {
+        "type": "Foreign Destination",
+        "max_vessel_capacity": 200000,
+        "draft_limit_meters": 18.0,
+        "max_loa_meters": 300.0,
+        "waiting_days": 2.5,
+        "handling_inr_per_tonne": 160.0,
+        "port_risk": 0.04,
+        "supported_cargos": ["Thermal Coal", "Iron Ore", "Finished Steel", "Bauxite", "Grain"],
+        "supported_vessels": ["Supramax", "Panamax", "Capesize"],
+    },
+    "Port Hedland, Australia": {
+        "type": "Foreign Destination",
+        "max_vessel_capacity": 300000,
+        "draft_limit_meters": 20.0,
+        "max_loa_meters": 350.0,
+        "waiting_days": 2.0,
+        "handling_inr_per_tonne": 150.0,
+        "port_risk": 0.03,
+        "supported_cargos": ["Iron Ore", "Finished Steel", "Bauxite"],
+        "supported_vessels": ["Supramax", "Panamax", "Capesize"],
+    },
+    "Samarinda, Indonesia": {
+        "type": "Foreign Destination",
+        "max_vessel_capacity": 150000,
+        "draft_limit_meters": 16.0,
+        "max_loa_meters": 270.0,
+        "waiting_days": 2.0,
+        "handling_inr_per_tonne": 110.0,
+        "port_risk": 0.05,
+        "supported_cargos": ["Thermal Coal", "Iron Ore", "Finished Steel", "Bauxite", "Cement"],
+        "supported_vessels": ["Supramax", "Panamax"],
+    },
+    "Tanjung Bara, Indonesia": {
+        "type": "Foreign Destination",
+        "max_vessel_capacity": 180000,
+        "draft_limit_meters": 17.5,
+        "max_loa_meters": 300.0,
+        "waiting_days": 2.0,
+        "handling_inr_per_tonne": 115.0,
+        "port_risk": 0.05,
+        "supported_cargos": ["Thermal Coal", "Iron Ore", "Finished Steel", "Bauxite"],
+        "supported_vessels": ["Supramax", "Panamax", "Capesize"],
+    },
+    "Maputo, Mozambique": {
+        "type": "Foreign Destination",
+        "max_vessel_capacity": 160000,
+        "draft_limit_meters": 16.0,
+        "max_loa_meters": 280.0,
+        "waiting_days": 3.0,
+        "handling_inr_per_tonne": 130.0,
+        "port_risk": 0.08,
+        "supported_cargos": ["Thermal Coal", "Iron Ore", "Finished Steel", "Grain"],
+        "supported_vessels": ["Supramax", "Panamax"],
+    },
+    "Vladivostok, Russia": {
+        "type": "Foreign Destination",
+        "max_vessel_capacity": 180000,
+        "draft_limit_meters": 17.0,
+        "max_loa_meters": 290.0,
+        "waiting_days": 3.0,
+        "handling_inr_per_tonne": 150.0,
+        "port_risk": 0.07,
+        "supported_cargos": ["Thermal Coal", "Iron Ore", "Finished Steel", "Grain", "Cement"],
+        "supported_vessels": ["Supramax", "Panamax", "Capesize"],
+    },
+    "Norfolk, United States": {
+        "type": "Foreign Destination",
+        "max_vessel_capacity": 250000,
+        "draft_limit_meters": 19.5,
+        "max_loa_meters": 340.0,
+        "waiting_days": 2.0,
+        "handling_inr_per_tonne": 190.0,
+        "port_risk": 0.03,
+        "supported_cargos": ["Thermal Coal", "Iron Ore", "Finished Steel", "Grain"],
+        "supported_vessels": ["Supramax", "Panamax", "Capesize"],
+    },
+    "Houston, United States": {
+        "type": "Foreign Destination",
+        "max_vessel_capacity": 200000,
+        "draft_limit_meters": 17.5,
+        "max_loa_meters": 320.0,
+        "waiting_days": 2.5,
+        "handling_inr_per_tonne": 185.0,
+        "port_risk": 0.03,
+        "supported_cargos": ["Finished Steel", "Grain", "Cement", "Petroleum Coke", "Bauxite"],
+        "supported_vessels": ["Supramax", "Panamax", "Capesize"],
+    },
+    "Richards Bay, South Africa": {
+        "type": "Foreign Destination",
+        "max_vessel_capacity": 250000,
+        "draft_limit_meters": 19.0,
+        "max_loa_meters": 350.0,
+        "waiting_days": 2.0,
+        "handling_inr_per_tonne": 140.0,
+        "port_risk": 0.05,
+        "supported_cargos": ["Thermal Coal", "Iron Ore", "Finished Steel", "Bauxite"],
+        "supported_vessels": ["Supramax", "Panamax", "Capesize"],
+    },
+    "Durban, South Africa": {
+        "type": "Foreign Destination",
+        "max_vessel_capacity": 180000,
+        "draft_limit_meters": 16.5,
+        "max_loa_meters": 300.0,
+        "waiting_days": 3.0,
+        "handling_inr_per_tonne": 145.0,
+        "port_risk": 0.06,
+        "supported_cargos": ["Finished Steel", "Grain", "Cement", "Iron Ore"],
+        "supported_vessels": ["Supramax", "Panamax", "Capesize"],
+    },
 }
 
 MARITIME_ROUTES: Dict[Tuple[str, str], Dict[str, Any]] = {
@@ -339,11 +506,10 @@ def calculate_export_readiness(
     blocked_or_rejected_stock: float = 0.0
 ) -> Dict[str, Any]:
     """
-    Calculates the available export cargo, shortfall, and readiness percentage.
-    Formula:
-    export_ready = max(0, inventory + production - reserved - blocked)
-    fulfilment_shortfall = max(0, order_quantity - export_ready)
-    order_readiness_percentage = (export_ready / order_quantity) * 100
+    Calculates the available export cargo, shortfall/surplus balance, and readiness percentage.
+    Formulas:
+    Exportable Cargo = Current Stock + Expected Production - Domestic/Safety Reserve - Blocked
+    Export Balance = Exportable Cargo - Export Order Quantity
     """
     order_qty = max(0.0, float(export_order_quantity))
     inv = max(0.0, float(export_inventory))
@@ -351,19 +517,31 @@ def calculate_export_readiness(
     res = max(0.0, float(reserved_domestic_stock))
     blk = max(0.0, float(blocked_or_rejected_stock))
 
-    export_ready = max(0.0, inv + prod - res - blk)
-    shortfall = max(0.0, order_qty - export_ready)
+    exportable_cargo = max(0.0, inv + prod - res - blk)
+    export_balance = exportable_cargo - order_qty
+
+    if export_balance < 0:
+        export_status = "Export Shortfall"
+    elif export_balance == 0:
+        export_status = "Exact Export Readiness"
+    else:
+        export_status = "Export Surplus"
+
+    shortfall = max(0.0, order_qty - exportable_cargo)
     
     if order_qty > 0:
-        readiness_pct = min(100.0, (export_ready / order_qty) * 100.0)
+        readiness_pct = min(100.0, (exportable_cargo / order_qty) * 100.0)
     else:
         readiness_pct = 0.0
 
     return {
-        "export_ready_quantity": int(round(export_ready)),
+        "export_ready_quantity": int(round(exportable_cargo)),
+        "exportable_cargo": int(round(exportable_cargo)),
+        "export_balance": int(round(export_balance)),
+        "export_status": export_status,
         "fulfilment_shortfall": int(round(shortfall)),
         "order_readiness_percentage": round(readiness_pct, 1),
-        "is_fully_ready": export_ready >= order_qty if order_qty > 0 else False,
+        "is_fully_ready": exportable_cargo >= order_qty if order_qty > 0 else False,
     }
 
 
@@ -1465,3 +1643,294 @@ def generate_decision_report(
 </body>
 </html>"""
     return html
+
+
+def generate_export_plans(scenario: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Generates deterministic Export from India voyage procurement plans.
+    Evaluates:
+    - Exportable Cargo & Balance Equation (Stock + Production - Reserve - Order)
+    - Fleet combinations across Supramax, Panamax, and Capesize
+    - Indian loading port draft, LOA, beam, and berth compatibility
+    - Dynamic landed logistics costing (Incoterms CFR/CIF)
+    - 3 Feasible Alternatives: Lowest Cost, Fastest Delivery, and Balanced Recommended
+    - Transparent explainable recommendation ("Why this export plan?")
+    """
+    order_qty = float(scenario.get("export_order_quantity", 150000))
+    current_stock = float(scenario.get("export_ready_stock", 120000))
+    expected_prod = float(scenario.get("export_expected_production", 50000))
+    safety_res = float(scenario.get("export_safety_reserve", 20000))
+    loading_port = scenario.get("export_loading_port", "Paradip")
+    dest_port = scenario.get("export_destination_port", "Newcastle, Australia")
+    cargo_type = scenario.get("export_cargo_type", "Finished Steel")
+    pref_class = scenario.get("export_vessel_class", "Panamax")
+    v_avail = int(scenario.get("export_vessel_availability", 3))
+    v_draft = float(scenario.get("export_vessel_draft", 14.5))
+    deadline = int(scenario.get("export_deadline", 35))
+    op_scenario = scenario.get("export_scenario", "Base Scenario")
+    priority = scenario.get("export_optimization_priority", "Balanced Recommended")
+
+    # 1. Validation Rules
+    errors = []
+    if order_qty <= 0:
+        errors.append("Export Order Quantity must be greater than zero.")
+    if current_stock < 0:
+        errors.append("Current export-ready stock cannot be negative.")
+    if expected_prod < 0:
+        errors.append("Expected production cannot be negative.")
+    if safety_res < 0:
+        errors.append("Domestic/safety reserve cannot be negative.")
+    if safety_res > (current_stock + expected_prod):
+        errors.append(f"Domestic/safety reserve ({safety_res:,.0f} t) exceeds available stock plus expected production ({current_stock + expected_prod:,.0f} t).")
+
+    readiness = calculate_export_readiness(order_qty, current_stock, expected_prod, safety_res)
+    exportable_cargo = readiness["exportable_cargo"]
+    export_balance = readiness["export_balance"]
+    export_status = readiness["export_status"]
+
+    if errors:
+        return {
+            "validation_errors": errors,
+            "readiness": readiness,
+            "exportable_cargo": int(round(exportable_cargo)),
+            "export_balance": int(round(export_balance)),
+            "export_status": export_status,
+            "all_plans": [],
+            "feasible_plans": [],
+            "lowest_cost_plan": None,
+            "fastest_delivery_plan": None,
+            "lowest_risk_plan": None,
+            "balanced_plan": None,
+            "recommended_plan": None,
+            "recommendation_title": "No Feasible Plan",
+            "explanation": {"why_this_plan": errors, "why_not_alternatives": {}},
+        }
+
+    # 2. Indian Loading Port Metadata
+    port_meta = PORTS_CONFIG.get(loading_port, {
+        "draft_limit_meters": 18.5,
+        "max_loa_meters": 300.0,
+        "waiting_days": 2.5,
+        "handling_inr_per_tonne": 100.0,
+        "port_risk": 0.05,
+        "supported_vessels": ["Supramax", "Panamax", "Capesize"],
+    })
+    max_draft = port_meta.get("draft_limit_meters", 18.0)
+    supported_vessels = port_meta.get("supported_vessels", ["Supramax", "Panamax", "Capesize"])
+
+    # 3. Fleet Candidates
+    vessel_specs = {
+        "Supramax": {"capacity": 58000, "draft": 13.0, "speed": 12.5, "charter_cr": 3.80, "base_risk": 18.0, "max_pool": 4},
+        "Panamax": {"capacity": 82000, "draft": 14.5, "speed": 12.0, "charter_cr": 4.30, "base_risk": 15.0, "max_pool": 3},
+        "Capesize": {"capacity": 180000, "draft": 18.5, "speed": 11.5, "charter_cr": 10.50, "base_risk": 22.0, "max_pool": 2},
+    }
+
+    candidates = [
+        ("Supramax", 1), ("Supramax", 2), ("Supramax", 3), ("Supramax", 4),
+        ("Panamax", 1), ("Panamax", 2), ("Panamax", 3),
+        ("Capesize", 1), ("Capesize", 2),
+    ]
+
+    all_plans = []
+    feasible_plans = []
+
+    fuel_multiplier = 1.15 if "Fuel" in op_scenario else 1.0
+    weather_cond = "Monsoon / Rough (15%)" if "Monsoon" in op_scenario else "Calm / Fair (0%)"
+    port_cong = "Moderate (1.5x)" if "Congestion" in op_scenario else "Normal (1.0x)"
+
+    for v_cls, v_cnt in candidates:
+        spec = vessel_specs[v_cls]
+        comb_cap = v_cnt * spec["capacity"]
+        unused_cap = max(0, comb_cap - int(order_qty))
+        utilization = round((order_qty / comb_cap) * 100.0, 1) if comb_cap > 0 else 0.0
+
+        # Feasibility Criteria
+        is_cap_ok = (comb_cap >= order_qty)
+        is_pool_ok = (v_cnt <= spec["max_pool"])
+        is_port_draft_ok = (spec["draft"] <= max_draft)
+        is_port_vessel_ok = (v_cls in supported_vessels)
+
+        eta_info = calculate_route_eta(
+            origin_port=loading_port,
+            destination_port=dest_port,
+            vessel_speed_knots=spec["speed"],
+            weather_condition=weather_cond,
+            port_congestion=port_cong
+        )
+        eta_days = eta_info["final_eta_days"]
+        is_deadline_ok = (eta_days <= deadline)
+
+        # Landed Logistics Costing (Incoterms CFR/CIF)
+        qty_basis = min(order_qty, float(comb_cap))
+        inland_transport_cr = (qty_basis * 350.0) / 10_000_000.0
+        port_handling_cr = (qty_basis * port_meta.get("handling_inr_per_tonne", 100.0)) / 10_000_000.0
+        terminal_storage_cr = (qty_basis * 40.0) / 10_000_000.0
+        customs_doc_cr = 0.12
+        ocean_charter_cr = v_cnt * spec["charter_cr"] * fuel_multiplier
+        insurance_cr = 0.006 * (inland_transport_cr + port_handling_cr + ocean_charter_cr)
+        demurrage_cr = v_cnt * eta_info["effective_waiting_days"] * 0.025
+        
+        # Risk index
+        risk_score = spec["base_risk"] + (port_meta.get("port_risk", 0.05) * 100.0) + (15.0 if "Monsoon" in op_scenario else 5.0)
+        risk_score = min(95.0, max(12.0, round(risk_score, 1)))
+        risk_contingency_cr = (risk_score / 100.0) * (inland_transport_cr + port_handling_cr + ocean_charter_cr) * 0.15
+
+        total_cost_cr = round(
+            inland_transport_cr
+            + port_handling_cr
+            + terminal_storage_cr
+            + customs_doc_cr
+            + ocean_charter_cr
+            + insurance_cr
+            + demurrage_cr
+            + risk_contingency_cr,
+            2
+        )
+        cost_per_tonne = round((total_cost_cr * 10_000_000.0) / order_qty, 1)
+
+        is_feasible = is_cap_ok and is_pool_ok and is_port_draft_ok and is_port_vessel_ok and is_deadline_ok
+        failed_reasons = []
+        if not is_cap_ok:
+            failed_reasons.append(f"Capacity deficit: {v_cls} × {v_cnt} ({comb_cap:,} t) is {int(order_qty - comb_cap):,} tonnes below export order.")
+        if not is_pool_ok:
+            failed_reasons.append(f"Market availability: {v_cnt} vessels requested, but only {spec['max_pool']} available in position.")
+        if not is_port_draft_ok:
+            failed_reasons.append(f"Port draft limit: {v_cls} draft ({spec['draft']}m) exceeds {loading_port} depth ({max_draft}m).")
+        if not is_port_vessel_ok:
+            failed_reasons.append(f"Berth compatibility: {loading_port} does not accommodate {v_cls} class.")
+        if not is_deadline_ok:
+            failed_reasons.append(f"Deadline exceeded: Sailing transit ({eta_days} days) exceeds delivery deadline ({deadline} days).")
+
+        plan_dict = {
+            "vessel_class": v_cls,
+            "vessel_count": v_cnt,
+            "vessel_display": f"{v_cnt} × {v_cls}",
+            "combined_capacity": comb_cap,
+            "unused_capacity": unused_cap,
+            "utilization": utilization,
+            "loading_port": loading_port,
+            "destination_port": dest_port,
+            "final_eta_days": eta_days,
+            "total_cost_cr": total_cost_cr,
+            "cost_per_tonne": cost_per_tonne,
+            "risk_score": risk_score,
+            "is_feasible": is_feasible,
+            "feasibility_status": "Feasible" if is_feasible else "Infeasible",
+            "failed_reasons": failed_reasons,
+            "rejection_reason": "; ".join(failed_reasons) if failed_reasons else "All constraints verified.",
+            "route_distance_nm": eta_info["route_distance_nm"],
+        }
+        all_plans.append(plan_dict)
+        if is_feasible:
+            feasible_plans.append(plan_dict)
+
+    if not feasible_plans:
+        return {
+            "validation_errors": ["No feasible export plan satisfies all operational, vessel, and port draft constraints."],
+            "readiness": readiness,
+            "exportable_cargo": int(round(exportable_cargo)),
+            "export_balance": int(round(export_balance)),
+            "export_status": export_status,
+            "all_plans": all_plans,
+            "feasible_plans": [],
+            "lowest_cost_plan": None,
+            "fastest_delivery_plan": None,
+            "lowest_risk_plan": None,
+            "balanced_plan": None,
+            "recommended_plan": None,
+            "recommendation_title": "No Feasible Plan",
+            "explanation": {"why_this_plan": ["No candidate fleet meets all requirements."], "why_not_alternatives": {}},
+        }
+
+    # 4. Multi-criteria Normalization
+    costs = [p["total_cost_cr"] for p in feasible_plans]
+    risks = [p["risk_score"] for p in feasible_plans]
+    etas = [p["final_eta_days"] for p in feasible_plans]
+    unused = [p["unused_capacity"] for p in feasible_plans]
+
+    min_c, max_c = min(costs), max(costs)
+    min_r, max_r = min(risks), max(risks)
+    min_e, max_e = min(etas), max(etas)
+    min_u, max_u = min(unused), max(unused)
+
+    for p in feasible_plans:
+        norm_c = (p["total_cost_cr"] - min_c) / (max_c - min_c) if max_c > min_c else 0.0
+        norm_r = (p["risk_score"] - min_r) / (max_r - min_r) if max_r > min_r else 0.0
+        norm_e = (p["final_eta_days"] - min_e) / (max_e - min_e) if max_e > min_e else 0.0
+        norm_u = (p["unused_capacity"] - min_u) / (max_u - min_u) if max_u > min_u else 0.0
+
+        p["balanced_score"] = round(0.40 * norm_c + 0.25 * norm_r + 0.20 * norm_e + 0.15 * norm_u, 4)
+
+    lowest_cost_plan = min(feasible_plans, key=lambda x: x["total_cost_cr"]).copy()
+    lowest_cost_plan["plan_type"] = "Lowest Cost Plan"
+    lowest_cost_plan["badge"] = "LOWEST COST"
+
+    fastest_delivery_plan = min(feasible_plans, key=lambda x: (x["final_eta_days"], x["total_cost_cr"])).copy()
+    fastest_delivery_plan["plan_type"] = "Fastest Delivery Plan"
+    fastest_delivery_plan["badge"] = "FASTEST DELIVERY"
+
+    lowest_risk_plan = min(feasible_plans, key=lambda x: (x["risk_score"], x["total_cost_cr"])).copy()
+    lowest_risk_plan["plan_type"] = "Lowest Risk Plan"
+    lowest_risk_plan["badge"] = "LOWEST RISK"
+
+    balanced_plan = min(feasible_plans, key=lambda x: (x["balanced_score"], x["total_cost_cr"])).copy()
+    balanced_plan["plan_type"] = "Balanced Recommended Plan"
+    balanced_plan["badge"] = "RECOMMENDED"
+
+    # Select recommended plan based on user priority
+    if priority == "Lowest Cost":
+        recommended_plan = lowest_cost_plan
+        rec_title = "Lowest Cost Plan"
+    elif priority == "Fastest Delivery":
+        recommended_plan = fastest_delivery_plan
+        rec_title = "Fastest Delivery Plan"
+    elif priority == "Lowest Risk":
+        recommended_plan = lowest_risk_plan
+        rec_title = "Lowest Risk Plan"
+    else:
+        recommended_plan = balanced_plan
+        rec_title = "Balanced Recommended Plan"
+
+    # 5. Dynamic Natural-Language Explainability
+    v_disp = recommended_plan["vessel_display"]
+    why_this_plan = [
+        f"Export Order Target is {int(order_qty):,} tonnes of {cargo_type}.",
+        f"Exportable cargo stands at {int(exportable_cargo):,} tonnes ({export_status}: {abs(int(export_balance)):,} t balance).",
+        f"Selected fleet allocation of {v_disp} provides {recommended_plan['combined_capacity']:,} tonnes combined capacity at {recommended_plan['utilization']}% utilization.",
+        f"Indian loading port {loading_port} depth ({max_draft}m) provides safe draft clearance for {recommended_plan['vessel_class']} laden draft.",
+        f"Estimated total landed logistics expenditure is ₹{recommended_plan['total_cost_cr']:.2f} Cr (₹{recommended_plan['cost_per_tonne']:,.1f}/tonne).",
+        f"Estimated sailing ETA of {recommended_plan['final_eta_days']} days arrives safely ahead of the {deadline}-day delivery deadline.",
+        f"Multi-factor risk score is {recommended_plan['risk_score']:.0f}/100 (Low Risk Band) for the {loading_port} → {dest_port} maritime corridor.",
+    ]
+
+    why_not = {}
+    for p in all_plans:
+        p_name = p["vessel_display"]
+        if p["vessel_display"] == recommended_plan["vessel_display"]:
+            continue
+        if not p["is_feasible"]:
+            why_not[p_name] = f"Rejected: {p['rejection_reason']}"
+        else:
+            diff_cost = p["total_cost_cr"] - recommended_plan["total_cost_cr"]
+            diff_eta = p["final_eta_days"] - recommended_plan["final_eta_days"]
+            why_not[p_name] = f"Feasible alternative: ₹{abs(diff_cost):.2f} Cr {'higher' if diff_cost > 0 else 'lower'} cost, {abs(diff_eta)} days {'slower' if diff_eta > 0 else 'faster'} ETA."
+
+    return {
+        "validation_errors": [],
+        "readiness": readiness,
+        "exportable_cargo": int(round(exportable_cargo)),
+        "export_balance": int(round(export_balance)),
+        "export_status": export_status,
+        "all_plans": all_plans,
+        "feasible_plans": feasible_plans,
+        "lowest_cost_plan": lowest_cost_plan,
+        "fastest_delivery_plan": fastest_delivery_plan,
+        "lowest_risk_plan": lowest_risk_plan,
+        "balanced_plan": balanced_plan,
+        "recommended_plan": recommended_plan,
+        "recommendation_title": rec_title,
+        "explanation": {
+            "why_this_plan": why_this_plan,
+            "why_not_alternatives": why_not,
+        },
+    }
