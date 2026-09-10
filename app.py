@@ -61,6 +61,7 @@ MODULE_NAMES = [
     "Optimization Hub",
     "Vessel Intelligence",
     "Port Intelligence",
+    "Route Intelligence",
     "Risk & Alerts",
     "Scenario Lab",
     "Reports",
@@ -74,6 +75,7 @@ MODULE_ICONS = {
     "Optimization Hub": "🎯",
     "Vessel Intelligence": "🚢",
     "Port Intelligence": "🏗️",
+    "Route Intelligence": "🗺️",
     "Risk & Alerts": "⚠️",
     "Scenario Lab": "🧪",
     "Reports": "📄",
@@ -87,6 +89,7 @@ MODULE_DESCRIPTIONS = {
     "Optimization Hub": "Least-cost vessel chartering and port allocation with constraint satisfaction.",
     "Vessel Intelligence": "Fleet profiles, carrying capacities, charter economics, and utilization metrics.",
     "Port Intelligence": "East Coast port infrastructure, handling tariffs, waiting delays, and operational readiness.",
+    "Route Intelligence": "Compare maritime route alternatives using distance, ETA, fuel, port compatibility and operational risk.",
     "Risk & Alerts": "Multi-factor operational risk scoring across suppliers, vessels, ports, and delays.",
     "Scenario Lab": "Disruption simulator for fuel price volatility, demand spikes, and port closures.",
     "Reports": "Decision audit summaries, executive exports, and baseline cost variance analysis.",
@@ -895,6 +898,7 @@ PAGE_SLUG_MAP = {
     "Optimization-Hub": "Optimization Hub",
     "Vessel-Intelligence": "Vessel Intelligence",
     "Port-Intelligence": "Port Intelligence",
+    "Route-Intelligence": "Route Intelligence",
     "Risk-Alerts": "Risk & Alerts",
     "Scenario-Lab": "Scenario Lab",
     "Reports": "Reports",
@@ -969,6 +973,7 @@ with st.sidebar:
             "MARITIME INTELLIGENCE": [
                 ("Vessel Intelligence", "🚢", "Vessel-Intelligence"),
                 ("Port Intelligence", "🏗️", "Port-Intelligence"),
+                ("Route Intelligence", "🗺️", "Route-Intelligence"),
                 ("Risk & Alerts", "🛡️", "Risk-Alerts"),
             ],
             "ANALYSIS & MANAGEMENT": [
@@ -1293,7 +1298,7 @@ def render_landing_hub():
 
     st.markdown("<div style='margin-top: 24px;'></div>", unsafe_allow_html=True)
 
-    # CATEGORY 2 — MARITIME INTELLIGENCE (3 modules)
+    # CATEGORY 2 — MARITIME INTELLIGENCE (4 modules)
     st.markdown(
         """
         <div style="margin-top: 10px; margin-bottom: 14px;">
@@ -1307,15 +1312,18 @@ def render_landing_hub():
     c2_mods = [
         ("Vessel Intelligence", "🚢", "Compare vessel capacity, availability and charter rates", "Vessel-Intelligence"),
         ("Port Intelligence", "🏗️", "Analyse Indian East Coast ports and route suitability", "Port-Intelligence"),
+        ("Route Intelligence", "🗺️", "Compare maritime route alternatives using distance, ETA, fuel and risk", "Route-Intelligence"),
         ("Risk & Alerts", "🛡️", "Monitor operational, weather and schedule risks", "Risk-Alerts"),
     ]
-    c2_col1, c2_col2, c2_col3 = st.columns(3, gap="medium")
+    c2_col1, c2_col2, c2_col3, c2_col4 = st.columns(4, gap="medium")
     with c2_col1:
         render_hub_card(*c2_mods[0])
     with c2_col2:
         render_hub_card(*c2_mods[1])
     with c2_col3:
         render_hub_card(*c2_mods[2])
+    with c2_col4:
+        render_hub_card(*c2_mods[3])
 
     st.markdown("<div style='margin-top: 24px;'></div>", unsafe_allow_html=True)
 
@@ -1686,6 +1694,113 @@ def render_port_intelligence_controls():
             st.session_state["pi_show_comparison"] = not st.session_state.get("pi_show_comparison", False)
     st.markdown('</div>', unsafe_allow_html=True)
     return sel_port, sel_cong, sel_draft, sel_w
+
+
+def render_route_intelligence_controls():
+    """Renders comprehensive inputs for maritime route simulation and optimization."""
+    st.markdown('<div class="scenario-control-bar" style="margin-bottom: 18px;">', unsafe_allow_html=True)
+
+    # Pre-populate defaults safely from session state
+    default_cargo = st.session_state.get("cargo", "Thermal Coal")
+    default_origin = st.session_state.get("origin", "Richards Bay, South Africa")
+    default_qty = int(st.session_state.get("cargo_requirement", 130000))
+    default_fuel_price = int(st.session_state.get("fuel_price", 54000))
+
+    origin_options = [
+        "Richards Bay, South Africa",
+        "Newcastle, Australia",
+        "Tanjung Bara, Indonesia",
+        "Maputo, Mozambique",
+        "Ust-Luga, Russia",
+        "Norfolk, United States",
+    ]
+    dest_options = [
+        "Paradip Port",
+        "Visakhapatnam Port",
+        "Gangavaram Port",
+        "Dhamra Port",
+        "Gopalpur Port",
+        "Haldia Port",
+        "Sagar / Sandheads",
+    ]
+    cargo_options = ["Thermal Coal", "Coking Coal", "Iron Ore", "Petroleum Coke", "Limestone"]
+    vessel_class_options = ["Supramax", "Panamax", "Capesize", "Handymax"]
+    priority_options = ["Balanced Recommended", "Lowest Cost", "Fastest Route", "Lowest Risk"]
+
+    # Row 1: Key Voyage Parameters
+    r1_c1, r1_c2, r1_c3, r1_c4, r1_c5 = st.columns([1.25, 1.25, 1.1, 1.1, 1.1], gap="medium")
+    with r1_c1:
+        orig_idx = origin_options.index(default_origin) if default_origin in origin_options else 0
+        sel_orig = st.selectbox("ORIGIN PORT", origin_options, index=orig_idx, key="ri_origin")
+    with r1_c2:
+        sel_dest = st.selectbox("DESTINATION PORT", dest_options, index=0, key="ri_dest")
+    with r1_c3:
+        cargo_idx = cargo_options.index(default_cargo) if default_cargo in cargo_options else 0
+        sel_cargo = st.selectbox("CARGO TYPE", cargo_options, index=cargo_idx, key="ri_cargo")
+    with r1_c4:
+        sel_qty = st.number_input("CARGO QTY (TONNES)", min_value=30000, max_value=300000, value=default_qty, step=5000, key="ri_qty")
+    with r1_c5:
+        sel_class = st.selectbox("VESSEL CLASS", vessel_class_options, index=1, key="ri_vessel_class")
+
+    # Dynamic defaults based on vessel class
+    dwt_defaults = {"Supramax": 58000, "Panamax": 82000, "Capesize": 180000, "Handymax": 45000}
+    draft_defaults = {"Supramax": 12.8, "Panamax": 14.5, "Capesize": 18.2, "Handymax": 10.5}
+    fuel_defaults = {"Supramax": 24.0, "Panamax": 28.0, "Capesize": 42.0, "Handymax": 20.0}
+    charter_defaults = {"Supramax": 1050000, "Panamax": 1250000, "Capesize": 1900000, "Handymax": 850000}
+
+    st.markdown('<div style="height: 10px;"></div>', unsafe_allow_html=True)
+
+    # Row 2: Technical & Vessel Operational Criteria
+    r2_c1, r2_c2, r2_c3, r2_c4, r2_c5 = st.columns([1.1, 1.1, 1.1, 1.2, 1.1], gap="medium")
+    with r2_c1:
+        sel_dwt = st.number_input("VESSEL DWT", min_value=30000, max_value=250000, value=dwt_defaults.get(sel_class, 82000), step=2000, key="ri_dwt")
+    with r2_c2:
+        sel_draft = st.number_input("VESSEL DRAFT (m)", min_value=8.0, max_value=22.0, value=draft_defaults.get(sel_class, 14.5), step=0.1, key="ri_draft")
+    with r2_c3:
+        sel_speed = st.slider("AVG SPEED (KTS)", min_value=10.0, max_value=16.0, value=12.5, step=0.5, key="ri_speed")
+    with r2_c4:
+        sel_date = st.date_input("DEPARTURE DATE", value=date.today() + timedelta(days=2), key="ri_dep_date")
+    with r2_c5:
+        sel_fuel_cons = st.number_input("FUEL (t/DAY)", min_value=15.0, max_value=60.0, value=fuel_defaults.get(sel_class, 28.0), step=1.0, key="ri_fuel_cons")
+
+    st.markdown('<div style="height: 10px;"></div>', unsafe_allow_html=True)
+
+    # Row 3: Economics, Optimization & Actions
+    r3_c1, r3_c2, r3_c3, r3_c4, r3_c5 = st.columns([1.1, 1.2, 1.3, 1.2, 0.9], gap="medium")
+    with r3_c1:
+        sel_fuel_price = st.number_input("FUEL PRICE (₹/t)", min_value=30000, max_value=90000, value=default_fuel_price, step=1000, key="ri_fuel_price")
+    with r3_c2:
+        sel_charter_rate = st.number_input("CHARTER (₹/DAY)", min_value=500000, max_value=3500000, value=charter_defaults.get(sel_class, 1250000), step=50000, key="ri_charter_rate")
+    with r3_c3:
+        sel_priority = st.selectbox("OPTIMIZATION PRIORITY", priority_options, index=0, key="ri_priority")
+    with r3_c4:
+        st.markdown('<div class="ctrl-label">&nbsp;</div>', unsafe_allow_html=True)
+        gen_clicked = st.button("🚀 Generate Route Comparison", key="ri_gen_btn", type="primary", use_container_width=True)
+        if gen_clicked:
+            st.session_state["ri_calculated"] = True
+            st.toast("Maritime route simulation recalculated successfully.", icon="🚀")
+    with r3_c5:
+        st.markdown('<div class="ctrl-label">&nbsp;</div>', unsafe_allow_html=True)
+        if st.button("🔄 Reset", key="ri_reset_btn", use_container_width=True):
+            st.session_state["ri_origin"] = "Richards Bay, South Africa"
+            st.session_state["ri_dest"] = "Paradip Port"
+            st.session_state["ri_cargo"] = "Thermal Coal"
+            st.session_state["ri_qty"] = 130000
+            st.session_state["ri_vessel_class"] = "Panamax"
+            st.session_state["ri_dwt"] = 82000
+            st.session_state["ri_draft"] = 14.5
+            st.session_state["ri_speed"] = 12.5
+            st.session_state["ri_dep_date"] = date.today() + timedelta(days=2)
+            st.session_state["ri_fuel_cons"] = 28.0
+            st.session_state["ri_fuel_price"] = 54000
+            st.session_state["ri_charter_rate"] = 1250000
+            st.session_state["ri_priority"] = "Balanced Recommended"
+            st.session_state["ri_calculated"] = True
+            st.toast("Route parameters reset to baseline demonstration values.", icon="🔄")
+            st.rerun()
+
+    st.markdown('</div>', unsafe_allow_html=True)
+    return sel_orig, sel_dest, sel_cargo, sel_qty, sel_class, sel_dwt, sel_draft, sel_speed, sel_date, sel_fuel_cons, sel_fuel_price, sel_charter_rate, sel_priority
 
 
 def render_risk_alerts_controls():
@@ -3413,35 +3528,39 @@ def render_vessel_intelligence():
             hatch_rects.append(f'<rect x="{hx:.1f}" y="9" width="{hatch_w - 3:.1f}" height="9" rx="1.5" fill="#5746A5" stroke="#D9D4EE" stroke-width="0.8" />')
         hatch_svg = "".join(hatch_rects)
 
-        svg_markup = f'''
-        <svg viewBox="0 0 240 42" width="100%" height="42" xmlns="http://www.w3.org/2000/svg" style="display: block; margin: 6px auto;">
-          <line x1="8" y1="32" x2="232" y2="32" stroke="#ECECF0" stroke-width="1.2" stroke-dasharray="3,3" />
-          <path d="M 12 28 L {w - 14} 28 L {w} 16 L 15 16 Z" fill="#372580" stroke="#5746A5" stroke-width="1.2" />
-          <line x1="12" y1="28" x2="{w - 14}" y2="28" stroke="#F6B51B" stroke-width="2.2" stroke-linecap="round" />
-          {hatch_svg}
-          <polygon points="15,16 15,6 23,6 23,16" fill="#FFFFFF" stroke="#E4E4E8" stroke-width="0.8" />
-          <rect x="17" y="8" width="4" height="2.5" fill="#372580" />
-          <line x1="19" y1="6" x2="19" y2="2" stroke="#92929A" stroke-width="1" />
-        </svg>
-        '''
+        svg_markup = (
+            f'<svg viewBox="0 0 240 42" width="100%" height="42" xmlns="http://www.w3.org/2000/svg" style="display:block; margin:6px auto;">'
+            f'<line x1="8" y1="32" x2="232" y2="32" stroke="#ECECF0" stroke-width="1.2" stroke-dasharray="3,3" />'
+            f'<path d="M 12 28 L {w - 14} 28 L {w} 16 L 15 16 Z" fill="#372580" stroke="#5746A5" stroke-width="1.2" />'
+            f'<line x1="12" y1="28" x2="{w - 14}" y2="28" stroke="#F6B51B" stroke-width="2.2" stroke-linecap="round" />'
+            f'{hatch_svg}'
+            f'<polygon points="15,16 15,6 23,6 23,16" fill="#FFFFFF" stroke="#E4E4E8" stroke-width="0.8" />'
+            f'<rect x="17" y="8" width="4" height="2.5" fill="#372580" />'
+            f'<line x1="19" y1="6" x2="19" y2="2" stroke="#92929A" stroke-width="1" />'
+            f'</svg>'
+        )
+
         with cols[idx]:
-            st.markdown(
-                f'''
-                <div class="vessel-card-container">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                        <b style="color: #18181B; font-size: 1.02rem;">{vc["name"]}</b>
-                        <span style="background: rgba(56,189,248,0.15); color: {vc["color"]}; border: 1px solid {vc["color"]}55; padding: 1px 6px; border-radius: 4px; font-size: 0.72rem; font-weight: 600;">{vc["badge"]}</span>
-                    </div>
-                    <div style="color: #372580; font-size: 0.95rem; font-weight: 600;">{vc["cap"]}</div>
-                    {svg_markup}
-                    <div style="font-size: 0.82rem; color: #6B6B73; margin-top: 4px; border-top: 1px solid #ECECF0; padding-top: 6px;">
-                        <div style="display: flex; justify-content: space-between;"><span>Charter Cost:</span><b style="color: #18181B;">{vc["charter"]}</b></div>
-                        <div style="display: flex; justify-content: space-between; margin-top: 2px;"><span>Max Draft:</span><b style="color: #18181B;">{vc["draft"]}</b></div>
-                    </div>
-                </div>
-                ''',
-                unsafe_allow_html=True,
-            )
+            with st.container(border=True):
+                st.markdown(
+                    f'<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">'
+                    f'<span style="color:#18181B; font-size:1.02rem; font-weight:700;">{vc["name"]}</span>'
+                    f'<span style="background:rgba(56,189,248,0.15); color:{vc["color"]}; border:1px solid {vc["color"]}55; padding:1px 6px; border-radius:4px; font-size:0.72rem; font-weight:600;">{vc["badge"]}</span>'
+                    f'</div>',
+                    unsafe_allow_html=True,
+                )
+                st.markdown(
+                    f'<div style="color:#372580; font-size:0.95rem; font-weight:600;">{vc["cap"]}</div>',
+                    unsafe_allow_html=True,
+                )
+                st.markdown(svg_markup, unsafe_allow_html=True)
+                st.markdown(
+                    f'<div style="font-size:0.82rem; color:#6B6B73; border-top:1px solid #ECECF0; padding-top:6px; margin-top:4px;">'
+                    f'<div style="display:flex; justify-content:space-between;"><span>Charter Cost:</span><b style="color:#18181B;">{vc["charter"]}</b></div>'
+                    f'<div style="display:flex; justify-content:space-between; margin-top:2px;"><span>Max Draft:</span><b style="color:#18181B;">{vc["draft"]}</b></div>'
+                    f'</div>',
+                    unsafe_allow_html=True,
+                )
 
 
     col_v1, col_v2 = st.columns([1.4, 1])
@@ -3464,11 +3583,9 @@ def render_vessel_intelligence():
             })
         st.dataframe(pd.DataFrame(class_stats), hide_index=True, width="stretch")
         st.markdown(
-            """
-            <div style="margin-top: 8px; padding: 8px 12px; border-radius: 6px; background: #F0EEF9; border-left: 3px solid #372580; font-size: 0.82rem; color: #6B6B73;">
-                <b>Feasibility Rule:</b> 2 × Supramax (116,000 t) is <span style="color: #D95C5C; font-weight: 700;">Infeasible (Deficit: 14,000 t)</span> for 130,000 t shortfall. 2 × Panamax (164,000 t, 79.3% util) and 1 × Capesize (180,000 t, 72.2% util) are Feasible.
-            </div>
-            """,
+            '<div style="margin-top:8px; padding:8px 12px; border-radius:6px; background:#F0EEF9; border-left:3px solid #372580; font-size:0.82rem; color:#6B6B73;">'
+            '<b>Feasibility Rule:</b> 2 × Supramax (116,000 t) is <span style="color: #D95C5C; font-weight: 700;">Infeasible (Deficit: 14,000 t)</span> for 130,000 t shortfall. 2 × Panamax (164,000 t, 79.3% util) and 1 × Capesize (180,000 t, 72.2% util) are Feasible.'
+            '</div>',
             unsafe_allow_html=True,
         )
 
@@ -3599,6 +3716,496 @@ def render_port_intelligence():
 
 
 
+def render_route_intelligence():
+    """Renders the comprehensive Route Intelligence module."""
+    render_level2_header("Route Intelligence")
+
+    # Prototype Disclaimer & Executive Scope
+    st.markdown(
+        '<div class="panel-card" style="margin-bottom: 16px;">'
+        '<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">'
+        '<div>'
+        '<b style="color: #18181B; font-size: 1.02rem;">🚢 Maritime Route Intelligence & Voyage Optimization</b>'
+        '<div style="color: #6B6B73; font-size: 0.88rem; margin-top: 2px;">'
+        'Compare maritime route alternatives using nautical distance, sailing ETA, bunker consumption, port draft compatibility, and operational risk.'
+        '</div>'
+        '</div>'
+        '<span style="background: #F0EEF9; color: #372580; border: 1px solid var(--light-purple); padding: 4px 10px; border-radius: 4px; font-size: 0.74rem; font-weight: 700;">'
+        'PROTOTYPE ROUTE ESTIMATE • LOCAL/SIMULATED DATA'
+        '</span>'
+        '</div>'
+        '</div>',
+        unsafe_allow_html=True,
+    )
+
+    # Render Controls
+    (sel_orig, sel_dest, sel_cargo, sel_qty, sel_class, sel_dwt,
+     sel_draft, sel_speed, sel_date, sel_fuel_cons, sel_fuel_price,
+     sel_charter_rate, sel_priority) = render_route_intelligence_controls()
+
+    # Master Port Specifications
+    port_specs = {
+        "Paradip Port": {"max_draft": 18.0, "max_loa": 300, "max_beam": 48, "congestion_days": 3.0, "tariff_per_tonne": 110, "lat": 20.26, "lon": 86.67, "type": "Deepwater"},
+        "Visakhapatnam Port": {"max_draft": 16.5, "max_loa": 280, "max_beam": 45, "congestion_days": 5.0, "tariff_per_tonne": 125, "lat": 17.68, "lon": 83.21, "type": "Outer Harbour"},
+        "Gangavaram Port": {"max_draft": 20.0, "max_loa": 320, "max_beam": 52, "congestion_days": 2.5, "tariff_per_tonne": 115, "lat": 17.62, "lon": 83.24, "type": "Deepwater"},
+        "Dhamra Port": {"max_draft": 18.5, "max_loa": 315, "max_beam": 50, "congestion_days": 2.0, "tariff_per_tonne": 95, "lat": 20.80, "lon": 86.95, "type": "Deepwater"},
+        "Gopalpur Port": {"max_draft": 14.5, "max_loa": 230, "max_beam": 33, "congestion_days": 1.5, "tariff_per_tonne": 105, "lat": 19.30, "lon": 84.97, "type": "Medium Draft"},
+        "Haldia Port": {"max_draft": 10.5, "max_loa": 230, "max_beam": 32, "congestion_days": 4.5, "tariff_per_tonne": 140, "lat": 22.02, "lon": 88.06, "type": "Riverine Shallow"},
+        "Sagar / Sandheads": {"max_draft": 13.5, "max_loa": 260, "max_beam": 40, "congestion_days": 2.0, "tariff_per_tonne": 130, "lat": 21.65, "lon": 88.05, "type": "Anchorage Lighterage"},
+    }
+
+    origin_specs = {
+        "Richards Bay, South Africa": {"lat": -28.80, "lon": 32.05, "base_nm": 4650},
+        "Newcastle, Australia": {"lat": -32.93, "lon": 151.78, "base_nm": 5420},
+        "Tanjung Bara, Indonesia": {"lat": 0.55, "lon": 117.60, "base_nm": 2350},
+        "Maputo, Mozambique": {"lat": -25.97, "lon": 32.58, "base_nm": 4450},
+        "Ust-Luga, Russia": {"lat": 59.68, "lon": 28.30, "base_nm": 7420},
+        "Norfolk, United States": {"lat": 36.85, "lon": -76.29, "base_nm": 11200},
+    }
+
+    cur_dest = port_specs.get(sel_dest, port_specs["Paradip Port"])
+    cur_orig = origin_specs.get(sel_orig, origin_specs["Richards Bay, South Africa"])
+    base_dist = cur_orig["base_nm"]
+    dest_lat, dest_lon = cur_dest["lat"], cur_dest["lon"]
+    orig_lat, orig_lon = cur_orig["lat"], cur_orig["lon"]
+
+    # Port compatibility check
+    max_d = cur_dest["max_draft"]
+    is_draft_compat = sel_draft <= max_d
+    is_berth_compat = not (sel_class == "Capesize" and sel_dest in ["Haldia Port", "Gopalpur Port"])
+    is_fully_compatible = is_draft_compat and is_berth_compat
+
+    if is_fully_compatible:
+        compat_badge = '<span style="background: #EDF7F0; color: #15803D; padding: 3px 8px; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">● Fully Compatible</span>'
+        compat_detail = f"Vessel draft ({sel_draft:.1f}m) satisfies {sel_dest} max limit ({max_d:.1f}m)."
+    else:
+        deficit_msg = f"Draft Deficit: {sel_draft - max_d:.1f}m" if not is_draft_compat else "Berth LOA Limit"
+        compat_badge = f'<span style="background: #FEE2E2; color: #DC2626; padding: 3px 8px; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">▲ Incompatible ({deficit_msg})</span>'
+        compat_detail = f"Operational alert: Vessel draft {sel_draft:.1f}m exceeds {sel_dest} safe threshold {max_d:.1f}m."
+
+    port_charges = sel_qty * cur_dest["tariff_per_tonne"]
+    cong_delay = cur_dest["congestion_days"]
+
+    # 3 Distinct Route Alternatives
+    alternatives = [
+        {
+            "id": "balanced",
+            "name": "Direct Indian Ocean Corridor",
+            "badge": "Balanced Recommended",
+            "dist_nm": base_dist,
+            "speed_kts": sel_speed,
+            "weather_adj": 1.04,
+            "weather_delay": 0.5,
+            "weather_risk_label": "Low-Medium (24/100)",
+            "cong_delay": cong_delay,
+            "cong_risk_label": f"Normal Queue ({cong_delay:.1f}d)",
+            "base_risk": 24,
+            "color": "#372580",
+            "line_dash": "solid",
+        },
+        {
+            "id": "fastest",
+            "name": "High-Speed Open Sea Direct",
+            "badge": "Fastest Route",
+            "dist_nm": round(base_dist * 0.96),
+            "speed_kts": sel_speed + 1.2,
+            "weather_adj": 1.12,
+            "weather_delay": 0.8,
+            "weather_risk_label": "Elevated (42/100)",
+            "cong_delay": cong_delay,
+            "cong_risk_label": f"Normal Queue ({cong_delay:.1f}d)",
+            "base_risk": 38,
+            "color": "#F6B51B",
+            "line_dash": "dash",
+        },
+        {
+            "id": "lowest_cost",
+            "name": "Eco-Steaming Fair-Weather Track",
+            "badge": "Lowest Cost",
+            "dist_nm": round(base_dist * 1.02),
+            "speed_kts": max(9.5, sel_speed - 1.5),
+            "weather_adj": 0.96,
+            "weather_delay": 0.3,
+            "weather_risk_label": "Minimal (16/100)",
+            "cong_delay": cong_delay,
+            "cong_risk_label": f"Normal Queue ({cong_delay:.1f}d)",
+            "base_risk": 18,
+            "color": "#48A868",
+            "line_dash": "dot",
+        },
+    ]
+
+    # Perform deterministic calculations for all alternatives
+    for alt in alternatives:
+        s_days = alt["dist_nm"] / (alt["speed_kts"] * 24.0)
+        tot_eta = s_days + alt["weather_delay"] + alt["cong_delay"]
+        f_tonnes = s_days * sel_fuel_cons * alt["weather_adj"]
+        f_cost = f_tonnes * sel_fuel_price
+        c_cost = tot_eta * sel_charter_rate
+        final_risk = alt["base_risk"] + (0 if is_fully_compatible else 40)
+        risk_cont = (final_risk / 100.0) * (c_cost + f_cost) * 0.08
+        tot_cost = f_cost + c_cost + port_charges + risk_cont
+
+        alt["sailing_days"] = s_days
+        alt["total_eta"] = tot_eta
+        alt["fuel_tonnes"] = f_tonnes
+        alt["fuel_cost_cr"] = f_cost / 10_000_000.0
+        alt["charter_cost_cr"] = c_cost / 10_000_000.0
+        alt["port_cost_cr"] = port_charges / 10_000_000.0
+        alt["total_cost_cr"] = tot_cost / 10_000_000.0
+        alt["risk_score"] = min(100, final_risk)
+        alt["arrival_date"] = sel_date + timedelta(days=math.ceil(tot_eta))
+
+    # Priority Selection Logic
+    if sel_priority == "Lowest Cost":
+        rec_alt = min(alternatives, key=lambda x: x["total_cost_cr"])
+    elif sel_priority == "Fastest Route":
+        rec_alt = min(alternatives, key=lambda x: x["total_eta"])
+    elif sel_priority == "Lowest Risk":
+        rec_alt = min(alternatives, key=lambda x: x["risk_score"])
+    else:  # Balanced Recommended
+        rec_alt = alternatives[0]
+
+    # =========================================================================
+    # 5. REQUIRED KPI CARDS ROW (3x3 Grid / Multi-column layout)
+    # =========================================================================
+    k1, k2, k3, k4 = st.columns(4, gap="medium")
+    with k1:
+        st.markdown(
+            f'<div class="kpi-card-exec">'
+            f'<span class="kpi-exec-label">Recommended Route</span>'
+            f'<div class="kpi-exec-val" style="font-size: 1.15rem; color: #372580; margin-top: 6px;">{rec_alt["name"]}</div>'
+            f'<div class="kpi-exec-sub" style="color: #6B6B73;">Priority: {sel_priority}</div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+    with k2:
+        st.markdown(
+            f'<div class="kpi-card-exec">'
+            f'<span class="kpi-exec-label">Distance & Sailing Time</span>'
+            f'<div class="kpi-exec-val">{rec_alt["dist_nm"]:,} nm</div>'
+            f'<div class="kpi-exec-sub" style="color: #6B6B73;">{rec_alt["sailing_days"]:.1f} Sailing Days @ {rec_alt["speed_kts"]:.1f} kts</div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+    with k3:
+        st.markdown(
+            f'<div class="kpi-card-exec">'
+            f'<span class="kpi-exec-label">Predicted Total ETA</span>'
+            f'<div class="kpi-exec-val" style="color: #48A868;">{rec_alt["total_eta"]:.1f} Days</div>'
+            f'<div class="kpi-exec-sub" style="color: #6B6B73;">Arrival: <b>{rec_alt["arrival_date"].strftime("%d %b %Y")}</b> (Queue: {cong_delay:.1f}d)</div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+    with k4:
+        st.markdown(
+            f'<div class="kpi-card-exec">'
+            f'<span class="kpi-exec-label">Estimated Voyage Cost</span>'
+            f'<div class="kpi-exec-val" style="color: #18181B;">₹{rec_alt["total_cost_cr"]:.2f} Cr</div>'
+            f'<div class="kpi-exec-sub" style="color: #F6B51B;">Bunker Fuel: {rec_alt["fuel_tonnes"]:.1f} t (₹{rec_alt["fuel_cost_cr"]:.2f} Cr)</div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
+    st.markdown('<div style="height: 8px;"></div>', unsafe_allow_html=True)
+    k5, k6, k7, k8 = st.columns(4, gap="medium")
+    with k5:
+        st.markdown(
+            f'<div class="kpi-card-exec">'
+            f'<span class="kpi-exec-label">Port Compatibility</span>'
+            f'<div style="margin-top: 8px;">{compat_badge}</div>'
+            f'<div class="kpi-exec-sub" style="color: #6B6B73; margin-top: 8px;">{compat_detail}</div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+    with k6:
+        st.markdown(
+            f'<div class="kpi-card-exec">'
+            f'<span class="kpi-exec-label">Route Risk Score</span>'
+            f'<div class="kpi-exec-val" style="color: {"#D95C5C" if rec_alt["risk_score"] > 50 else "#372580"};">{rec_alt["risk_score"]} / 100</div>'
+            f'<div class="kpi-exec-sub" style="color: #6B6B73;">Weather: {rec_alt["weather_risk_label"]}</div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+    with k7:
+        st.markdown(
+            f'<div class="kpi-card-exec">'
+            f'<span class="kpi-exec-label">Fuel Consumption</span>'
+            f'<div class="kpi-exec-val">{rec_alt["fuel_tonnes"]:.1f} tonnes</div>'
+            f'<div class="kpi-exec-sub" style="color: #6B6B73;">Burn Rate: {sel_fuel_cons:.1f} t/d &bull; Adj: {rec_alt["weather_adj"]:.2f}x</div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+    with k8:
+        st.markdown(
+            f'<div class="kpi-card-exec">'
+            f'<span class="kpi-exec-label">Data Confidence & Engine</span>'
+            f'<div class="kpi-exec-val" style="font-size: 1.15rem; color: #6B6B73;">Simulated MVP</div>'
+            f'<div class="kpi-exec-sub" style="color: #92929A;">Deterministic Voyage Heuristic</div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
+    # Incompatibility Warning Banner if draft deficit
+    if not is_fully_compatible:
+        st.markdown(
+            f'<div style="margin-top: 14px; padding: 12px 16px; border-radius: 6px; background: #FBEEEE; border-left: 4px solid #D95C5C;">'
+            f'<b style="color: #D95C5C; font-size: 0.95rem;">⚠️ Vessel-Port Incompatibility Alert:</b>'
+            f'<div style="color: #6B6B73; font-size: 0.88rem; margin-top: 4px;">'
+            f'The selected <b>{sel_class}</b> vessel has a design operating draft of <b>{sel_draft:.1f}m</b>, which exceeds <b>{sel_dest}</b> maximum permissible draft limit of <b>{max_d:.1f}m</b>. '
+            f'Risk penalty (+40 points) has been applied. Consider switching to a compatible vessel (Panamax or Supramax) or discharging at a deepwater terminal (Paradip, Gangavaram, or Dhamra).'
+            f'</div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
+    st.markdown('<div style="height: 18px;"></div>', unsafe_allow_html=True)
+
+    # =========================================================================
+    # 6. INTERACTIVE MARITIME ROUTE MAP (Plotly Scattergeo)
+    # =========================================================================
+    st.markdown('<h4 style="color: #18181B; font-size: 1.05rem; margin-bottom: 6px;">🗺️ Indicative Maritime Route Alternatives</h4>', unsafe_allow_html=True)
+    st.caption("Indicative prototype routes — not for navigational use. Intermediate sea waypoints follow international maritime corridors avoiding landmasses.")
+
+    # Generate realistic sea waypoints based on origin and destination
+    def generate_sea_waypoints(origin_name, dest_coord, route_type):
+        d_lat, d_lon = dest_coord
+        if "Richards Bay" in origin_name:
+            if route_type == "balanced":
+                return [(-28.80, 32.05), (-26.0, 45.0), (-12.0, 65.0), (0.0, 78.0), (10.0, 83.0), (d_lat, d_lon)]
+            elif route_type == "fastest":
+                return [(-28.80, 32.05), (-24.0, 48.0), (-8.0, 72.0), (4.0, 81.0), (d_lat, d_lon)]
+            else:
+                return [(-28.80, 32.05), (-18.0, 42.0), (-5.0, 60.0), (2.0, 75.0), (9.0, 83.0), (d_lat, d_lon)]
+        elif "Newcastle" in origin_name:
+            if route_type == "balanced":
+                return [(-32.93, 151.78), (-38.0, 140.0), (-35.0, 118.0), (-22.0, 105.0), (-7.0, 95.0), (6.0, 88.0), (d_lat, d_lon)]
+            elif route_type == "fastest":
+                return [(-32.93, 151.78), (-22.0, 153.0), (-10.5, 142.5), (-8.0, 125.0), (-4.0, 105.0), (6.0, 90.0), (d_lat, d_lon)]
+            else:
+                return [(-32.93, 151.78), (-38.0, 140.0), (-36.0, 115.0), (-25.0, 100.0), (-5.0, 90.0), (d_lat, d_lon)]
+        elif "Tanjung Bara" in origin_name:
+            if route_type == "balanced":
+                return [(0.55, 117.60), (1.3, 104.3), (3.0, 100.0), (5.8, 95.5), (10.0, 88.0), (d_lat, d_lon)]
+            elif route_type == "fastest":
+                return [(0.55, 117.60), (-3.5, 110.0), (-6.0, 105.0), (2.0, 95.0), (10.0, 88.0), (d_lat, d_lon)]
+            else:
+                return [(0.55, 117.60), (1.5, 104.5), (3.5, 99.5), (6.0, 95.0), (11.0, 87.0), (d_lat, d_lon)]
+        elif "Maputo" in origin_name:
+            if route_type == "balanced":
+                return [(-25.97, 32.58), (-20.0, 40.0), (-10.0, 50.0), (0.0, 70.0), (8.0, 82.0), (d_lat, d_lon)]
+            elif route_type == "fastest":
+                return [(-25.97, 32.58), (-26.0, 46.0), (-12.0, 60.0), (0.0, 72.0), (8.0, 82.0), (d_lat, d_lon)]
+            else:
+                return [(-25.97, 32.58), (-18.0, 42.0), (-5.0, 60.0), (2.0, 75.0), (9.0, 83.0), (d_lat, d_lon)]
+        elif "Ust-Luga" in origin_name:
+            if route_type == "balanced":
+                return [(59.68, 28.30), (57.5, 11.5), (51.0, 1.8), (36.0, -5.5), (33.0, 25.0), (27.0, 34.5), (13.0, 45.0), (8.0, 78.0), (d_lat, d_lon)]
+            elif route_type == "fastest":
+                return [(59.68, 28.30), (57.5, 11.5), (51.0, 1.8), (36.0, -5.5), (33.0, 25.0), (27.8, 34.0), (12.5, 43.5), (10.0, 75.0), (d_lat, d_lon)]
+            else:
+                return [(59.68, 28.30), (57.5, 11.5), (50.0, -5.0), (20.0, -20.0), (-15.0, -5.0), (-34.5, 18.5), (-28.0, 40.0), (0.0, 75.0), (d_lat, d_lon)]
+        else:  # Norfolk, US
+            if route_type == "fastest":
+                return [(36.85, -76.29), (35.0, -40.0), (36.0, -6.0), (32.0, 28.0), (28.0, 33.0), (12.5, 43.5), (8.0, 78.0), (d_lat, d_lon)]
+            else:
+                return [(36.85, -76.29), (28.0, -60.0), (0.0, -30.0), (-25.0, -10.0), (-34.5, 18.5), (-20.0, 50.0), (0.0, 75.0), (d_lat, d_lon)]
+
+    map_fig = go.Figure()
+
+    # Draw the 3 route tracks
+    for alt in alternatives:
+        wp = generate_sea_waypoints(sel_orig, (dest_lat, dest_lon), alt["id"])
+        is_rec = (alt["id"] == rec_alt["id"])
+        line_w = 4.0 if is_rec else 2.2
+        trace_name = f"{alt['name']} ★ [RECOMMENDED]" if is_rec else alt["name"]
+
+        map_fig.add_trace(go.Scattergeo(
+            lat=[p[0] for p in wp],
+            lon=[p[1] for p in wp],
+            mode="lines+markers",
+            name=trace_name,
+            line=dict(width=line_w, color=alt["color"], dash=alt["line_dash"]),
+            marker=dict(size=4 if not is_rec else 6, color=alt["color"]),
+            hovertemplate=(
+                f"<b>{alt['name']}</b><br>"
+                f"Distance: {alt['dist_nm']:,} nm<br>"
+                f"Sailing: {alt['sailing_days']:.1f} days<br>"
+                f"Total ETA: {alt['total_eta']:.1f} days<br>"
+                f"Voyage Cost: ₹{alt['total_cost_cr']:.2f} Cr<br>"
+                f"Risk: {alt['risk_score']}/100<extra></extra>"
+            ),
+        ))
+
+    # Add Origin & Destination Terminal Nodes
+    map_fig.add_trace(go.Scattergeo(
+        lat=[orig_lat, dest_lat],
+        lon=[orig_lon, dest_lon],
+        mode="markers+text",
+        text=[f"Origin: {sel_orig.split(',')[0]}", f"Discharge: {sel_dest}"],
+        textposition=["bottom center", "top center"],
+        textfont=dict(color="#18181B", size=11, family="Inter, system-ui, sans-serif"),
+        marker=dict(size=10, color=["#372580", "#48A868"], symbol="diamond"),
+        name="Key Terminals",
+    ))
+
+    # Map layout bounds
+    min_lat = min(orig_lat, dest_lat) - 10
+    max_lat = max(orig_lat, dest_lat) + 12
+    min_lon = min(orig_lon, dest_lon) - 15
+    max_lon = max(orig_lon, dest_lon) + 15
+
+    map_fig.update_layout(
+        height=460,
+        margin=dict(l=0, r=0, t=10, b=10),
+        paper_bgcolor="rgba(0,0,0,0)",
+        geo=dict(
+            projection_type="natural earth",
+            showland=True,
+            landcolor="#F3F3F5",
+            countrycolor="#E4E4E8",
+            coastlinecolor="#9CA3AF",
+            showocean=True,
+            oceancolor="#F8FAFC",
+            showcountries=True,
+            lataxis=dict(range=[max(-60, min_lat), min(75, max_lat)]),
+            lonaxis=dict(range=[min_lon, max_lon]),
+        ),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1, font=dict(color="#18181B", size=10)),
+    )
+    st.plotly_chart(map_fig, use_container_width=True)
+
+    # =========================================================================
+    # 7. ROUTE ALTERNATIVES COMPARISON TABLE
+    # =========================================================================
+    st.markdown('<h4 style="color: #18181B; font-size: 1.05rem; margin-top: 20px; margin-bottom: 8px;">📊 Comparative Route Analysis Matrix</h4>', unsafe_allow_html=True)
+
+    comp_rows = []
+    for alt in alternatives:
+        is_sel = (alt["id"] == rec_alt["id"])
+        comp_rows.append({
+            "Status": "★ RECOMMENDED" if is_sel else "ALTERNATIVE",
+            "Route Name": alt["name"],
+            "Distance (nm)": f"{alt['dist_nm']:,}",
+            "Speed (kts)": f"{alt['speed_kts']:.1f}",
+            "Sailing Days": f"{alt['sailing_days']:.1f}d",
+            "Total ETA": f"{alt['total_eta']:.1f}d",
+            "Bunker Fuel": f"{alt['fuel_tonnes']:.1f} t",
+            "Estimated Cost": f"₹{alt['total_cost_cr']:.2f} Cr",
+            "Weather Risk": alt["weather_risk_label"],
+            "Congestion": alt["cong_risk_label"],
+            "Port Compatibility": "Compatible" if is_fully_compatible else "Infeasible",
+            "Risk Score": f"{alt['risk_score']}/100",
+        })
+
+    comp_df = pd.DataFrame(comp_rows)
+    st.dataframe(comp_df, hide_index=True, use_container_width=True)
+
+    # =========================================================================
+    # 8. "WHY THIS ROUTE?" DECISION EXPLANATION
+    # =========================================================================
+    st.markdown('<div style="height: 12px;"></div>', unsafe_allow_html=True)
+
+    # Dynamic explanation generation
+    cost_diff_fastest = rec_alt["total_cost_cr"] - alternatives[1]["total_cost_cr"]
+    eta_diff_lowest = rec_alt["total_eta"] - alternatives[2]["total_eta"]
+
+    why_bullets = []
+    if rec_alt["id"] == "balanced":
+        why_bullets.append(
+            f"<b>Optimized Strategic Balance:</b> The <b>{rec_alt['name']}</b> achieves the most resilient equilibrium between transit speed ({rec_alt['speed_kts']:.1f} kts) and voyage expenditure (₹{rec_alt['total_cost_cr']:.2f} Cr)."
+        )
+        why_bullets.append(
+            f"<b>ETA & Schedule Safety:</b> Predicted total voyage duration of <b>{rec_alt['total_eta']:.1f} days</b> avoids high-risk storm corridors and provides adequate berth synchronization at {sel_dest}."
+        )
+        why_bullets.append(
+            f"<b>Trade-off Analysis:</b> Compared to the High-Speed Route, it saves <b>{abs(cost_diff_fastest):.2f} Cr</b> in bunker fuel and engine wear while adding only {(rec_alt['total_eta'] - alternatives[1]['total_eta']):.1f} days."
+        )
+    elif rec_alt["id"] == "lowest_cost":
+        why_bullets.append(
+            f"<b>Least-Cost Economic Advantage:</b> Selected under <b>{sel_priority}</b> priority. Generates the minimum total commitment of <b>₹{rec_alt['total_cost_cr']:.2f} Cr</b> through eco-speed steaming ({rec_alt['speed_kts']:.1f} kts)."
+        )
+        why_bullets.append(
+            f"<b>Bunker Fuel Efficiency:</b> Consumes only <b>{rec_alt['fuel_tonnes']:.1f} tonnes</b> of bunker fuel (lowest across all evaluated corridors)."
+        )
+        why_bullets.append(
+            f"<b>Trade-off Analysis:</b> Takes {abs(eta_diff_lowest):.1f} additional sailing days compared to balanced routing; suitable when inventory reserves at Paradip/East Coast remain above safety threshold."
+        )
+    elif rec_alt["id"] == "fastest":
+        why_bullets.append(
+            f"<b>Rapid Transit Priority:</b> Selected under <b>{sel_priority}</b> priority. Minimizes overall voyage time to <b>{rec_alt['total_eta']:.1f} days</b> (saving {abs(alternatives[0]['total_eta'] - rec_alt['total_eta']):.1f} days vs standard corridor)."
+        )
+        why_bullets.append(
+            f"<b>Stockout Mitigation:</b> Crucial if inventory stockpile at destination is critically depleted and requires urgent replenishment."
+        )
+        why_bullets.append(
+            f"<b>Trade-off Analysis:</b> Requires higher fuel burn rate (+{rec_alt['fuel_tonnes'] - alternatives[0]['fuel_tonnes']:.1f} tonnes) resulting in an estimated voyage cost of ₹{rec_alt['total_cost_cr']:.2f} Cr."
+        )
+    else:  # Lowest Risk
+        why_bullets.append(
+            f"<b>Operational Risk Minimization:</b> Achieves the lowest composite risk score of <b>{rec_alt['risk_score']}/100</b> by selecting safe deep-draft channels with minimal cyclonic and choke point exposure."
+        )
+
+    if not is_fully_compatible:
+        why_bullets.append(
+            f"<span style='color: #D95C5C;'><b>Port Limitation Notice:</b> The route cannot be certified for execution until draft incompatibility ({sel_draft:.1f}m vs {max_d:.1f}m max at {sel_dest}) is resolved by vessel lighterage or re-fixture.</span>"
+        )
+
+    bullets_html = "".join(f"<li style='margin-bottom: 6px;'>{b}</li>" for b in why_bullets)
+
+    st.markdown(
+        f'<div class="panel-card" style="border-left: 4px solid #372580; background: #F0EEF9; padding: 16px 20px;">'
+        f'<h4 style="color: #372580; margin-top: 0; margin-bottom: 8px;">💡 Why This Route? ({rec_alt["badge"]})</h4>'
+        f'<ul style="color: #6B6B73; font-size: 0.90rem; line-height: 1.6; margin: 0; padding-left: 18px;">'
+        f'{bullets_html}'
+        f'</ul>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+    # =========================================================================
+    # 9. INTEGRATION ACTIONS & PRODUCTION ROADMAP
+    # =========================================================================
+    act_c1, act_c2 = st.columns([1.5, 1], gap="medium")
+    with act_c1:
+        if st.button("📌 Commit Route to Decision Workspace", key="ri_commit_btn", type="primary", use_container_width=True):
+            st.session_state["confirmed_route"] = {
+                "origin": sel_orig,
+                "destination": sel_dest,
+                "route_name": rec_alt["name"],
+                "distance_nm": rec_alt["dist_nm"],
+                "sailing_days": rec_alt["sailing_days"],
+                "total_eta": rec_alt["total_eta"],
+                "estimated_cost_cr": rec_alt["total_cost_cr"],
+                "fuel_tonnes": rec_alt["fuel_tonnes"],
+                "risk_score": rec_alt["risk_score"],
+                "is_compatible": is_fully_compatible,
+                "priority": sel_priority,
+            }
+            st.toast(f"Route '{rec_alt['name']}' committed to session workspace.", icon="✅")
+
+    st.markdown('<div style="height: 12px;"></div>', unsafe_allow_html=True)
+
+    # Production Roadmap Callout
+    st.markdown(
+        '<div class="panel-card" style="border-top: 3px solid #ECECF0;">'
+        '<b style="color: #18181B; font-size: 0.95rem;">🛰️ Production Integration Roadmap (Future Real-World Data Feeds)</b>'
+        '<div style="color: #6B6B73; font-size: 0.85rem; line-height: 1.5; margin-top: 6px;">'
+        'The current MVP displays curated demonstration corridors using deterministic voyage models. Planned production connections include:'
+        '<ul style="margin: 6px 0 0 0; padding-left: 18px;">'
+        '<li><b>UN/LOCODE Standard:</b> Canonical port coding (e.g. ZARCB, INPRT, INVTZ) and terminal berth databases.</li>'
+        '<li><b>Copernicus Marine Service:</b> Real-time global ocean currents, significant wave heights, and sea-surface weather routing.</li>'
+        '<li><b>ECMWF ERA5 Historical Reanalysis:</b> Seasonal tropical cyclone probability and monsoon routing adjustments.</li>'
+        '<li><b>Satellite AIS Telemetry:</b> Real-time vessel speed, heading, and dynamic maritime congestion monitoring.</li>'
+        '<li><b>Major Port Trust Gazettes:</b> Live berth availability, draught circulars, and handling tariff integration.</li>'
+        '<li><b>ECDIS Maritime Engines:</b> Certified nautical chart routing conforming to IMO safety parameters.</li>'
+        '</ul>'
+        '</div>'
+        '</div>',
+        unsafe_allow_html=True,
+    )
+
+
 def render_risk_alerts():
     """Renders the Risk & Alerts view."""
     render_level2_header("Risk & Alerts")
@@ -3710,6 +4317,8 @@ elif active_page == "Vessel Intelligence":
     render_vessel_intelligence()
 elif active_page == "Port Intelligence":
     render_port_intelligence()
+elif active_page == "Route Intelligence":
+    render_route_intelligence()
 elif active_page == "Risk & Alerts":
     render_risk_alerts()
 elif active_page == "Scenario Lab":
