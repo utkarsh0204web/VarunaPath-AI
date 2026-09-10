@@ -95,221 +95,232 @@ MODULE_DESCRIPTIONS = {
 
 st.markdown(
     """
-    <style>
-    :root {
-    /* Primary Backgrounds */
-    --bg-main: #061A2D;
-    --bg-secondary: #081F35;
-    --bg-sidebar: #041525;
+    <style>:root {
+        /* Application Shell & Backgrounds */
+        --bg-main: #F3F3F5;
+        --bg-surface: #FFFFFF;
+        --bg-sidebar: #FFFFFF;
+        --bg-header: #FFFFFF;
+        --bg-subtle: #F8F8FA;
 
-    /* Surfaces / Cards */
-    --surface-primary: #0D2B46;
-    --surface-secondary: #103451;
-    --surface-hover: #164967;
+        /* Typography & Text */
+        --text-primary: #18181B;
+        --text-secondary: #6B6B73;
+        --text-muted: #92929A;
 
-    /* Brand / Accent Colors */
-    --color-primary-blue: #168CE3;
-    --color-accent-cyan: #20BCEB;
-    --color-accent-teal: #16C79A;
+        /* Borders & Hairlines */
+        --border-card: #E4E4E8;
+        --border-divider: #ECECF0;
+        --border-subtle: #F0F0F3;
 
-    /* Typography / Text */
-    --text-primary: #F8FAFC;
-    --text-secondary: #A9C1D6;
-    --text-muted: #7895AC;
+        /* Brand Colors (Enterprise Purple Palette) */
+        --primary-purple: #372580;
+        --secondary-purple: #5746A5;
+        --light-purple: #D9D4EE;
+        --bg-purple-subtle: #F0EEF9;
 
-    /* Borders */
-    --border-color: #1C5877;
+        /* Accent & Status Colors */
+        --accent-amber: #F6B51B;
+        --light-amber: #FBE1A1;
+        --bg-amber-subtle: #FEF8E7;
+        --success-green: #48A868;
+        --bg-green-subtle: #EDF7F0;
+        --error-red: #D95C5C;
+        --bg-red-subtle: #FBEEEE;
 
-    /* Status / Alerts */
-    --color-success: #16C79A;
-    --color-warning: #F4B942;
-    --color-danger: #FF5C67;
+        /* Controls & Buttons */
+        --btn-primary-bg: #372580;
+        --btn-primary-hover: #2B1D66;
+        --btn-secondary-bg: #FFFFFF;
+        --btn-secondary-border: #E4E4E8;
+        --btn-secondary-hover: #F3F3F5;
+        --disabled-bg: #F3F3F5;
+        --disabled-text: #92929A;
 
-    /* Disabled States */
-    --disabled-bg: #26384A;
-    --disabled-text: #8294A5;
+        /* Charts */
+        --chart-bg: #FFFFFF;
+        --chart-label: #18181B;
+        --chart-grid: #ECECF0;
 
-    /* Charts */
-    --chart-label: #D8E6F2;
-    --chart-grid: rgba(169, 193, 214, 0.16);
-    --chart-bg: #0D2B46;
+        /* Typography Hierarchy */
+        --font-stack: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        --radius-card: 8px;
+        --radius-control: 6px;
+        --radius-badge: 4px;
+        --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
 
-    /* Typography Hierarchy */
-    --font-stack: "Inter", "Segoe UI", Arial, sans-serif;
-    --fw-title: 700;
-    --fw-heading: 700;
-    --fw-subheading: 650;
-    --fw-card-title: 600;
-    --fw-button: 600;
-    --fw-label: 600;
-    --fw-metric: 700;
-    --fw-body: 400;
-}
-
-    500;600;700;800&display=swap');
-    /* Prevent horizontal scrolling & set base styling */
+    /* Base Reset & Application Canvas */
     html, body, .stApp, [data-testid="stAppViewContainer"], .main {
         overflow-x: hidden !important;
         max-width: 100vw !important;
         box-sizing: border-box !important;
-    }
-
-    .stApp {
         background-color: var(--bg-main) !important;
         color: var(--text-primary) !important;
         font-family: var(--font-stack) !important;
     }
 
-    /* Enterprise Typography - Body text at least 16px */
     body, p, li, div {
-        font-size: 16px;
+        font-size: 15px;
         line-height: 1.5;
     }
 
-    /* Sticky Header on mobile and clean app header */
+    /* Top Navigation Header */
     [data-testid="stHeader"] {
-        background-color: rgba(6, 23, 43, 0.95) !important;
-        backdrop-filter: blur(8px) !important;
-        border-bottom: 1px solid var(--border-color) !important;
-        height: 58px !important;
-        z-index: 99999 !important;
+        background-color: var(--bg-header) !important;
+        border-bottom: 1px solid var(--border-divider) !important;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
     }
+
     #MainMenu, [data-testid="stToolbar"] {
         margin-right: 12px !important;
+        color: var(--text-secondary) !important;
     }
 
     /* Enterprise Header Card */
     .enterprise-header-container {
-        padding: 18px 22px;
-        background: var(--surface-primary);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        margin-bottom: 18px;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+        padding: 16px 20px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-card);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 20px;
     }
+
     .header-title-box {
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 4px;
     }
+
     .header-title-row {
         display: flex;
         align-items: center;
         gap: 12px;
         flex-wrap: wrap;
     }
+
     .header-page-title {
         margin: 0 !important;
         color: var(--text-primary) !important;
-        font-size: 1.7rem !important;
+        font-size: 1.65rem !important;
         font-weight: 700 !important;
-        letter-spacing: -0.01em !important;
-        line-height: 1.2;
+        letter-spacing: -0.02em !important;
     }
+
     .prototype-badge {
         display: inline-block;
-        background: rgba(45, 212, 191, 0.15);
-        color: var(--color-success);
-        border: 1px solid rgba(45, 212, 191, 0.4);
-        padding: 3px 10px;
-        border-radius: 999px;
+        background: var(--bg-purple-subtle) !important;
+        color: var(--primary-purple) !important;
+        border: 1px solid var(--light-purple) !important;
+        border-radius: var(--radius-badge) !important;
+        padding: 2px 8px;
         font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.05em;
     }
+
     .header-desc {
-        color: var(--text-muted) !important;
-        font-size: 0.95rem !important;
+        color: var(--text-secondary) !important;
+        font-size: 0.90rem !important;
         margin: 0 !important;
     }
 
-    /* Desktop Sidebar */
+    /* Sidebar Shell & Navigation */
     [data-testid="stSidebar"] {
         background-color: var(--bg-sidebar) !important;
-        border-right: 1px solid var(--border-color) !important;
+        border-right: 1px solid var(--border-card) !important;
+        box-shadow: none !important;
     }
+
+    [data-testid="stSidebarContent"] {
+        background-color: var(--bg-sidebar) !important;
+    }
+
     [data-testid="stSidebar"] > div:first-child {
         padding-top: 16px !important;
         padding-bottom: 24px !important;
     }
+
     .sidebar-brand-wrapper {
         padding: 4px 6px 16px 6px;
         display: flex;
         align-items: center;
         gap: 12px;
-        border-bottom: 1px solid rgba(22, 78, 99, 0.6);
+        border-bottom: 1px solid var(--border-divider);
         margin-bottom: 16px;
     }
+
     .sidebar-brand-logo {
-        font-size: 1.85rem;
+        font-size: 1.75rem;
         line-height: 1;
-        background: var(--surface-secondary);
-        border: 1px solid var(--border-color);
-        width: 44px;
-        height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10px;
+        color: var(--primary-purple);
     }
+
     .sidebar-brand-title {
         font-size: 1.15rem;
         font-weight: 700;
         color: var(--text-primary);
         letter-spacing: -0.01em;
-        line-height: 1.2;
+        line-height: 1.1;
     }
+
     .sidebar-brand-sub {
         font-size: 0.76rem;
-        font-weight: 600;
-        color: var(--color-accent-cyan);
-        letter-spacing: 0.02em;
+        font-weight: 500;
+        color: var(--text-secondary);
+        margin-top: 2px;
     }
 
     /* Sidebar Navigation Menu Items */
     div[data-testid="stSidebar"] div[data-testid="stRadio"] {
         width: 100% !important;
     }
+
     div[data-testid="stSidebar"] div[data-testid="stRadio"] > div {
         gap: 4px !important;
     }
+
     div[data-testid="stSidebar"] div[data-testid="stRadio"] label {
         background-color: transparent !important;
-        border-radius: 8px !important;
-        padding: 9px 12px !important;
-        margin: 1px 0 !important;
-        cursor: pointer !important;
+        border-radius: var(--radius-control) !important;
+        padding: 8px 12px !important;
+        border: 1px solid transparent !important;
         transition: all 0.15s ease !important;
-        width: 100% !important;
-        display: flex !important;
-        align-items: center !important;
-        border-left: 3px solid transparent !important;
+        cursor: pointer !important;
+        margin-bottom: 2px !important;
     }
+
     div[data-testid="stSidebar"] div[data-testid="stRadio"] label:hover {
-        background-color: rgba(14, 61, 94, 0.45) !important;
+        background-color: var(--bg-main) !important;
     }
-    div[data-testid="stSidebar"] div[data-testid="stRadio"] label:hover p {
-        color: var(--text-primary) !important;
-    }
-    /* Clearly highlight active module */
+
+    /* Highlight active module with light purple background and purple indicator */
     div[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="true"],
     div[data-testid="stSidebar"] div[data-testid="stRadio"] label:has(input:checked) {
-        background-color: var(--surface-secondary) !important;
-        border-left: 3px solid var(--color-primary-blue) !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+        background-color: var(--bg-purple-subtle) !important;
+        border-left: 3px solid var(--primary-purple) !important;
     }
+
     div[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="true"] p,
     div[data-testid="stSidebar"] div[data-testid="stRadio"] label:has(input:checked) p {
-        color: var(--color-accent-cyan) !important;
-        font-weight: 700 !important;
+        color: var(--primary-purple) !important;
+        font-weight: 600 !important;
     }
-    div[data-testid="stSidebar"] div[data-testid="stRadio"] label div:first-child:not(:last-child) {
+
+    div[data-testid="stSidebar"] div[data-testid="stRadio"] label > div:first-child {
         display: none !important;
     }
+
     div[data-testid="stSidebar"] div[data-testid="stRadio"] p {
-        font-size: 0.94rem !important;
+        font-size: 0.90rem !important;
         color: var(--text-secondary) !important;
+        font-weight: 500 !important;
         margin: 0 !important;
     }
 
@@ -317,169 +328,127 @@ st.markdown(
     .sidebar-engine-card {
         margin-top: 22px;
         padding: 12px 14px;
-        background: var(--surface-primary);
-        border: 1px solid var(--border-color);
-        border-radius: 10px;
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-control);
     }
+
     .engine-status-row {
         display: flex;
         align-items: center;
         gap: 8px;
         margin-bottom: 4px;
     }
+
     .engine-dot {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background-color: var(--color-success);
-        box-shadow: 0 0 4px rgba(16, 185, 129, 0.4);
+        background: var(--success-green);
     }
+
     .engine-title {
         font-size: 0.82rem;
-        font-weight: 700;
-        color: var(--text-secondary);
+        font-weight: 600;
+        color: var(--text-primary);
     }
+
     .engine-meta {
         font-size: 0.74rem;
-        color: var(--text-muted);
-        line-height: 1.35;
+        color: var(--text-secondary);
+        line-height: 1.4;
     }
 
     /* Enterprise Cards & Metric Boxes */
+    [data-testid="stMetric"], .panel-card, .kpi-card, .kpi-card-exec, .snapshot-card, .hub-module-card {
+        background: var(--bg-surface) !important;
+        border: 1px solid var(--border-card) !important;
+        border-radius: var(--radius-card) !important;
+        box-shadow: var(--shadow-card) !important;
+        color: var(--text-primary) !important;
+    }
+
     [data-testid="stMetric"] {
-        background: var(--surface-primary) !important;
-        border: 1px solid var(--border-color) !important;
-        padding: 16px !important;
-        border-radius: 12px !important;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+        padding: 16px 18px !important;
     }
+
+    [data-testid="stMetricLabel"] {
+        color: var(--text-secondary) !important;
+        font-size: 0.78rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.03em !important;
+    }
+
+    [data-testid="stMetricValue"] {
+        color: var(--text-primary) !important;
+        font-size: 1.75rem !important;
+        font-weight: 700 !important;
+        margin-top: 4px !important;
+    }
+
     .panel-card {
-        background: var(--surface-primary);
-        border: 1px solid var(--border-color);
-        padding: 18px 20px;
-        border-radius: 12px;
-        margin-bottom: 14px;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        padding: 16px 20px;
+        margin-bottom: 16px;
     }
+
     .recommend {
-        padding: 18px 20px;
-        border-radius: 12px;
-        background: var(--surface-primary);
-        border-left: 5px solid var(--color-success);
-        border-top: 1px solid var(--border-color);
-        border-right: 1px solid var(--border-color);
-        border-bottom: 1px solid var(--border-color);
-        color: rgba(22, 199, 154, 0.12);
-        margin-bottom: 14px;
-        font-size: 1rem;
+        padding: 16px 20px;
+        border-radius: var(--radius-card);
+        background: var(--bg-green-subtle);
+        border: 1px solid rgba(72, 168, 104, 0.3);
+        border-left: 4px solid var(--success-green);
+        color: var(--text-primary);
     }
+
     .warning {
         padding: 16px 20px;
-        border-radius: 12px;
-        background: rgba(244, 185, 66, 0.12);
-        border-left: 5px solid var(--color-warning);
-        border-top: 1px solid var(--border-color);
-        border-right: 1px solid var(--border-color);
-        border-bottom: 1px solid var(--border-color);
-        color: rgba(244, 185, 66, 0.12);
-        margin-bottom: 14px;
+        border-radius: var(--radius-card);
+        background: var(--bg-amber-subtle);
+        border: 1px solid rgba(246, 181, 27, 0.3);
+        border-left: 4px solid var(--accent-amber);
+        color: var(--text-primary);
     }
+
     .small-note {
         color: var(--text-secondary);
-        font-size: 0.88rem;
+        font-size: 0.86rem;
     }
 
     /* Shared Scenario Control Bar */
     .scenario-control-bar {
-        background: var(--surface-primary);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 16px 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        background: var(--bg-surface);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-card);
+        padding: 14px 18px;
+        margin-bottom: 16px;
+        box-shadow: var(--shadow-card);
     }
+
     div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) {
-        background: var(--surface-primary) !important;
-        border: 1px solid var(--border-color) !important;
-        border-radius: 12px !important;
-        padding: 14px 18px 16px 18px !important;
-        margin-bottom: 22px !important;
-        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28) !important;
-        align-items: flex-start !important;
+        background: var(--bg-surface) !important;
+        border: 1px solid var(--border-card) !important;
+        border-radius: var(--radius-card) !important;
+        padding: 14px 18px !important;
+        box-shadow: var(--shadow-card) !important;
     }
+
     .ctrl-label {
-        color: var(--text-muted);
+        color: var(--text-secondary);
         font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
+        font-weight: 600;
         text-transform: uppercase;
-        margin-bottom: 6px;
-        display: block;
-        line-height: 1.2;
+        letter-spacing: 0.03em;
+        margin-bottom: 4px;
     }
+
     div[data-testid="stSelectbox"] label[data-testid="stWidgetLabel"],
-    div[data-testid="stSelectbox"] label {
-        color: var(--text-muted) !important;
+    div[data-testid="stWidgetLabel"] label {
+        color: var(--text-secondary) !important;
         font-size: 0.78rem !important;
-        font-weight: 700 !important;
-        letter-spacing: 0.05em !important;
+        font-weight: 600 !important;
         text-transform: uppercase !important;
-        margin-bottom: 6px !important;
-        display: block !important;
-        line-height: 1.2 !important;
-    }
-    .status-badges-group {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 52px;
-    }
-    .ai-status-indicator {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: rgba(16, 185, 129, 0.12);
-        border: 1px solid rgba(16, 185, 129, 0.4);
-        padding: 3px 10px;
-        border-radius: 999px;
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: var(--color-accent-teal);
-        width: fit-content;
-        height: 23px;
-        box-sizing: border-box;
-    }
-    .ai-pulse-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background-color: var(--color-success);
-        box-shadow: 0 0 4px rgba(16, 185, 129, 0.4);
-        animation: pulseGreen 2s infinite;
-    }
-    @keyframes pulseGreen {
-        0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-        70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-    }
-    .confidence-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: rgba(6, 182, 212, 0.12);
-        border: 1px solid rgba(6, 182, 212, 0.4);
-        padding: 3px 10px;
-        border-radius: 999px;
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: var(--color-accent-cyan);
-        width: fit-content;
-        height: 23px;
-        box-sizing: border-box;
-    }
-    .confidence-val {
-        color: var(--color-success);
-        font-weight: 700;
+        letter-spacing: 0.03em !important;
     }
 
     /* Scenario control buttons */
@@ -487,561 +456,331 @@ st.markdown(
     div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) div.stButton > button {
         height: 52px !important;
         min-height: 52px !important;
-        border-radius: 12px !important;
-        font-size: 0.88rem !important;
-        font-weight: 600 !important;
-        padding: 0 8px !important;
-        width: 100% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        white-space: nowrap !important;
-    }
-    div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) div.stButton > button[kind="primary"] {
-        background: linear-gradient(180deg, var(--color-primary-blue) 0%, var(--color-primary-blue) 100%) !important;
-        border: 1px solid var(--color-accent-cyan) !important;
-        color: var(--text-primary) !important;
-        font-weight: 700 !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) !important;
-    }
-    div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) div.stButton > button[kind="primary"]:hover {
-        background: linear-gradient(180deg, var(--color-primary-blue) 0%, var(--color-primary-blue) 100%) !important;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-        border-color: var(--color-accent-cyan) !important;
-    }
-    div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) div.stButton > button[kind="secondary"] {
-        background: var(--surface-secondary) !important;
-        border: 1.5px solid var(--border-color) !important;
-        color: var(--text-secondary) !important;
-    }
-    div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) div.stButton > button[kind="secondary"]:hover {
-        background: var(--surface-hover) !important;
-        border-color: var(--color-accent-cyan) !important;
-        color: var(--text-primary) !important;
+        font-size: 0.90rem !important;
+        border-radius: var(--radius-control) !important;
+        padding: 0 14px !important;
     }
 
-    /* Dropdown container styles */
+    /* Dropdown container styles & Equal Height (52px) */
     div[data-testid="stSelectbox"] {
         min-width: 0 !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
     }
-    div[data-testid="stSelectbox"] [data-baseweb="select"] {
+
+    #forecasting-control-bar div[data-testid="stSelectbox"] {
         min-width: 0 !important;
         width: 100% !important;
-        background-color: transparent !important;
-        box-sizing: border-box !important;
     }
-    /* Command Centre Scenario Bar Specific Min-Width */
-    div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) div[data-testid="stSelectbox"] {
-        min-width: 190px !important;
-    }
-    /* Dark navy rounded rectangular dropdown, 52px height, 12px border radius */
-    div[data-testid="stSelectbox"] [data-baseweb="select"] > div:first-child {
-        background-color: var(--surface-secondary) !important;
-        background: var(--surface-secondary) !important;
+
+    #forecasting-control-bar div[data-testid="stSelectbox"] > div[data-baseweb="select"] {
         min-width: 0 !important;
         width: 100% !important;
-        min-height: 52px !important;
+    }
+
+    /* Clean white rounded rectangular dropdown, 52px height, 6px border radius */
+    div[data-testid="stSelectbox"] > div[data-baseweb="select"] > div {
+        background-color: var(--bg-surface) !important;
+        border: 1px solid var(--border-card) !important;
+        border-radius: var(--radius-control) !important;
         height: 52px !important;
-        border-radius: 12px !important;
-        border: 1.5px solid var(--border-color) !important;
-        box-sizing: border-box !important;
-        position: relative !important;
+        min-height: 52px !important;
+        max-height: 52px !important;
         display: flex !important;
         align-items: center !important;
-        padding: 0 34px 0 12px !important;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
-        cursor: pointer !important;
+        padding: 0 12px !important;
+        box-sizing: border-box !important;
+        box-shadow: none !important;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+    }
+
+    /* Hover & Focus state */
+    div[data-testid="stSelectbox"] > div[data-baseweb="select"] > div:hover {
+        border-color: var(--secondary-purple) !important;
+    }
+
+    div[data-testid="stSelectbox"] > div[data-baseweb="select"] > div:focus-within {
+        border-color: var(--primary-purple) !important;
+        box-shadow: 0 0 0 2px rgba(55, 37, 128, 0.15) !important;
+    }
+
+    /* Dropdown typography & text */
+    div[data-testid="stSelectbox"] span,
+    div[data-testid="stSelectbox"] [data-testid="stMarkdownContainer"] p,
+    div[data-testid="stSelectbox"] [data-testid="stSelectboxVirtualDropdown"] {
+        color: var(--text-primary) !important;
+        font-weight: 500 !important;
+        font-size: 0.92rem !important;
+    }
+
+    /* Chevron icon */
+    div[data-testid="stSelectbox"] svg {
+        fill: var(--text-secondary) !important;
+        color: var(--text-secondary) !important;
+    }
+
+    /* Popover menu options */
+    div[data-baseweb="popover"] ul, div[data-baseweb="menu"] {
+        background-color: var(--bg-surface) !important;
+        border: 1px solid var(--border-card) !important;
+        border-radius: var(--radius-card) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+        padding: 4px !important;
+    }
+
+    div[data-baseweb="popover"] li, div[data-baseweb="menu"] li {
+        color: var(--text-primary) !important;
+        background-color: var(--bg-surface) !important;
+        font-size: 0.90rem !important;
+        border-radius: 4px !important;
+        padding: 8px 12px !important;
+    }
+
+    div[data-baseweb="popover"] li:hover, div[data-baseweb="menu"] li:hover {
+        background-color: var(--bg-main) !important;
+        color: var(--primary-purple) !important;
+    }
+
+    div[data-baseweb="popover"] li[aria-selected="true"] {
+        background-color: var(--bg-purple-subtle) !important;
+        color: var(--primary-purple) !important;
+        font-weight: 600 !important;
     }
 
     /* Forecasting Studio Control Spacing & Layout */
     #forecasting-control-bar {
-        background: var(--surface-primary) !important;
-        border: 1px solid var(--border-color) !important;
-        border-radius: 12px !important;
-        padding: 16px 20px !important;
-        margin-bottom: 22px !important;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
-        box-sizing: border-box !important;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-card);
+        padding: 14px 18px;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow-card);
     }
+
     #forecasting-control-bar div[data-testid="stHorizontal"] {
         gap: 16px !important;
-        align-items: flex-start !important;
-        margin: 0 !important;
+        align-items: flex-end !important;
     }
-    #forecasting-control-bar div[data-testid="column"] {
-        min-width: 0 !important;
-        flex: 1 1 auto !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    #forecasting-control-bar div[data-testid="stSelectbox"] [data-baseweb="select"] span,
-    #forecasting-control-bar div[data-testid="stSelectbox"] [data-baseweb="select"] div {
-        font-size: 0.90rem !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-    }
+
     #forecasting-control-bar div.stButton > button {
         height: 52px !important;
         min-height: 52px !important;
-        font-size: 0.88rem !important;
-        font-weight: 700 !important;
-        padding: 0 8px !important;
-        white-space: nowrap !important;
-        border-radius: 12px !important;
-        width: 100% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        background: linear-gradient(180deg, var(--color-primary-blue) 0%, var(--color-primary-blue) 100%) !important;
-        border: 1px solid var(--color-accent-cyan) !important;
-        color: var(--text-primary) !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) !important;
-    }
-    #forecasting-control-bar div.stButton > button:hover {
-        background: linear-gradient(180deg, var(--color-primary-blue) 0%, var(--color-primary-blue) 100%) !important;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-        border-color: var(--color-accent-cyan) !important;
-    }
-    div[data-testid="stSelectbox"] [data-baseweb="select"] > div:first-child:hover {
-        border-color: var(--color-accent-cyan) !important;
-    }
-    /* Cyan focus ring */
-    div[data-testid="stSelectbox"] [data-baseweb="select"] > div:first-child:focus,
-    div[data-testid="stSelectbox"] [data-baseweb="select"] > div:first-child:focus-within,
-    div[data-testid="stSelectbox"] [data-baseweb="select"][aria-expanded="true"] > div:first-child,
-    div[data-testid="stSelectbox"] [data-baseweb="select"]:focus-within > div:first-child {
-        border-color: var(--color-primary-blue) !important;
-        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.35) !important;
-        outline: none !important;
-    }
-
-    /* Do not place duplicate labels inside the boxes */
-    div[data-testid="stSelectbox"] [data-baseweb="select"] > div:first-child::before,
-    div[data-testid="stSelectbox"] [data-baseweb="select"] > div:first-child::after {
-        content: none !important;
-        display: none !important;
-    }
-
-    /* Dark navy controls with white selected text, semibold */
-    div[data-testid="stSelectbox"] [data-baseweb="select"] div[data-testid="stSelectboxVirtualDropdown"],
-    div[data-testid="stSelectbox"] [data-baseweb="select"] > div > div,
-    div[data-testid="stSelectbox"] [data-baseweb="select"] > div > div > div,
-    div[data-testid="stSelectbox"] [data-baseweb="select"] span {
-        color: var(--text-primary) !important;
-        -webkit-text-fill-color: var(--text-primary) !important;
+        background: var(--btn-primary-bg) !important;
+        color: #FFFFFF !important;
+        border: 1px solid var(--btn-primary-bg) !important;
+        border-radius: var(--radius-control) !important;
         font-weight: 600 !important;
-        font-size: 0.98rem !important;
-        line-height: 1.3 !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        opacity: 1 !important;
-    }
-
-    /* Clearly visible cyan/blue chevron */
-    div[data-testid="stSelectbox"] [data-baseweb="select"] svg,
-    div[data-testid="stSelectbox"] [data-baseweb="select"] svg path {
-        color: var(--color-accent-cyan) !important;
-        fill: var(--color-accent-cyan) !important;
-        stroke: var(--color-accent-cyan) !important;
-        width: 20px !important;
-        height: 20px !important;
-        position: absolute !important;
-        right: 14px !important;
-        top: calc(50% - 10px) !important;
-        pointer-events: none !important;
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    [data-baseweb="popover"],
-    div[data-baseweb="popover"] > div,
-    ul[role="listbox"],
-    [data-baseweb="menu"] {
-        background-color: var(--surface-secondary) !important;
-        background: var(--surface-secondary) !important;
-        border-radius: 12px !important;
-        border: 1.5px solid var(--border-color) !important;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
-        padding: 6px !important;
-        z-index: 999999 !important;
-    }
-
-    li[role="option"],
-    li[role="option"] * {
-        background-color: var(--surface-secondary) !important;
-        color: var(--text-primary) !important;
-        -webkit-text-fill-color: var(--text-primary) !important;
-        font-size: 0.95rem !important;
-        font-weight: 600 !important;
-        cursor: pointer !important;
-    }
-    li[role="option"]:hover,
-    li[role="option"]:hover * {
-        background-color: var(--border-color) !important;
-        color: var(--color-accent-cyan) !important;
-        -webkit-text-fill-color: var(--color-accent-cyan) !important;
-    }
-    li[role="option"][aria-selected="true"],
-    li[role="option"][aria-selected="true"] * {
-        background-color: var(--surface-secondary) !important;
-        color: var(--color-accent-cyan) !important;
-        -webkit-text-fill-color: var(--color-accent-cyan) !important;
-        font-weight: 700 !important;
-    }
-
-    /* Enterprise Header Buttons */
-    div.stButton > button {
-        border-radius: 12px !important;
         font-size: 0.92rem !important;
+        box-shadow: 0 1px 2px rgba(55, 37, 128, 0.2) !important;
+    }
+
+    #forecasting-control-bar div.stButton > button:hover {
+        background: var(--btn-primary-hover) !important;
+        border-color: var(--btn-primary-hover) !important;
+    }
+
+    /* Buttons General Styling */
+    .stButton > button {
+        font-family: var(--font-stack) !important;
         font-weight: 600 !important;
+        font-size: 0.90rem !important;
+        border-radius: var(--radius-control) !important;
         padding: 8px 16px !important;
-        min-height: 42px !important;
-        transition: all 0.2s ease !important;
-        border: 1px solid var(--border-color) !important;
-        background: var(--surface-secondary) !important;
-        color: var(--text-secondary) !important;
-    }
-    div.stButton > button:hover {
-        border-color: var(--color-accent-cyan) !important;
-        background: var(--surface-hover) !important;
+        background-color: var(--btn-secondary-bg) !important;
         color: var(--text-primary) !important;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
-    }
-    div.stButton > button[kind="primary"] {
-        background: linear-gradient(180deg, var(--color-primary-blue) 0%, var(--color-primary-blue) 100%) !important;
-        border: 1px solid var(--color-accent-cyan) !important;
-        color: var(--text-primary) !important;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25) !important;
-    }
-    div.stButton > button[kind="primary"]:hover {
-        background: linear-gradient(180deg, var(--color-primary-blue) 0%, var(--color-primary-blue) 100%) !important;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+        border: 1px solid var(--btn-secondary-border) !important;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+        transition: all 0.15s ease !important;
     }
 
-    /* Responsive Mobile Navigation & Full-height Overlay Drawer */
-    @media (max-width: 768px) {
-        [data-testid="column"] {
-            width: 100% !important;
-            flex: 1 1 100% !important;
-            min-width: 100% !important;
-            margin-bottom: 12px !important;
-        }
-        div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) {
-            flex-direction: column !important;
-            align-items: stretch !important;
-            gap: 14px !important;
-            padding: 14px !important;
-        }
-        div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) > div[data-testid="column"] {
-            width: 100% !important;
-            min-width: 100% !important;
-            max-width: 100% !important;
-            margin-bottom: 0 !important;
-        }
-        div[data-testid="stHorizontal"]:has(#scenario-bar-anchor) div.stButton > button {
-            width: 100% !important;
-        }
-        .status-badges-group {
-            flex-direction: row !important;
-            height: auto !important;
-            gap: 8px !important;
-            flex-wrap: wrap !important;
-        }
-        div[data-testid="stSelectbox"] {
-            width: 100% !important;
-            min-width: 100% !important;
-        }
-        div[data-testid="stSelectbox"] [data-baseweb="select"] > div:first-child {
-            width: 100% !important;
-            min-width: 100% !important;
-        }
-        .enterprise-header-container {
-            padding: 14px 16px !important;
-        }
-        .header-page-title {
-            font-size: 1.35rem !important;
-        }
-        /* Sticky Header */
-        [data-testid="stHeader"] {
-            position: sticky !important;
-            top: 0 !important;
-            height: 56px !important;
-            z-index: 99998 !important;
-            background: rgba(6, 23, 43, 0.96) !important;
-            backdrop-filter: blur(10px) !important;
-            border-bottom: 1px solid var(--border-color) !important;
-        }
-        /* Hamburger button inside sticky header */
-        [data-testid="stSidebarCollapsedControl"],
-        [data-testid="collapsedControl"] {
-            position: fixed !important;
-            top: 10px !important;
-            left: 12px !important;
-            z-index: 100001 !important;
-            background: var(--surface-primary) !important;
-            border: 1px solid var(--border-color) !important;
-            border-radius: 8px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-        }
-        /* Full-height overlay drawer */
-        [data-testid="stSidebar"] {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            height: 100vh !important;
-            max-height: 100vh !important;
-            width: 290px !important;
-            min-width: 290px !important;
-            z-index: 999999 !important;
-            box-shadow: 10px 0 35px rgba(0, 0, 0, 0.85) !important;
-            border-right: 1px solid var(--border-color) !important;
-            overflow-y: auto !important;
-            transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        }
-        [data-testid="stSidebar"][aria-expanded="false"] {
-            transform: translateX(-100%) !important;
-        }
-        [data-testid="stSidebar"][aria-expanded="true"] {
-            transform: translateX(0) !important;
-        }
-        /* Backdrop overlay when sidebar is open on mobile */
-        [data-testid="stSidebar"][aria-expanded="true"]::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 290px;
-            width: calc(100vw - 290px);
-            height: 100vh;
-            background: rgba(3, 11, 22, 0.75);
-            backdrop-filter: blur(5px);
-            pointer-events: auto;
-            z-index: 999998;
-        }
-        /* Prevent content overlapping sticky header */
-        .main .block-container {
-            padding-top: 68px !important;
-            padding-left: 1rem !important;
-            padding-right: 1rem !important;
-        }
+    .stButton > button:hover {
+        background-color: var(--btn-secondary-hover) !important;
+        border-color: var(--border-card) !important;
     }
 
-    /* Suppress builder and AI watermarks */
-    .bolt-badge, [data-bolt-badge], [class*="bolt-watermark"], [id*="bolt-badge"], a[href*="bolt.new"],
-    [data-testid="stFooter"], footer, .viewerBadge_container__1QSob,
-    [class*="viewerBadge"], [class*="manageApp"], [id*="manageApp"],
-    [class*="antigravity"], [id*="antigravity"], [class*="watermark"] {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
+    /* Primary Button */
+    .stButton > button[kind="primary"], .stButton > button[data-testid="baseButton-primary"] {
+        background-color: var(--btn-primary-bg) !important;
+        color: #FFFFFF !important;
+        border: 1px solid var(--btn-primary-bg) !important;
+        box-shadow: 0 1px 2px rgba(55, 37, 128, 0.2) !important;
     }
-    
-    /* Executive Command Centre Styling */
+
+    .stButton > button[kind="primary"]:hover, .stButton > button[data-testid="baseButton-primary"]:hover {
+        background-color: var(--btn-primary-hover) !important;
+        border-color: var(--btn-primary-hover) !important;
+    }
+
+    /* Download Buttons */
+    div.stDownloadButton > button {
+        background-color: var(--btn-secondary-bg) !important;
+        color: var(--primary-purple) !important;
+        border: 1px solid var(--light-purple) !important;
+        border-radius: var(--radius-control) !important;
+        font-weight: 600 !important;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+    }
+
+    div.stDownloadButton > button:hover {
+        background-color: var(--bg-purple-subtle) !important;
+        border-color: var(--primary-purple) !important;
+    }
+
+    /* Disabled button state */
+    button:disabled, .stButton > button:disabled, [disabled] {
+        background-color: var(--disabled-bg) !important;
+        color: var(--disabled-text) !important;
+        border-color: var(--border-card) !important;
+        cursor: not-allowed !important;
+        box-shadow: none !important;
+    }
+
+    /* KPI Cards Row */
     .kpi-card-exec {
-        background: var(--surface-primary);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
         padding: 16px 18px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-card);
         height: 100%;
-        min-height: 116px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
-        box-sizing: border-box;
-        margin-bottom: 8px;
     }
+
+    .kpi-card-exec:hover {
+        border-color: var(--secondary-purple);
+    }
+
     .kpi-exec-label {
-        color: var(--text-muted);
+        color: var(--text-secondary);
         font-size: 0.76rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-    }
-    .kpi-exec-val {
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin: 4px 0;
-        line-height: 1.2;
-    }
-    .kpi-exec-sub {
-        font-size: 0.82rem;
         font-weight: 600;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
     }
+
+    .kpi-exec-val {
+        color: var(--text-primary);
+        font-size: 1.65rem;
+        font-weight: 700;
+        margin: 4px 0;
+        letter-spacing: -0.01em;
+    }
+
+    .kpi-exec-sub {
+        font-size: 0.80rem;
+        font-weight: 500;
+    }
+
+    /* Snapshot Cards */
     .snapshot-card {
-        background: var(--surface-primary);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 18px 20px;
+        padding: 16px 18px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-card);
         height: 100%;
-        min-height: 220px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
-        box-sizing: border-box;
     }
+
     .snapshot-title {
-        font-size: 1.05rem;
-        font-weight: 700;
-        color: var(--color-accent-cyan);
+        color: var(--text-primary);
+        font-size: 1.02rem;
+        font-weight: 600;
         margin-bottom: 10px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--border-divider);
     }
+
     .snapshot-list {
-        list-style: none;
-        padding-left: 0;
-        margin: 0 0 14px 0;
+        margin: 0;
+        padding-left: 18px;
         color: var(--text-secondary);
-        font-size: 0.90rem;
+        font-size: 0.88rem;
         line-height: 1.6;
     }
-    .snapshot-list li {
-        padding: 3px 0;
-        border-bottom: 1px solid rgba(22, 78, 99, 0.35);
-    }
-    .snapshot-list li:last-child {
-        border-bottom: none;
-    }
-    .severity-badge-watch {
-        display: inline-block;
-        background: rgba(245, 158, 11, 0.15);
-        color: var(--color-warning);
-        border: 1px solid rgba(245, 158, 11, 0.4);
-        padding: 2px 8px;
-        border-radius: 6px;
-        font-size: 0.78rem;
-        font-weight: 700;
-    }
-    .severity-badge-normal {
-        display: inline-block;
-        background: rgba(56, 189, 248, 0.15);
-        color: var(--color-accent-cyan);
-        border: 1px solid rgba(56, 189, 248, 0.4);
-        padding: 2px 8px;
-        border-radius: 6px;
-        font-size: 0.78rem;
-        font-weight: 700;
-    }
-    .severity-badge-optimal {
-        display: inline-block;
-        background: rgba(16, 185, 129, 0.15);
-        color: var(--color-accent-teal);
-        border: 1px solid rgba(16, 185, 129, 0.4);
-        padding: 2px 8px;
-        border-radius: 6px;
-        font-size: 0.78rem;
-        font-weight: 700;
-    }
 
-    
-    /* Hub Module Cards - Visual Depth, Gradients & Perspective */
+    /* Landing Hub Cards */
     .hub-module-card {
-        background: linear-gradient(145deg, var(--surface-secondary) 0%, var(--bg-secondary) 100%) !important;
-        border: 1px solid rgba(56, 189, 248, 0.22) !important;
-        border-radius: 14px !important;
-        padding: 20px 18px !important;
-        min-height: 144px !important;
-        margin-bottom: 8px !important;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28) !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: space-between !important;
-        transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease, box-shadow 0.22s ease !important;
-        position: relative !important;
-        overflow: hidden !important;
+        padding: 18px 20px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-card);
+        margin-bottom: 8px;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
-    .hub-module-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.35), transparent);
-        opacity: 0.75;
-    }
+
     .hub-module-card:hover {
-        transform: translateY(-4px) !important;
-        border-color: rgba(56, 189, 248, 0.65) !important;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35) !important;
+        border-color: var(--secondary-purple);
+        box-shadow: 0 4px 12px rgba(55, 37, 128, 0.06);
     }
 
-    /* Subtle Maritime Animations */
-    @keyframes waveDrift {
-        0% { transform: translateX(0); }
-        50% { transform: translateX(-12px); }
-        100% { transform: translateX(0); }
+    /* Severity Status Badges */
+    .severity-badge-watch {
+        background: var(--bg-amber-subtle) !important;
+        color: #B45309 !important;
+        border: 1px solid rgba(246, 181, 27, 0.4) !important;
+        font-weight: 600 !important;
+        border-radius: var(--radius-badge) !important;
+        padding: 2px 8px !important;
+        font-size: 0.74rem !important;
     }
 
-    @keyframes shipFloat {
-        0% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-4px) rotate(0.6deg); }
-        100% { transform: translateY(0px) rotate(0deg); }
+    .severity-badge-normal {
+        background: var(--bg-purple-subtle) !important;
+        color: var(--primary-purple) !important;
+        border: 1px solid var(--light-purple) !important;
+        font-weight: 600 !important;
+        border-radius: var(--radius-badge) !important;
+        padding: 2px 8px !important;
+        font-size: 0.74rem !important;
     }
 
-    @keyframes routePulse {
-        0%, 100% { opacity: 0.45; stroke-dashoffset: 0; }
-        50% { opacity: 0.95; stroke-dashoffset: -16; }
+    .severity-badge-optimal {
+        background: var(--bg-green-subtle) !important;
+        color: #15803D !important;
+        border: 1px solid rgba(72, 168, 104, 0.4) !important;
+        font-weight: 600 !important;
+        border-radius: var(--radius-badge) !important;
+        padding: 2px 8px !important;
+        font-size: 0.74rem !important;
     }
 
-    .animated-wave-1 { animation: waveDrift 8s ease-in-out infinite; }
-    .animated-wave-2 { animation: waveDrift 11s ease-in-out infinite reverse; }
-    .animated-ship { animation: shipFloat 4.5s ease-in-out infinite; }
-    .animated-route { animation: routePulse 3.5s ease-in-out infinite; }
-
-    /* Vessel Silhouette Card */
-    .vessel-card-container {
-        background: linear-gradient(145deg, var(--surface-secondary) 0%, var(--bg-sidebar) 100%);
-        border: 1px solid rgba(56, 189, 248, 0.2);
-        border-radius: 12px;
-        padding: 14px 12px;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.22);
-        margin-bottom: 12px;
-        transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .vessel-card-container:hover {
-        transform: translateY(-3px);
-        border-color: rgba(56, 189, 248, 0.5);
+    /* Dataframe and Tables */
+    [data-testid="stDataFrame"] {
+        border: 1px solid var(--border-card) !important;
+        border-radius: var(--radius-card) !important;
+        overflow: hidden !important;
+        box-shadow: var(--shadow-card) !important;
     }
 
-    /* Accessibility: Reduced Motion */
-    @media (prefers-reduced-motion: reduce) {
-        .hub-module-card,
-        .vessel-card-container,
-        .animated-wave-1,
-        .animated-wave-2,
-        .animated-ship,
-        .animated-route {
-            animation: none !important;
-            transition: none !important;
-            transform: none !important;
-        }
-        svg animateMotion {
-            display: none !important;
-        }
+    /* Typography Headings */
+    h1 {
+        font-weight: 700 !important;
+        color: var(--text-primary) !important;
     }
 
-    /* Mobile Responsive Visual Rules */
+    h2, h3 {
+        font-weight: 600 !important;
+        color: var(--text-primary) !important;
+    }
+
+    h4 {
+        font-weight: 600 !important;
+        color: var(--text-primary) !important;
+    }
+
+    /* Mobile Responsive Adjustments (< 768px) */
     @media (max-width: 768px) {
         #forecasting-control-bar div[data-testid="stHorizontal"] {
+            display: flex !important;
             flex-direction: column !important;
             gap: 12px !important;
         }
-        #forecasting-control-bar div[data-testid="column"] {
+        #forecasting-control-bar div[data-testid="stSelectbox"] {
             width: 100% !important;
-            min-width: 100% !important;
-            margin-bottom: 12px !important;
         }
         #forecasting-control-bar div.stButton > button {
             width: 100% !important;
@@ -1058,7 +797,7 @@ st.markdown(
             animation: none !important;
         }
     }
-</style>
+    </style>
     """,
     unsafe_allow_html=True,
 )
@@ -1241,7 +980,7 @@ with st.sidebar:
 
         for cat_title, mod_list in NAV_CATEGORIES.items():
             st.markdown(
-                f"<div style='font-size: 0.72rem; font-weight: 700; color: #7895AC; text-transform: uppercase; letter-spacing: 0.06em; margin: 14px 0 6px 4px;'>{cat_title}</div>",
+                f"<div style='font-size: 0.72rem; font-weight: 700; color: #6B6B73; text-transform: uppercase; letter-spacing: 0.06em; margin: 14px 0 6px 4px;'>{cat_title}</div>",
                 unsafe_allow_html=True,
             )
             for name, icon, slug in mod_list:
@@ -1314,10 +1053,10 @@ def render_level2_header(module_name):
         with col_bc:
             st.markdown(
                 f"""
-                <div style="padding-top: 8px; font-size: 0.88rem; color: #A9C1D6;">
-                    <span style="color: #20BCEB; font-weight: 600;">Home</span>
-                    <span style="color: #7895AC; margin: 0 6px;">/</span>
-                    <span style="color: #F8FAFC; font-weight: 600;">{module_name}</span>
+                <div style="padding-top: 8px; font-size: 0.88rem; color: #6B6B73;">
+                    <span style="color: #372580; font-weight: 600;">Home</span>
+                    <span style="color: #92929A; margin: 0 6px;">/</span>
+                    <span style="color: #18181B; font-weight: 600;">{module_name}</span>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -1382,11 +1121,11 @@ def render_level2_header(module_name):
     if st.session_state.get("show_alerts_panel", False):
         st.markdown(
             """
-            <div class="panel-card" style="border-left: 4px solid #20BCEB; margin-bottom: 16px;">
+            <div class="panel-card" style="border-left: 4px solid #372580; margin-bottom: 16px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                    <b style="color: #20BCEB; font-size: 1.02rem;">🔔 Active Maritime Alerts (3 Unresolved)</b>
+                    <b style="color: #372580; font-size: 1.02rem;">🔔 Active Maritime Alerts (3 Unresolved)</b>
                 </div>
-                <ul style="margin: 0; padding-left: 20px; color: #A9C1D6; font-size: 0.94rem;">
+                <ul style="margin: 0; padding-left: 20px; color: #6B6B73; font-size: 0.90rem;">
                     <li><b>Port Notice:</b> Paradip waiting days average 3 days with maximum vessel draft clearance 180,000 DWT.</li>
                     <li><b>Fuel Volatility:</b> Bunker fuel variance assumption active at current slider setting.</li>
                     <li><b>Vessel Allocation:</b> Kamsarmax (82,000 DWT) offers optimal capacity utilization for target 90-day demand.</li>
@@ -1404,16 +1143,16 @@ def render_landing_hub():
         <div style="text-align: center; padding: 24px 16px 12px 16px; margin-bottom: 24px;">
             <div style="display: inline-flex; align-items: center; gap: 14px; margin-bottom: 8px;">
                 <span style="font-size: 2.5rem;">⚓</span>
-                <h1 style="margin: 0; font-size: 2.6rem; font-weight: 700; color: #ffffff; letter-spacing: -0.02em;">VarunaPath AI</h1>
+                <h1 style="margin: 0; font-size: 2.6rem; font-weight: 700; color: #18181B; letter-spacing: -0.02em;">VarunaPath AI</h1>
             </div>
-            <p style="margin: 0 0 10px 0; font-size: 1.15rem; color: #20BCEB; font-weight: 400;">
+            <p style="margin: 0 0 10px 0; font-size: 1.15rem; color: #6B6B73; font-weight: 400;">
                 AI-Powered Bulk Cargo Freight Forecasting & Logistics Optimization Platform
             </p>
-            <div style="display: flex; justify-content: center; align-items: center; gap: 14px; font-size: 0.88rem; color: #A9C1D6;">
+            <div style="display: flex; justify-content: center; align-items: center; gap: 14px; font-size: 0.88rem; color: #92929A;">
                 <span>SIH26006 • Team Novara</span>
                 <span>•</span>
-                <span style="display: inline-flex; align-items: center; gap: 6px; color: #16C79A; font-weight: 600;">
-                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #16C79A; display: inline-block;"></span>
+                <span style="display: inline-flex; align-items: center; gap: 6px; color: #48A868; font-weight: 600;">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #48A868; display: inline-block;"></span>
                     AI Decision Engine Ready
                 </span>
             </div>
@@ -1425,13 +1164,13 @@ def render_landing_hub():
     # Lightweight Isometric Maritime Hero Visual
     st.markdown(
         """
-        <div style="width: 100%; max-width: 900px; margin: 0 auto 24px auto; overflow: hidden; border-radius: 16px; border: 1px solid rgba(56,189,248,0.25); background: linear-gradient(180deg, #081F35 0%, #061A2D 100%); box-shadow: 0 10px 30px rgba(0,0,0,0.35);">
+        <div style="width: 100%; max-width: 900px; margin: 0 auto 24px auto; overflow: hidden; border-radius: 8px; border: 1px solid #E4E4E8; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
         <svg class="maritime-hero-svg" viewBox="0 0 900 185" width="100%" height="185" xmlns="http://www.w3.org/2000/svg" style="display: block;">
           <defs>
             <linearGradient id="routeGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#168CE3" stop-opacity="0.3" />
-              <stop offset="50%" stop-color="#20BCEB" stop-opacity="0.95" />
-              <stop offset="100%" stop-color="#16C79A" stop-opacity="0.9" />
+              <stop offset="0%" stop-color="#D9D4EE" stop-opacity="0.4" />
+              <stop offset="50%" stop-color="#372580" stop-opacity="0.95" />
+              <stop offset="100%" stop-color="#48A868" stop-opacity="0.9" />
             </linearGradient>
             <filter id="cyanGlow" x="-20%" y="-20%" width="140%" height="140%">
               <feGaussianBlur stdDeviation="3" result="blur" />
@@ -1440,7 +1179,7 @@ def render_landing_hub():
           </defs>
 
           <!-- Nautical Grid Lines -->
-          <g opacity="0.1" stroke="#20BCEB" stroke-width="1" stroke-dasharray="4,6">
+          <g opacity="0.4" stroke="#ECECF0" stroke-width="1" stroke-dasharray="4,6">
             <line x1="50" y1="35" x2="850" y2="35" />
             <line x1="50" y1="90" x2="850" y2="90" />
             <line x1="50" y1="145" x2="850" y2="145" />
@@ -1450,53 +1189,53 @@ def render_landing_hub():
           </g>
 
           <!-- Ocean Waves Layers (Animated) -->
-          <path class="animated-wave-1" d="M0,130 Q150,110 300,130 T600,130 T900,130 L900,185 L0,185 Z" fill="#0D2B46" opacity="0.5" />
-          <path class="animated-wave-2" d="M0,145 Q180,130 360,145 T720,145 T900,145 L900,185 L0,185 Z" fill="#081F35" opacity="0.8" />
+          <path class="animated-wave-1" d="M0,130 Q150,110 300,130 T600,130 T900,130 L900,185 L0,185 Z" fill="#D9D4EE" opacity="0.3" />
+          <path class="animated-wave-2" d="M0,145 Q180,130 360,145 T720,145 T900,145 L900,185 L0,185 Z" fill="#D9D4EE" opacity="0.55" />
 
           <!-- Route Line (Curved Arc) -->
           <path class="animated-route" d="M 120 115 Q 300 40, 500 80 T 780 70" fill="none" stroke="url(#routeGlow)" stroke-width="2.5" stroke-dasharray="6,6" filter="url(#cyanGlow)" />
 
           <!-- Origin: Richards Bay -->
           <g transform="translate(120, 115)">
-            <circle r="12" fill="#168CE3" opacity="0.2" />
-            <circle r="6" fill="#168CE3" stroke="#20BCEB" stroke-width="2" />
+            <circle r="12" fill="#D9D4EE" opacity="0.4" />
+            <circle r="6" fill="#372580" stroke="#D9D4EE" stroke-width="2" />
             <circle r="2.5" fill="#ffffff" />
-            <text x="-10" y="24" fill="#A9C1D6" font-size="11" font-weight="600" font-family="system-ui, sans-serif" text-anchor="middle">Richards Bay</text>
-            <text x="-10" y="36" fill="#20BCEB" font-size="9" font-family="system-ui, sans-serif" text-anchor="middle">ORIGIN (ZA)</text>
+            <text x="-10" y="24" fill="#18181B" font-size="11" font-weight="600" font-family="system-ui, sans-serif" text-anchor="middle">Richards Bay</text>
+            <text x="-10" y="36" fill="#6B6B73" font-size="9" font-family="system-ui, sans-serif" text-anchor="middle">ORIGIN (ZA)</text>
           </g>
 
           <!-- Animated Cargo Vessel (Mid-Voyage) -->
           <g class="animated-ship" transform="translate(480, 75)">
             <!-- Vessel Shadow -->
-            <ellipse cx="0" cy="18" rx="42" ry="7" fill="#041525" opacity="0.5" />
+            <ellipse cx="0" cy="18" rx="42" ry="7" fill="#18181B" opacity="0.08" />
             <!-- Hull Profile -->
-            <path d="M -36,8 L 26,8 L 38,-2 L -34,-2 Z" fill="#103451" stroke="#1C5877" stroke-width="1.2" />
+            <path d="M -36,8 L 26,8 L 38,-2 L -34,-2 Z" fill="#372580" stroke="#5746A5" stroke-width="1.2" />
             <!-- Red/Orange Waterline -->
-            <line x1="-36" y1="8" x2="26" y2="8" stroke="#FF5C67" stroke-width="2.2" stroke-linecap="round" />
+            <line x1="-36" y1="8" x2="26" y2="8" stroke="#F6B51B" stroke-width="2.2" stroke-linecap="round" />
             <!-- Deck Hatches (Isometric cargo holds) -->
-            <rect x="-24" y="-8" width="10" height="6" rx="1.5" fill="#168CE3" stroke="#20BCEB" stroke-width="0.8" />
-            <rect x="-10" y="-8" width="10" height="6" rx="1.5" fill="#168CE3" stroke="#20BCEB" stroke-width="0.8" />
-            <rect x="4" y="-8" width="10" height="6" rx="1.5" fill="#168CE3" stroke="#20BCEB" stroke-width="0.8" />
+            <rect x="-24" y="-8" width="10" height="6" rx="1.5" fill="#5746A5" stroke="#D9D4EE" stroke-width="0.8" />
+            <rect x="-10" y="-8" width="10" height="6" rx="1.5" fill="#5746A5" stroke="#D9D4EE" stroke-width="0.8" />
+            <rect x="4" y="-8" width="10" height="6" rx="1.5" fill="#5746A5" stroke="#D9D4EE" stroke-width="0.8" />
             <!-- Bridge / Accommodation Tower -->
-            <polygon points="-33,-2 -33,-16 -23,-16 -23,-2" fill="#f8fafc" stroke="#A9C1D6" stroke-width="0.8" />
-            <rect x="-31" y="-14" width="6" height="3" fill="#168CE3" />
+            <polygon points="-33,-2 -33,-16 -23,-16 -23,-2" fill="#FFFFFF" stroke="#E4E4E8" stroke-width="0.8" />
+            <rect x="-31" y="-14" width="6" height="3" fill="#372580" />
             <!-- Radar Mast -->
-            <line x1="-28" y1="-16" x2="-28" y2="-22" stroke="#A9C1D6" stroke-width="1.2" />
+            <line x1="-28" y1="-16" x2="-28" y2="-22" stroke="#6B6B73" stroke-width="1.2" />
             <!-- Bow Wave spray -->
-            <path d="M 38,-2 Q 44,4 40,9" fill="none" stroke="#20BCEB" stroke-width="1.5" opacity="0.75" />
+            <path d="M 38,-2 Q 44,4 40,9" fill="none" stroke="#5746A5" stroke-width="1.5" opacity="0.75" />
             <!-- Ship Label Badge -->
-            <rect x="-32" y="-34" width="64" height="14" rx="4" fill="rgba(6,27,46,0.85)" stroke="#20BCEB" stroke-width="0.8" />
-            <text x="0" y="-24" fill="#20BCEB" font-size="9" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">PANAMAX 2x</text>
+            <rect x="-32" y="-34" width="64" height="14" rx="4" fill="#F0EEF9" stroke="#5746A5" stroke-width="0.8" />
+            <text x="0" y="-24" fill="#372580" font-size="9" font-weight="600" font-family="system-ui, sans-serif" text-anchor="middle">PANAMAX 2x</text>
           </g>
 
           <!-- Destination: East Coast Ports -->
           <g transform="translate(780, 70)">
-            <circle r="14" fill="#16C79A" opacity="0.2" />
-            <circle r="7" fill="#16C79A" stroke="#16C79A" stroke-width="2" />
+            <circle r="14" fill="#EDF7F0" opacity="0.6" />
+            <circle r="7" fill="#48A868" stroke="#FFFFFF" stroke-width="2" />
             <circle r="3" fill="#ffffff" />
-            <text x="14" y="-4" fill="#F8FAFC" font-size="12" font-weight="700" font-family="system-ui, sans-serif">Paradip Port</text>
-            <text x="14" y="10" fill="#16C79A" font-size="10" font-family="system-ui, sans-serif">DESTINATION • 180K DWT</text>
-            <text x="14" y="23" fill="#A9C1D6" font-size="9" font-family="system-ui, sans-serif">ETA: 19 Days • Optimal Berth</text>
+            <text x="14" y="-4" fill="#18181B" font-size="12" font-weight="700" font-family="system-ui, sans-serif">Paradip Port</text>
+            <text x="14" y="10" fill="#48A868" font-size="10" font-family="system-ui, sans-serif">DESTINATION • 180K DWT</text>
+            <text x="14" y="23" fill="#6B6B73" font-size="9" font-family="system-ui, sans-serif">ETA: 19 Days • Optimal Berth</text>
           </g>
         </svg>
         </div>
@@ -1511,8 +1250,8 @@ def render_landing_hub():
             <div class="hub-module-card">
                 <div>
                     <div style="font-size: 1.85rem; margin-bottom: 8px;">{icon}</div>
-                    <div style="font-size: 1.14rem; font-weight: 700; color: #f8fafc; margin-bottom: 6px; letter-spacing: -0.01em;">{name}</div>
-                    <div style="font-size: 0.88rem; color: #A9C1D6; line-height: 1.45;">{desc}</div>
+                    <div style="font-size: 1.14rem; font-weight: 700; color: #18181B; margin-bottom: 6px; letter-spacing: -0.01em;">{name}</div>
+                    <div style="font-size: 0.88rem; color: #6B6B73; line-height: 1.45;">{desc}</div>
                 </div>
             </div>
             """,
@@ -1527,7 +1266,7 @@ def render_landing_hub():
     st.markdown(
         """
         <div style="margin-top: 10px; margin-bottom: 14px;">
-            <span style="font-size: 0.82rem; font-weight: 700; color: #20BCEB; text-transform: uppercase; letter-spacing: 0.06em; background: rgba(56,189,248,0.12); padding: 4px 12px; border-radius: 6px; border-left: 3px solid #20BCEB;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: #372580; text-transform: uppercase; letter-spacing: 0.06em; background: #F0EEF9; padding: 4px 12px; border-radius: 6px; border-left: 3px solid #372580;">
                 Category 1 • Planning & Decision
             </span>
         </div>
@@ -1558,7 +1297,7 @@ def render_landing_hub():
     st.markdown(
         """
         <div style="margin-top: 10px; margin-bottom: 14px;">
-            <span style="font-size: 0.82rem; font-weight: 700; color: #20BCEB; text-transform: uppercase; letter-spacing: 0.06em; background: rgba(56,189,248,0.12); padding: 4px 12px; border-radius: 6px; border-left: 3px solid #20BCEB;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: #372580; text-transform: uppercase; letter-spacing: 0.06em; background: #F0EEF9; padding: 4px 12px; border-radius: 6px; border-left: 3px solid #372580;">
                 Category 2 • Maritime Intelligence
             </span>
         </div>
@@ -1584,7 +1323,7 @@ def render_landing_hub():
     st.markdown(
         """
         <div style="margin-top: 10px; margin-bottom: 14px;">
-            <span style="font-size: 0.82rem; font-weight: 700; color: #20BCEB; text-transform: uppercase; letter-spacing: 0.06em; background: rgba(56,189,248,0.12); padding: 4px 12px; border-radius: 6px; border-left: 3px solid #20BCEB;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: #372580; text-transform: uppercase; letter-spacing: 0.06em; background: #F0EEF9; padding: 4px 12px; border-radius: 6px; border-left: 3px solid #372580;">
                 Category 3 • Analysis & Management
             </span>
         </div>
@@ -1607,11 +1346,11 @@ def render_landing_hub():
     # Landing Hub Footer
     st.markdown(
         """
-        <div style="text-align: center; padding: 36px 16px 16px 16px; margin-top: 40px; border-top: 1px solid #1C5877;">
-            <p style="margin: 0; color: #A9C1D6; font-size: 0.92rem; font-weight: 400;">
+        <div style="text-align: center; padding: 36px 16px 16px 16px; margin-top: 40px; border-top: 1px solid #ECECF0;">
+            <p style="margin: 0; color: #6B6B73; font-size: 0.92rem; font-weight: 400;">
                 VarunaPath AI • Maritime Decision Intelligence • Team Novara
             </p>
-            <p style="margin: 6px 0 0 0; color: #7895AC; font-size: 0.82rem;">
+            <p style="margin: 6px 0 0 0; color: #92929A; font-size: 0.82rem;">
                 Prototype uses simulated local data for demonstration.
             </p>
         </div>
@@ -1866,18 +1605,18 @@ def render_optimization_hub_controls(commodity, forecast_horizon, active_scenari
         f"""
         <div class="panel-card" style="margin-bottom: 14px; padding: 12px 18px;">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 0.9rem;">
-                <span style="color: #A9C1D6; font-weight: 700; letter-spacing: 0.05em;">SCENARIO SNAPSHOT:</span>
+                <span style="color: #6B6B73; font-weight: 700; letter-spacing: 0.05em;">SCENARIO SNAPSHOT:</span>
                 <span style="color: #ffffff; font-weight: 700;">📦 {commodity}</span>
-                <span style="color: #7895AC;">•</span>
-                <span style="color: #20BCEB; font-weight: 600;">📅 {forecast_horizon}</span>
-                <span style="color: #7895AC;">•</span>
-                <span style="color: #16C79A; font-weight: 600;">🧪 {active_scenario}</span>
-                <span style="color: #7895AC;">•</span>
-                <span style="color: #F4B942; font-weight: 600;">⚡ Shortfall: {cargo_shortfall:,} tonnes</span>
-                <span style="color: #7895AC;">•</span>
-                <span style="color: #16C79A; font-weight: 600;">⏱️ Deadline: {deadline} days</span>
-                <span style="color: #7895AC;">•</span>
-                <span style="color: #A9C1D6; font-weight: 600;">⛽ Fuel: ₹{st.session_state.get('fuel_price', 54000):,}/t</span>
+                <span style="color: #ECECF0;">•</span>
+                <span style="color: #372580; font-weight: 600;">📅 {forecast_horizon}</span>
+                <span style="color: #ECECF0;">•</span>
+                <span style="color: #48A868; font-weight: 600;">🧪 {active_scenario}</span>
+                <span style="color: #ECECF0;">•</span>
+                <span style="color: #F6B51B; font-weight: 600;">⚡ Shortfall: {cargo_shortfall:,} tonnes</span>
+                <span style="color: #ECECF0;">•</span>
+                <span style="color: #48A868; font-weight: 600;">⏱️ Deadline: {deadline} days</span>
+                <span style="color: #ECECF0;">•</span>
+                <span style="color: #6B6B73; font-weight: 600;">⛽ Fuel: ₹{st.session_state.get('fuel_price', 54000):,}/t</span>
             </div>
         </div>
         """,
@@ -2046,7 +1785,7 @@ def render_reports_view(base_plans, commodity, forecast_horizon, horizon_days, c
     st.markdown(
         f"""
         <div class="recommend" style="margin-bottom: 20px;">
-            <b style="font-size: 1.05rem; color: #20BCEB;">⚓ Current Recommended Voyage Plan Summary ({rep_status}):</b><br>
+            <b style="font-size: 1.05rem; color: #18181B;">⚓ Current Recommended Voyage Plan Summary ({rep_status}):</b><br>
             Procure <b>{cargo_shortfall:,} tonnes</b> of {commodity} from <b>{rep_supplier}</b> ({rep_origin}).<br>
             Charter <b>{rep_vessels} × {rep_class}</b> ({rep_vessel_name}) with <b>{rep_capacity:,} tonnes</b> combined capacity (<b>{rep_util}%</b> utilization).<br>
             Discharge at <b>{rep_port} Port</b> with total voyage turnaround of <b>{rep_eta} days</b>.<br>
@@ -2063,17 +1802,17 @@ def render_reports_view(base_plans, commodity, forecast_horizon, horizon_days, c
         st.markdown(
             f"""
             <div class="panel-card" style="margin-bottom: 16px;">
-                <h4 style="color: #20BCEB; margin-top: 0;">📋 Executive Summary Report</h4>
-                <p style="color: #A9C1D6; font-size: 0.92rem; line-height: 1.5;">
+                <h4 style="color: #18181B; margin-top: 0;">📋 Executive Summary Report</h4>
+                <p style="color: #6B6B73; font-size: 0.90rem; line-height: 1.5;">
                     This audit document establishes the least-cost, risk-hedged bulk logistics plan for <b>{cargo_shortfall:,} tonnes</b> of <b>{commodity}</b>.
                     Dual Panamax carrier allocation achieves the optimal DWT threshold without incurring excess demurrage penalties or exceeding East Coast port draft constraints.
                 </p>
-                <table style="width: 100%; font-size: 0.88rem; color: #A9C1D6; border-collapse: collapse;">
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Target Commodity</td><td style="text-align: right; font-weight: 600;">{commodity}</td></tr>
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Procurement Volume</td><td style="text-align: right; font-weight: 600;">{cargo_shortfall:,} tonnes</td></tr>
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Planning Horizon</td><td style="text-align: right; font-weight: 600;">{forecast_horizon} ({horizon_days} days)</td></tr>
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Optimal Vessel Class</td><td style="text-align: right; font-weight: 600;">{int(best['Vessels'])} × {best['Class']}</td></tr>
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Delivery Compliance</td><td style="text-align: right; font-weight: 600; color: #16C79A;">On-Time ({int(best['ETA Days'])}d ≤ {deadline}d)</td></tr>
+                <table style="width: 100%; font-size: 0.88rem; color: #18181B; border-collapse: collapse;">
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Target Commodity</td><td style="text-align: right; font-weight: 600;">{commodity}</td></tr>
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Procurement Volume</td><td style="text-align: right; font-weight: 600;">{cargo_shortfall:,} tonnes</td></tr>
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Planning Horizon</td><td style="text-align: right; font-weight: 600;">{forecast_horizon} ({horizon_days} days)</td></tr>
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Optimal Vessel Class</td><td style="text-align: right; font-weight: 600;">{int(best['Vessels'])} × {best['Class']}</td></tr>
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Delivery Compliance</td><td style="text-align: right; font-weight: 600; color: #48A868;">On-Time ({int(best['ETA Days'])}d ≤ {deadline}d)</td></tr>
                 </table>
             </div>
             """,
@@ -2082,16 +1821,16 @@ def render_reports_view(base_plans, commodity, forecast_horizon, horizon_days, c
         st.markdown(
             f"""
             <div class="panel-card" style="margin-bottom: 16px;">
-                <h4 style="color: #16C79A; margin-top: 0;">💰 Cost Analysis Report</h4>
-                <p style="color: #A9C1D6; font-size: 0.92rem; line-height: 1.5;">
+                <h4 style="color: #18181B; margin-top: 0;">💰 Cost Analysis Report</h4>
+                <p style="color: #6B6B73; font-size: 0.90rem; line-height: 1.5;">
                     Comparative cost breakdown demonstrating a net reduction of <b>₹{saving:.2f} Cr ({saving_pct:.1f}%)</b> against the conventional single-fixture baseline.
                 </p>
-                <table style="width: 100%; font-size: 0.88rem; color: #A9C1D6; border-collapse: collapse;">
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Cargo FOB Value</td><td style="text-align: right; font-weight: 600;">₹{best['Cargo Cost Cr']:.2f} Cr</td></tr>
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Vessel Charter Cost</td><td style="text-align: right; font-weight: 600;">₹{best['Charter Cost Cr']:.2f} Cr</td></tr>
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Port Tariff & Anchorage</td><td style="text-align: right; font-weight: 600;">₹{best['Port & Waiting Cr']:.2f} Cr</td></tr>
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Operational Risk Reserve</td><td style="text-align: right; font-weight: 600;">₹{best['Risk Cost Cr']:.2f} Cr</td></tr>
-                    <tr style="border-top: 1px solid #1C5877;"><td style="padding: 6px 0; color: #20BCEB; font-weight: 700;">Total Optimized Logistics Cost</td><td style="text-align: right; font-weight: 700; color: #20BCEB;">₹{best['Total Cost Cr']:.2f} Cr</td></tr>
+                <table style="width: 100%; font-size: 0.88rem; color: #18181B; border-collapse: collapse;">
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Cargo FOB Value</td><td style="text-align: right; font-weight: 600;">₹{best['Cargo Cost Cr']:.2f} Cr</td></tr>
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Vessel Charter Cost</td><td style="text-align: right; font-weight: 600;">₹{best['Charter Cost Cr']:.2f} Cr</td></tr>
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Port Tariff & Anchorage</td><td style="text-align: right; font-weight: 600;">₹{best['Port & Waiting Cr']:.2f} Cr</td></tr>
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Operational Risk Reserve</td><td style="text-align: right; font-weight: 600;">₹{best['Risk Cost Cr']:.2f} Cr</td></tr>
+                    <tr style="border-top: 1px solid #ECECF0;"><td style="padding: 6px 0; color: #372580; font-weight: 700;">Total Optimized Logistics Cost</td><td style="text-align: right; font-weight: 700; color: #372580;">₹{best['Total Cost Cr']:.2f} Cr</td></tr>
                 </table>
             </div>
             """,
@@ -2101,16 +1840,16 @@ def render_reports_view(base_plans, commodity, forecast_horizon, horizon_days, c
         st.markdown(
             f"""
             <div class="panel-card" style="margin-bottom: 16px;">
-                <h4 style="color: #F4B942; margin-top: 0;">⚠️ Risk Analysis Report</h4>
-                <p style="color: #A9C1D6; font-size: 0.92rem; line-height: 1.5;">
+                <h4 style="color: #18181B; margin-top: 0;">⚠️ Risk Analysis Report</h4>
+                <p style="color: #6B6B73; font-size: 0.90rem; line-height: 1.5;">
                     Multi-factor risk evaluation scoring <b>24/100 (Low Risk Category)</b>. The chosen routing via Richards Bay to Paradip bypasses high-risk geopolitical choke points.
                 </p>
-                <table style="width: 100%; font-size: 0.88rem; color: #A9C1D6; border-collapse: collapse;">
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Supplier Export Reliability</td><td style="text-align: right; font-weight: 600; color: #16C79A;">94% (Stable)</td></tr>
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Vessel Seaworthiness & Class Age</td><td style="text-align: right; font-weight: 600; color: #16C79A;">91% (Tier 1)</td></tr>
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Berth Congestion Exposure</td><td style="text-align: right; font-weight: 600; color: #F4B942;">3.0 Days (Moderate)</td></tr>
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Cyclonic / Weather Hazard Factor</td><td style="text-align: right; font-weight: 600; color: #16C79A;">35/100 (Normal Season)</td></tr>
-                    <tr style="border-top: 1px solid #1C5877;"><td style="padding: 6px 0; color: #F4B942; font-weight: 700;">Composite Risk Rating</td><td style="text-align: right; font-weight: 700; color: #F4B942;">24 / 100 (Optimal)</td></tr>
+                <table style="width: 100%; font-size: 0.88rem; color: #18181B; border-collapse: collapse;">
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Supplier Export Reliability</td><td style="text-align: right; font-weight: 600; color: #48A868;">94% (Stable)</td></tr>
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Vessel Seaworthiness & Class Age</td><td style="text-align: right; font-weight: 600; color: #48A868;">91% (Tier 1)</td></tr>
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Berth Congestion Exposure</td><td style="text-align: right; font-weight: 600; color: #F6B51B;">3.0 Days (Moderate)</td></tr>
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Cyclonic / Weather Hazard Factor</td><td style="text-align: right; font-weight: 600; color: #48A868;">35/100 (Normal Season)</td></tr>
+                    <tr style="border-top: 1px solid #ECECF0;"><td style="padding: 6px 0; color: #F6B51B; font-weight: 700;">Composite Risk Rating</td><td style="text-align: right; font-weight: 700; color: #F6B51B;">24 / 100 (Optimal)</td></tr>
                 </table>
             </div>
             """,
@@ -2119,15 +1858,15 @@ def render_reports_view(base_plans, commodity, forecast_horizon, horizon_days, c
         st.markdown(
             f"""
             <div class="panel-card" style="margin-bottom: 16px;">
-                <h4 style="color: #168CE3; margin-top: 0;">🏗️ Port Comparison Report</h4>
-                <p style="color: #A9C1D6; font-size: 0.92rem; line-height: 1.5;">
+                <h4 style="color: #18181B; margin-top: 0;">🏗️ Port Comparison Report</h4>
+                <p style="color: #6B6B73; font-size: 0.90rem; line-height: 1.5;">
                     Analysis of East Coast discharge options indicates <b>Paradip</b> offers the highest cost efficiency with 180,000 DWT clearance and 3-day turnaround.
                 </p>
-                <table style="width: 100%; font-size: 0.88rem; color: #A9C1D6; border-collapse: collapse;">
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Paradip (Selected)</td><td style="text-align: right; font-weight: 600;">₹85/t • 3d wait • 180k DWT max</td></tr>
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Dhamra Port</td><td style="text-align: right; font-weight: 600;">₹95/t • 2d wait • 180k DWT max</td></tr>
-                    <tr><td style="padding: 4px 0; color: #A9C1D6;">Visakhapatnam Port</td><td style="text-align: right; font-weight: 600;">₹110/t • 5d wait • 125k DWT max</td></tr>
-                    <tr style="border-top: 1px solid #1C5877;"><td style="padding: 6px 0; color: #168CE3; font-weight: 700;">Optimal Port Choice</td><td style="text-align: right; font-weight: 700; color: #168CE3;">Paradip Port</td></tr>
+                <table style="width: 100%; font-size: 0.88rem; color: #18181B; border-collapse: collapse;">
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Paradip (Selected)</td><td style="text-align: right; font-weight: 600;">₹85/t • 3d wait • 180k DWT max</td></tr>
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Dhamra Port</td><td style="text-align: right; font-weight: 600;">₹95/t • 2d wait • 180k DWT max</td></tr>
+                    <tr><td style="padding: 6px 0; color: #6B6B73;">Visakhapatnam Port</td><td style="text-align: right; font-weight: 600;">₹110/t • 5d wait • 125k DWT max</td></tr>
+                    <tr style="border-top: 1px solid #ECECF0;"><td style="padding: 6px 0; color: #372580; font-weight: 700;">Optimal Port Choice</td><td style="text-align: right; font-weight: 700; color: #372580;">Paradip Port</td></tr>
                 </table>
             </div>
             """,
@@ -2173,10 +1912,10 @@ def render_data_settings_view():
             st.markdown(
                 """
                 <div class="panel-card">
-                    <b style="color: #20BCEB;">Open-Meteo Marine & Weather API Connector</b><br>
-                    <span style="color: #20BCEB;">● Integration Ready</span> • East Coast Indian Ports Simulated Telemetry (Prototype Dataset)<br>
-                    <span style="color: #A9C1D6; font-size: 0.85rem;">Endpoint: <code>https://api.open-meteo.com/v1/forecast</code></span><br>
-                    <span style="color: #A9C1D6; font-size: 0.85rem;">Mode: Prototype Dataset • Telemetry: Simulated Data</span>
+                    <b style="color: #372580;">Open-Meteo Marine & Weather API Connector</b><br>
+                    <span style="color: #372580; font-weight: 600;">● Integration Ready</span> • East Coast Indian Ports Simulated Telemetry (Prototype Dataset)<br>
+                    <span style="color: #6B6B73; font-size: 0.85rem;">Endpoint: <code>https://api.open-meteo.com/v1/forecast</code></span><br>
+                    <span style="color: #6B6B73; font-size: 0.85rem;">Mode: Prototype Dataset • Telemetry: Simulated Data</span>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -2185,10 +1924,10 @@ def render_data_settings_view():
             st.markdown(
                 """
                 <div class="panel-card">
-                    <b style="color: #20BCEB;">Frankfurter Central Bank FX API Connector</b><br>
-                    <span style="color: #20BCEB;">● Integration Ready</span> • Reference Currency Conversion (USD/INR Simulated Data)<br>
-                    <span style="color: #A9C1D6; font-size: 0.85rem;">Endpoint: <code>https://api.frankfurter.app/latest?from=USD&to=INR</code></span><br>
-                    <span style="color: #A9C1D6; font-size: 0.85rem;">Mode: Prototype Dataset • Not Live Connected</span>
+                    <b style="color: #372580;">Frankfurter Central Bank FX API Connector</b><br>
+                    <span style="color: #372580; font-weight: 600;">● Integration Ready</span> • Reference Currency Conversion (USD/INR Simulated Data)<br>
+                    <span style="color: #6B6B73; font-size: 0.85rem;">Endpoint: <code>https://api.frankfurter.app/latest?from=USD&to=INR</code></span><br>
+                    <span style="color: #6B6B73; font-size: 0.85rem;">Mode: Prototype Dataset • Not Live Connected</span>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -2254,12 +1993,12 @@ def render_data_settings_view():
     st.markdown("---")
     st.markdown(
         """
-        <div class="panel-card" style="border-left: 4px solid #168CE3; display: flex; justify-content: space-between; align-items: center;">
+        <div class="panel-card" style="border-left: 4px solid #372580; display: flex; justify-content: space-between; align-items: center;">
             <div>
                 <span class="prototype-badge" style="margin-bottom: 4px; display: inline-block;">PROTOTYPE DATA ACTIVE</span><br>
-                <span style="color: #A9C1D6; font-size: 0.88rem;">VarunaPath AI Maritime Intelligence Platform • Demonstration Version 2.4</span>
+                <span style="color: #6B6B73; font-size: 0.88rem;">VarunaPath AI Maritime Intelligence Platform • Demonstration Version 2.4</span>
             </div>
-            <div style="text-align: right; color: #A9C1D6; font-size: 0.82rem;">
+            <div style="text-align: right; color: #6B6B73; font-size: 0.82rem;">
                 Telemetry Engine: <b>Online</b><br>
                 Certified Calibrated Baseline: <b>Thermal Coal / 90 Days / Base Scenario</b>
             </div>
@@ -2407,7 +2146,7 @@ def render_command_centre():
                 <div class="kpi-card-exec">
                     <span class="kpi-exec-label">Cargo Requirement</span>
                     <div class="kpi-exec-val">{cargo_requirement:,.0f} tonnes</div>
-                    <div class="kpi-exec-sub" style="color: #20BCEB;">Demand Horizon: 90 Days</div>
+                    <div class="kpi-exec-sub" style="color: #6B6B73;">Demand Horizon: 90 Days</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -2418,7 +2157,7 @@ def render_command_centre():
                 <div class="kpi-card-exec">
                     <span class="kpi-exec-label">Cargo Shortfall</span>
                     <div class="kpi-exec-val">{cargo_shortfall:,.0f} tonnes</div>
-                    <div class="kpi-exec-sub" style="color: #F4B942;">Net Procurement Need</div>
+                    <div class="kpi-exec-sub" style="color: #F6B51B;">Net Procurement Need</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -2429,7 +2168,7 @@ def render_command_centre():
                 <div class="kpi-card-exec">
                     <span class="kpi-exec-label">Recommended Cost</span>
                     <div class="kpi-exec-val">₹{best['Total Cost Cr']:.2f} Cr</div>
-                    <div class="kpi-exec-sub" style="color: #16C79A;">Savings: ₹{saving:.2f} Cr ({saving_pct:.1f}%)</div>
+                    <div class="kpi-exec-sub" style="color: #48A868;">Savings: ₹{saving:.2f} Cr ({saving_pct:.1f}%)</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -2440,7 +2179,7 @@ def render_command_centre():
                 <div class="kpi-card-exec">
                     <span class="kpi-exec-label">Risk Score</span>
                     <div class="kpi-exec-val">24/100 — Low Risk</div>
-                    <div class="kpi-exec-sub" style="color: #16C79A;">Model Confidence: 90%</div>
+                    <div class="kpi-exec-sub" style="color: #372580;">Model Confidence: 90%</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -2451,7 +2190,7 @@ def render_command_centre():
                 <div class="kpi-card-exec">
                     <span class="kpi-exec-label">Estimated Delivery</span>
                     <div class="kpi-exec-val">{int(best['ETA Days'])} days — On Schedule</div>
-                    <div class="kpi-exec-sub" style="color: #16C79A;">Within {deadline}d Deadline SLA</div>
+                    <div class="kpi-exec-sub" style="color: #48A868;">Within {deadline}d Deadline SLA</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -2532,7 +2271,7 @@ def render_command_centre():
         st.markdown('<div style="margin-top: 10px; margin-bottom: 22px;">', unsafe_allow_html=True)
         v1, v2 = st.columns(2, gap="medium")
         with v1:
-            st.markdown('<h4 style="color: #20BCEB; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">📦 90-Day Inventory Projection & Replenishment</h4>', unsafe_allow_html=True)
+            st.markdown('<h4 style="color: #18181B; font-size: 1.02rem; margin-top: 0; margin-bottom: 8px;">📦 90-Day Inventory Projection & Replenishment</h4>', unsafe_allow_html=True)
             # Generate 90-day trajectory
             days_arr = list(range(0, 91, 5))
             burn_rate = cargo_requirement / 90.0  # daily consumption
@@ -2556,37 +2295,37 @@ def render_command_centre():
                 y=inv_plot_df["Projected Inventory (t)"],
                 mode="lines+markers",
                 name="Projected Inventory",
-                line=dict(color="#16C79A", width=3),
-                marker=dict(size=5, color="#20BCEB"),
+                line=dict(color="#372580", width=2.5),
+                marker=dict(size=5, color="#372580"),
             ))
             fig_inv.add_trace(go.Scatter(
                 x=inv_plot_df["Day"],
                 y=inv_plot_df["Safety Stock Threshold"],
                 mode="lines",
                 name="Safety Stock (20K t)",
-                line=dict(color="#F4B942", width=2, dash="dash"),
+                line=dict(color="#F6B51B", width=2, dash="dash"),
             ))
-            fig_inv.add_vline(x=arrival_day, line_width=1.5, line_dash="dot", line_color="#16C79A",
+            fig_inv.add_vline(x=arrival_day, line_width=1.5, line_dash="dot", line_color="#48A868",
                               annotation_text=f"Day {arrival_day} Arrival (+130K t)", annotation_position="top right",
-                              annotation_font=dict(color="#16C79A", size=10))
+                              annotation_font=dict(color="#48A868", size=10))
             fig_inv.update_layout(
                 height=300,
                 margin=dict(l=30, r=20, t=25, b=25),
                 paper_bgcolor="rgba(0,0,0,0)",
-                plot_bgcolor="#0D2B46",
-                font_color="#D8E6F2",
+                plot_bgcolor="#FFFFFF",
+                font_color="#18181B",
                 legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-                xaxis=dict(title="Days from Today", gridcolor="rgba(169, 193, 214, 0.16)"),
-                yaxis=dict(title="Tonnes", gridcolor="rgba(169, 193, 214, 0.16)"),
+                xaxis=dict(title="Days from Today", gridcolor="#ECECF0"),
+                yaxis=dict(title="Tonnes", gridcolor="#ECECF0"),
             )
             st.plotly_chart(fig_inv, use_container_width=True)
 
         with v2:
-            st.markdown('<h4 style="color: #16C79A; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">💰 Baseline vs. Optimized Cost Comparison</h4>', unsafe_allow_html=True)
+            st.markdown('<h4 style="color: #18181B; font-size: 1.02rem; margin-top: 0; margin-bottom: 8px;">💰 Baseline vs. Optimized Cost Comparison</h4>', unsafe_allow_html=True)
             cost_comp_df = pd.DataFrame({
                 "Strategy": ["Conventional Baseline", "VarunaPath Optimized"],
                 "Cost (₹ Cr)": [baseline_cost, round(best["Total Cost Cr"], 2)],
-                "Color": ["#20BCEB", "#16C79A"],
+                "Color": ["#D9D4EE", "#372580"],
             })
             fig_cost = go.Figure()
             fig_cost.add_trace(go.Bar(
@@ -2598,8 +2337,8 @@ def render_command_centre():
                 insidetextanchor="middle",
                 textfont=dict(color="#ffffff", size=12, family="sans-serif"),
                 marker=dict(
-                    color=["#168CE3", "#16C79A"],
-                    line=dict(color=["#20BCEB", "#16C79A"], width=1.5),
+                    color=["#D9D4EE", "#372580"],
+                    line=dict(color=["#B8AFD8", "#372580"], width=1),
                 ),
             ))
             fig_cost.add_annotation(
@@ -2608,8 +2347,8 @@ def render_command_centre():
                 text=f"⚡ Savings: ₹{saving:.2f} Cr ({saving_pct:.1f}%)",
                 showarrow=True,
                 arrowhead=2,
-                arrowcolor="#16C79A",
-                font=dict(color="#16C79A", size=12),
+                arrowcolor="#48A868",
+                font=dict(color="#48A868", size=12),
                 ax=50,
                 ay=0,
             )
@@ -2617,48 +2356,48 @@ def render_command_centre():
                 height=300,
                 margin=dict(l=30, r=20, t=25, b=25),
                 paper_bgcolor="rgba(0,0,0,0)",
-                plot_bgcolor="#0D2B46",
-                font_color="#D8E6F2",
-                xaxis=dict(title="Total Cost (₹ Cr)", range=[0, 36], gridcolor="rgba(169, 193, 214, 0.16)"),
-                yaxis=dict(gridcolor="rgba(169, 193, 214, 0.16)"),
+                plot_bgcolor="#FFFFFF",
+                font_color="#18181B",
+                xaxis=dict(title="Total Cost (₹ Cr)", range=[0, 36], gridcolor="#ECECF0"),
+                yaxis=dict(gridcolor="#ECECF0"),
             )
             st.plotly_chart(fig_cost, use_container_width=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
         # SECTION 6 — Active Alerts (Maximum 3 alerts with severity badges and View All button)
         st.markdown('<div style="margin-top: 10px; margin-bottom: 22px;">', unsafe_allow_html=True)
-        st.markdown('<h4 style="color: #F8FAFC; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">🔔 Active Operational Alerts</h4>', unsafe_allow_html=True)
+        st.markdown('<h4 style="color: #18181B; font-size: 1.02rem; margin-top: 0; margin-bottom: 12px;">🔔 Active Operational Alerts</h4>', unsafe_allow_html=True)
         
         st.markdown(
             """
-            <div class="panel-card" style="margin-bottom: 10px; padding: 12px 18px; border-left: 4px solid #F4B942;">
+            <div class="panel-card" style="margin-bottom: 10px; padding: 12px 18px; border-left: 4px solid #F6B51B;">
                 <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
                     <div>
                         <span class="severity-badge-watch">WATCH</span>
-                        <b style="color: #F8FAFC; margin-left: 8px; font-size: 0.94rem;">Port Congestion at Paradip:</b>
-                        <span style="color: #A9C1D6; font-size: 0.90rem; margin-left: 6px;">Anchorage waiting time averages 3.0 days. Port draft clearance (180,000 DWT) accommodates Panamax fleet safely.</span>
+                        <b style="color: #18181B; margin-left: 8px; font-size: 0.92rem;">Port Congestion at Paradip:</b>
+                        <span style="color: #6B6B73; font-size: 0.88rem; margin-left: 6px;">Anchorage waiting time averages 3.0 days. Port draft clearance (180,000 DWT) accommodates Panamax fleet safely.</span>
                     </div>
-                    <span style="color: #A9C1D6; font-size: 0.78rem;">Updated 15m ago</span>
+                    <span style="color: #92929A; font-size: 0.78rem;">Updated 15m ago</span>
                 </div>
             </div>
-            <div class="panel-card" style="margin-bottom: 10px; padding: 12px 18px; border-left: 4px solid #20BCEB;">
+            <div class="panel-card" style="margin-bottom: 10px; padding: 12px 18px; border-left: 4px solid #372580;">
                 <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
                     <div>
                         <span class="severity-badge-normal">NORMAL</span>
-                        <b style="color: #F8FAFC; margin-left: 8px; font-size: 0.94rem;">Corridor Weather Risk:</b>
-                        <span style="color: #A9C1D6; font-size: 0.90rem; margin-left: 6px;">Richards Bay to Paradip shipping lane exhibits standard meteorological stability (Score: 35/100). Zero weather detour required.</span>
+                        <b style="color: #18181B; margin-left: 8px; font-size: 0.92rem;">Corridor Weather Risk:</b>
+                        <span style="color: #6B6B73; font-size: 0.88rem; margin-left: 6px;">Richards Bay to Paradip shipping lane exhibits standard meteorological stability (Score: 35/100). Zero weather detour required.</span>
                     </div>
-                    <span style="color: #A9C1D6; font-size: 0.78rem;">Updated 1h ago</span>
+                    <span style="color: #92929A; font-size: 0.78rem;">Updated 1h ago</span>
                 </div>
             </div>
-            <div class="panel-card" style="margin-bottom: 14px; padding: 12px 18px; border-left: 4px solid #16C79A;">
+            <div class="panel-card" style="margin-bottom: 14px; padding: 12px 18px; border-left: 4px solid #48A868;">
                 <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
                     <div>
                         <span class="severity-badge-optimal">OPTIMAL</span>
-                        <b style="color: #F8FAFC; margin-left: 8px; font-size: 0.94rem;">Vessel Fixture Cleared:</b>
-                        <span style="color: #A9C1D6; font-size: 0.90rem; margin-left: 6px;">2 × Panamax (MV Blue Horizon) chartered at ₹1,428/t cargo rate, saving ₹2.59 Cr compared with single-fixture spot rates.</span>
+                        <b style="color: #18181B; margin-left: 8px; font-size: 0.92rem;">Vessel Fixture Cleared:</b>
+                        <span style="color: #6B6B73; font-size: 0.88rem; margin-left: 6px;">2 × Panamax (MV Blue Horizon) chartered at ₹1,428/t cargo rate, saving ₹2.59 Cr compared with single-fixture spot rates.</span>
                     </div>
-                    <span style="color: #A9C1D6; font-size: 0.78rem;">Verified by AI Engine</span>
+                    <span style="color: #92929A; font-size: 0.78rem;">Verified by AI Engine</span>
                 </div>
             </div>
             """,
@@ -2673,12 +2412,12 @@ def render_command_centre():
         # SECTION 7 — Why This Plan? (Concise explainable-AI card with maritime navy & cyan styling)
         st.markdown(
             f"""
-            <div class="panel-card" style="border-left: 4px solid #16C79A; background: #0D2B46; padding: 18px 22px; margin-top: 18px; margin-bottom: 24px;">
+            <div class="panel-card" style="border-left: 4px solid #372580; background: #FFFFFF; padding: 18px 20px; margin-top: 18px; margin-bottom: 24px;">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
                     <span style="font-size: 1.25rem;">🤖</span>
-                    <h4 style="color: #16C79A; margin: 0; font-size: 1.05rem;">Why This Plan? — AI Decision Rationale</h4>
+                    <h4 style="color: #372580; margin: 0; font-size: 1.05rem;">Why This Plan? — AI Decision Rationale</h4>
                 </div>
-                <ul style="margin: 0; padding-left: 22px; color: #A9C1D6; font-size: 0.93rem; line-height: 1.65;">
+                <ul style="margin: 0; padding-left: 22px; color: #6B6B73; font-size: 0.90rem; line-height: 1.65;">
                     <li><b>Panamax Capacity Coverage:</b> Dual Panamax vessels provide <b>164,000 tonnes</b> combined carrying capacity, safely covering the <b>130,000-tonne cargo shortfall</b> with an optimal <b>79.3% utilization</b> and zero cargo spillage.</li>
                     <li><b>Port Balance:</b> <b>Paradip Port</b> offers a favourable operational balance of low handling tariffs (<b>₹85/t</b>), deep-water draft clearance (<b>180,000 DWT</b>), and manageable waiting days (<b>3-day turnaround</b>).</li>
                     <li><b>Deadline Satisfaction:</b> Projected total voyage duration of <b>19 days</b> (16 days steaming + 3 days waiting) comfortably satisfies the operational <b>45-day delivery deadline</b>.</li>
@@ -2705,8 +2444,8 @@ def render_forecasting_studio():
         """
         <div class="panel-card" style="margin-top: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
             <div>
-                <b style="color: #20BCEB; font-size: 1.05rem;">AI Demand Forecasting Studio</b>
-                <span style="color: #A9C1D6; font-size: 0.88rem; margin-left: 8px;">— Multi-model predictive demand & freight rate forward curves.</span>
+                <b style="color: #372580; font-size: 1.05rem;">AI Demand Forecasting Studio</b>
+                <span style="color: #6B6B73; font-size: 0.88rem; margin-left: 8px;">— Multi-model predictive demand & freight rate forward curves.</span>
             </div>
             <span class="prototype-badge">PROTOTYPE DATA</span>
         </div>
@@ -2805,7 +2544,7 @@ def render_forecasting_studio():
             <div class="kpi-card-exec">
                 <span class="kpi-exec-label">Forecasted Demand</span>
                 <div class="kpi-exec-val">{forecasted_demand:,.0f} tonnes</div>
-                <div class="kpi-exec-sub" style="color: #20BCEB;">{cur_horizon} Target Total</div>
+                <div class="kpi-exec-sub" style="color: #6B6B73;">{cur_horizon} Target Total</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -2816,7 +2555,7 @@ def render_forecasting_studio():
             <div class="kpi-card-exec">
                 <span class="kpi-exec-label">Average Daily Consumption</span>
                 <div class="kpi-exec-val">{daily_consumption:,.0f} t/day</div>
-                <div class="kpi-exec-sub" style="color: #F4B942;">Burn Rate Average</div>
+                <div class="kpi-exec-sub" style="color: #F6B51B;">Burn Rate Average</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -2827,7 +2566,7 @@ def render_forecasting_studio():
             <div class="kpi-card-exec">
                 <span class="kpi-exec-label">Demand Growth</span>
                 <div class="kpi-exec-val">+{demand_growth:.1f}%</div>
-                <div class="kpi-exec-sub" style="color: #16C79A;">Seasonal Trajectory</div>
+                <div class="kpi-exec-sub" style="color: #48A868;">Seasonal Trajectory</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -2838,7 +2577,7 @@ def render_forecasting_studio():
             <div class="kpi-card-exec">
                 <span class="kpi-exec-label">Forecast MAPE</span>
                 <div class="kpi-exec-val">{forecast_mape:.2f}%</div>
-                <div class="kpi-exec-sub" style="color: #16C79A;">High Model Precision</div>
+                <div class="kpi-exec-sub" style="color: #48A868;">High Model Precision</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -2849,7 +2588,7 @@ def render_forecasting_studio():
             <div class="kpi-card-exec">
                 <span class="kpi-exec-label">Confidence Score</span>
                 <div class="kpi-exec-val">{confidence_score}%</div>
-                <div class="kpi-exec-sub" style="color: #20BCEB;">{cur_model}</div>
+                <div class="kpi-exec-sub" style="color: #372580;">{cur_model}</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -2863,15 +2602,15 @@ def render_forecasting_studio():
 
     # CHART 1: Actual versus Forecast Demand
     with ch_row1_c1:
-        st.markdown('<h4 style="color: #20BCEB; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">📊 Actual vs Forecast Demand</h4>', unsafe_allow_html=True)
+        st.markdown('<h4 style="color: #18181B; font-size: 1.02rem; margin-top: 0; margin-bottom: 8px;">📊 Actual vs Forecast Demand</h4>', unsafe_allow_html=True)
         fig_act_fc = go.Figure()
         fig_act_fc.add_trace(go.Scatter(
             x=hist_months,
             y=hist_demand,
             mode="lines+markers",
             name="Actual Consumption",
-            line=dict(color="#20BCEB", width=2.5),
-            marker=dict(size=5, color="#20BCEB"),
+            line=dict(color="#F6B51B", width=2.5),
+            marker=dict(size=5, color="#F6B51B"),
             hovertemplate="<b>Actual:</b> %{y:.1f}K tonnes<br><b>Month:</b> %{x|%b %Y}<extra></extra>",
         ))
         fig_act_fc.add_trace(go.Scatter(
@@ -2879,25 +2618,25 @@ def render_forecasting_studio():
             y=future_demand,
             mode="lines+markers",
             name="AI Forecast",
-            line=dict(color="#16C79A", width=2.5, dash="dash"),
-            marker=dict(size=7, color="#16C79A", symbol="diamond"),
+            line=dict(color="#372580", width=2.5, dash="dash"),
+            marker=dict(size=7, color="#372580", symbol="diamond"),
             hovertemplate="<b>AI Forecast:</b> %{y:.1f}K tonnes<br><b>Month:</b> %{x|%b %Y}<extra></extra>",
         ))
         fig_act_fc.update_layout(
             height=320,
             margin=dict(l=35, r=20, t=25, b=30),
             paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="#0D2B46",
-            font_color="#D8E6F2",
+            plot_bgcolor="#FFFFFF",
+            font_color="#18181B",
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-            xaxis=dict(title="Month", gridcolor="rgba(169, 193, 214, 0.16)"),
-            yaxis=dict(title="Demand ('000 tonnes)", gridcolor="rgba(169, 193, 214, 0.16)"),
+            xaxis=dict(title="Month", gridcolor="#ECECF0"),
+            yaxis=dict(title="Demand ('000 tonnes)", gridcolor="#ECECF0"),
         )
         st.plotly_chart(fig_act_fc, use_container_width=True)
 
     # CHART 2: Forecast Confidence Band
     with ch_row1_c2:
-        st.markdown(f'<h4 style="color: #16C79A; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">🎯 Forecast Confidence Band ({confidence_score}% CI)</h4>', unsafe_allow_html=True)
+        st.markdown(f'<h4 style="color: #18181B; font-size: 1.02rem; margin-top: 0; margin-bottom: 8px;">🎯 Forecast Confidence Band ({confidence_score}% CI)</h4>', unsafe_allow_html=True)
         upper_bound = [round(d * 1.05, 1) for d in future_demand]
         lower_bound = [round(d * 0.95, 1) for d in future_demand]
 
@@ -2906,7 +2645,7 @@ def render_forecasting_studio():
             x=list(future_months) + list(future_months)[::-1],
             y=upper_bound + lower_bound[::-1],
             fill="toself",
-            fillcolor="rgba(32, 188, 235, 0.16)",
+            fillcolor="rgba(217, 212, 238, 0.35)",
             line=dict(color="rgba(255,255,255,0)"),
             hoverinfo="skip",
             showlegend=True,
@@ -2917,8 +2656,8 @@ def render_forecasting_studio():
             y=future_demand,
             mode="lines+markers",
             name="Forecast Mean",
-            line=dict(color="#16C79A", width=3),
-            marker=dict(size=7, color="#20BCEB"),
+            line=dict(color="#372580", width=2.5),
+            marker=dict(size=7, color="#372580"),
             hovertemplate="<b>Mean Forecast:</b> %{y:.1f}K tonnes<br><b>Month:</b> %{x|%b %Y}<extra></extra>",
         ))
         fig_conf.add_trace(go.Scatter(
@@ -2926,7 +2665,7 @@ def render_forecasting_studio():
             y=upper_bound,
             mode="lines",
             name="Upper Bound (+5%)",
-            line=dict(color="rgba(32, 188, 235, 0.5)", width=1, dash="dot"),
+            line=dict(color="#5746A5", width=1, dash="dot"),
             hovertemplate="<b>Upper Bound:</b> %{y:.1f}K tonnes<extra></extra>",
         ))
         fig_conf.add_trace(go.Scatter(
@@ -2934,18 +2673,18 @@ def render_forecasting_studio():
             y=lower_bound,
             mode="lines",
             name="Lower Bound (-5%)",
-            line=dict(color="rgba(32, 188, 235, 0.5)", width=1, dash="dot"),
+            line=dict(color="#5746A5", width=1, dash="dot"),
             hovertemplate="<b>Lower Bound:</b> %{y:.1f}K tonnes<extra></extra>",
         ))
         fig_conf.update_layout(
             height=320,
             margin=dict(l=35, r=20, t=25, b=30),
             paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="#0D2B46",
-            font_color="#D8E6F2",
+            plot_bgcolor="#FFFFFF",
+            font_color="#18181B",
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-            xaxis=dict(title="Forward Months", gridcolor="rgba(169, 193, 214, 0.16)"),
-            yaxis=dict(title="Projected Volume ('000 t)", gridcolor="rgba(169, 193, 214, 0.16)"),
+            xaxis=dict(title="Forward Months", gridcolor="#ECECF0"),
+            yaxis=dict(title="Projected Volume ('000 t)", gridcolor="#ECECF0"),
         )
         st.plotly_chart(fig_conf, use_container_width=True)
 
@@ -2953,7 +2692,7 @@ def render_forecasting_studio():
 
     # CHART 3: Freight Rate Forecast (₹/tonne)
     with ch_row2_c1:
-        st.markdown('<h4 style="color: #F4B942; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">⚓ Freight Rate Forecast (₹/tonne)</h4>', unsafe_allow_html=True)
+        st.markdown('<h4 style="color: #18181B; font-size: 1.02rem; margin-top: 0; margin-bottom: 8px;">⚓ Freight Rate Forecast (₹/tonne)</h4>', unsafe_allow_html=True)
         base_fr = cfg["freight_base"]
         if "Newcastle" in cur_origin:
             base_fr += 150
@@ -2970,28 +2709,28 @@ def render_forecasting_studio():
             y=fr_rates,
             mode="lines+markers",
             name=f"Projected Rate ({cur_origin.split(',')[0]})",
-            line=dict(color="#F4B942", width=2.5),
-            marker=dict(size=6, color="#F4B942"),
+            line=dict(color="#F6B51B", width=2.5),
+            marker=dict(size=6, color="#F6B51B"),
             hovertemplate="<b>Freight Rate:</b> ₹%{y:,.1f}/tonne<br><b>Day:</b> %{x}<extra></extra>",
         ))
-        fig_fr.add_hline(y=base_fr, line_dash="dot", line_color="#7895AC",
+        fig_fr.add_hline(y=base_fr, line_dash="dot", line_color="#92929A",
                          annotation_text=f"Benchmark (₹{base_fr:,}/t)", annotation_position="bottom right",
-                         annotation_font=dict(color="#A9C1D6", size=10))
+                         annotation_font=dict(color="#6B6B73", size=10))
         fig_fr.update_layout(
             height=320,
             margin=dict(l=35, r=20, t=25, b=30),
             paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="#0D2B46",
-            font_color="#D8E6F2",
+            plot_bgcolor="#FFFFFF",
+            font_color="#18181B",
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-            xaxis=dict(title="Planning Horizon (Days)", gridcolor="rgba(169, 193, 214, 0.16)"),
-            yaxis=dict(title="Freight Rate (₹/tonne)", gridcolor="rgba(169, 193, 214, 0.16)"),
+            xaxis=dict(title="Planning Horizon (Days)", gridcolor="#ECECF0"),
+            yaxis=dict(title="Freight Rate (₹/tonne)", gridcolor="#ECECF0"),
         )
         st.plotly_chart(fig_fr, use_container_width=True)
 
     # CHART 4: Inventory Projection
     with ch_row2_c2:
-        st.markdown('<h4 style="color: #16C79A; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">📦 Inventory Projection & Buffer Position</h4>', unsafe_allow_html=True)
+        st.markdown('<h4 style="color: #18181B; font-size: 1.02rem; margin-top: 0; margin-bottom: 8px;">📦 Inventory Projection & Buffer Position</h4>', unsafe_allow_html=True)
         inv_days = list(range(0, horizon_days_val + 1, max(3, horizon_days_val // 15)))
         curr_stock = st.session_state.get("inventory", 40000)
         safety_stock = st.session_state.get("safety", 20000)
@@ -3011,8 +2750,8 @@ def render_forecasting_studio():
             y=inv_sim,
             mode="lines+markers",
             name="Plant Inventory",
-            line=dict(color="#16C79A", width=3),
-            marker=dict(size=5, color="#20BCEB"),
+            line=dict(color="#372580", width=2.5),
+            marker=dict(size=5, color="#372580"),
             hovertemplate="<b>Stock:</b> %{y:,.0f} tonnes<br><b>Day:</b> %{x}<extra></extra>",
         ))
         fig_inv_studio.add_trace(go.Scatter(
@@ -3020,21 +2759,21 @@ def render_forecasting_studio():
             y=[safety_stock] * len(inv_days),
             mode="lines",
             name=f"Safety Buffer ({safety_stock:,.0f} t)",
-            line=dict(color="#F4B942", width=2, dash="dash"),
+            line=dict(color="#F6B51B", width=2, dash="dash"),
             hovertemplate="<b>Safety Buffer:</b> %{y:,.0f} tonnes<extra></extra>",
         ))
-        fig_inv_studio.add_vline(x=arrival_day, line_width=1.5, line_dash="dot", line_color="#16C79A",
+        fig_inv_studio.add_vline(x=arrival_day, line_width=1.5, line_dash="dot", line_color="#48A868",
                                 annotation_text=f"Day {arrival_day} Arrival (+{replenish_vol:,.0f} t)", annotation_position="top right",
-                                annotation_font=dict(color="#16C79A", size=10))
+                                annotation_font=dict(color="#48A868", size=10))
         fig_inv_studio.update_layout(
             height=320,
             margin=dict(l=35, r=20, t=25, b=30),
             paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="#0D2B46",
-            font_color="#D8E6F2",
+            plot_bgcolor="#FFFFFF",
+            font_color="#18181B",
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-            xaxis=dict(title="Horizon Timeline (Days)", gridcolor="rgba(169, 193, 214, 0.16)"),
-            yaxis=dict(title="Stock Volume (Tonnes)", gridcolor="rgba(169, 193, 214, 0.16)"),
+            xaxis=dict(title="Horizon Timeline (Days)", gridcolor="#ECECF0"),
+            yaxis=dict(title="Stock Volume (Tonnes)", gridcolor="#ECECF0"),
         )
         st.plotly_chart(fig_inv_studio, use_container_width=True)
 
@@ -3045,9 +2784,9 @@ def render_forecasting_studio():
 
     st.markdown(
         f"""
-        <div class="panel-card" style="margin-top: 8px; margin-bottom: 20px; border-left: 4px solid #168CE3;">
-            <h4 style="color: #20BCEB; margin-top: 0; margin-bottom: 10px; font-size: 1.05rem;">🧠 AI Predictive Demand & Freight Insights</h4>
-            <ul style="margin: 0; padding-left: 20px; color: #A9C1D6; font-size: 0.93rem; line-height: 1.7;">
+        <div class="panel-card" style="margin-top: 8px; margin-bottom: 20px; border-left: 4px solid #372580;">
+            <h4 style="color: #372580; margin-top: 0; margin-bottom: 10px; font-size: 1.05rem;">🧠 AI Predictive Demand & Freight Insights</h4>
+            <ul style="margin: 0; padding-left: 20px; color: #6B6B73; font-size: 0.90rem; line-height: 1.7;">
                 <li><b>Projected Demand Change:</b> Target consumption for <b>{cur_cargo}</b> over the <b>{cur_horizon}</b> window is calibrated at <b>{forecasted_demand:,} tonnes</b> (burn rate: <b>{daily_consumption:,.0f} tonnes/day</b>), incorporating a <b>+{demand_growth:.1f}%</b> seasonal expansion factor.</li>
                 <li><b>Inventory Shortage Date:</b> Without replenishment, existing stock ({curr_stock:,} t) will breach the critical <b>{safety_stock:,}-tonne safety buffer</b> in <b>{stockout_day} days</b>, necessitating prompt charter commitment.</li>
                 <li><b>Recommended Procurement Window:</b> Optimal charter fixture window is <b>Days 1–5</b> to guarantee vessel arrival at East Coast discharge ports before Day {arrival_day + 5}.</li>
@@ -3106,8 +2845,8 @@ def render_shipment_planner():
         """
         <div class="panel-card" style="margin-top: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
             <div>
-                <b style="color: #20BCEB; font-size: 1.05rem;">Interactive Shipment Planner & Voyage Architect</b>
-                <span style="color: #A9C1D6; font-size: 0.88rem; margin-left: 8px;">— Multi-step constraint-driven vessel fixture and procurement scheduling.</span>
+                <b style="color: #372580; font-size: 1.05rem;">Interactive Shipment Planner & Voyage Architect</b>
+                <span style="color: #6B6B73; font-size: 0.88rem; margin-left: 8px;">— Multi-step constraint-driven vessel fixture and procurement scheduling.</span>
             </div>
             <span class="prototype-badge">PROTOTYPE DATA</span>
         </div>
@@ -3121,8 +2860,8 @@ def render_shipment_planner():
     st.markdown(
         """
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-            <span style="background: #168CE3; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 1</span>
-            <h3 style="margin: 0; color: #20BCEB; font-size: 1.15rem;">Cargo Requirement & Inventory Balance</h3>
+            <span style="background: #372580; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 1</span>
+            <h3 style="margin: 0; color: #18181B; font-size: 1.15rem; font-weight: 600;">Cargo Requirement & Inventory Balance</h3>
         </div>
         """,
         unsafe_allow_html=True,
@@ -3147,7 +2886,7 @@ def render_shipment_planner():
             <div class="kpi-card-exec">
                 <span class="kpi-exec-label">Required Quantity</span>
                 <div class="kpi-exec-val">{sp_req:,} t</div>
-                <div class="kpi-exec-sub" style="color: #20BCEB;">Base Demand Target</div>
+                <div class="kpi-exec-sub" style="color: #6B6B73;">Base Demand Target</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -3158,7 +2897,7 @@ def render_shipment_planner():
             <div class="kpi-card-exec">
                 <span class="kpi-exec-label">Safety Stock (+)</span>
                 <div class="kpi-exec-val">+{sp_saf:,} t</div>
-                <div class="kpi-exec-sub" style="color: #F4B942;">Operational Buffer</div>
+                <div class="kpi-exec-sub" style="color: #F6B51B;">Operational Buffer</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -3169,7 +2908,7 @@ def render_shipment_planner():
             <div class="kpi-card-exec">
                 <span class="kpi-exec-label">Current Inventory (-)</span>
                 <div class="kpi-exec-val">-{sp_inv:,} t</div>
-                <div class="kpi-exec-sub" style="color: #A9C1D6;">On-Hand Stockpile</div>
+                <div class="kpi-exec-sub" style="color: #6B6B73;">On-Hand Stockpile</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -3177,10 +2916,10 @@ def render_shipment_planner():
     with eq_c4:
         st.markdown(
             f"""
-            <div class="kpi-card-exec" style="border: 1px solid #168CE3; background: linear-gradient(180deg, #103451 0%, #0D2B46 100%);">
-                <span class="kpi-exec-label" style="color: #20BCEB; font-weight: 700;">Cargo Shortfall (=)</span>
-                <div class="kpi-exec-val" style="color: #20BCEB;">{calc_shortfall:,} tonnes</div>
-                <div class="kpi-exec-sub" style="color: #16C79A;">Net Procurement Need</div>
+            <div class="kpi-card-exec" style="border: 1.5px solid #372580; background: #FFFFFF;">
+                <span class="kpi-exec-label" style="color: #372580; font-weight: 600;">Cargo Shortfall (=)</span>
+                <div class="kpi-exec-val" style="color: #18181B;">{calc_shortfall:,} tonnes</div>
+                <div class="kpi-exec-sub" style="color: #F6B51B;">Net Procurement Need</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -3189,10 +2928,10 @@ def render_shipment_planner():
     # Highlight equation banner
     st.markdown(
         f"""
-        <div class="panel-card" style="margin-top: 10px; margin-bottom: 22px; padding: 12px 18px; border-left: 4px solid #20BCEB;">
-            <span style="color: #A9C1D6; font-size: 0.9rem;">Automated Procurement Formula:</span>
-            <b style="color: #f8fafc; font-size: 0.96rem; margin-left: 6px;">Cargo Shortfall = Required Quantity ({sp_req:,} t) + Safety Stock ({sp_saf:,} t) - Current Inventory ({sp_inv:,} t) = <span style="color: #20BCEB;">{calc_shortfall:,} tonnes</span></b>
-            <span style="color: #A9C1D6; font-size: 0.88rem; margin-left: 10px;">(Delivery Deadline: <b>{sp_dl} days</b> | Origin: <b>{sp_origin.split(',')[0]}</b>)</span>
+        <div class="panel-card" style="margin-top: 10px; margin-bottom: 22px; padding: 12px 18px; border-left: 4px solid #372580;">
+            <span style="color: #6B6B73; font-size: 0.88rem;">Automated Procurement Formula:</span>
+            <b style="color: #18181B; font-size: 0.94rem; margin-left: 6px;">Cargo Shortfall = Required Quantity ({sp_req:,} t) + Safety Stock ({sp_saf:,} t) - Current Inventory ({sp_inv:,} t) = <span style="color: #372580;">{calc_shortfall:,} tonnes</span></b>
+            <span style="color: #6B6B73; font-size: 0.88rem; margin-left: 10px;">(Delivery Deadline: <b>{sp_dl} days</b> | Origin: <b>{sp_origin.split(',')[0]}</b>)</span>
         </div>
         """,
         unsafe_allow_html=True,
@@ -3204,8 +2943,8 @@ def render_shipment_planner():
     st.markdown(
         """
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-            <span style="background: #168CE3; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 2</span>
-            <h3 style="margin: 0; color: #20BCEB; font-size: 1.15rem;">Operational Constraints & Vessel Criteria</h3>
+            <span style="background: #372580; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 2</span>
+            <h3 style="margin: 0; color: #18181B; font-size: 1.15rem; font-weight: 600;">Operational Constraints & Vessel Criteria</h3>
         </div>
         """,
         unsafe_allow_html=True,
@@ -3238,10 +2977,10 @@ def render_shipment_planner():
         """
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="background: #168CE3; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 3</span>
-                <h3 style="margin: 0; color: #20BCEB; font-size: 1.15rem;">Generated Voyage Procurement Plans</h3>
+                <span style="background: #372580; color: #FFFFFF; font-weight: 600; font-size: 0.78rem; padding: 3px 8px; border-radius: 4px;">STEP 3</span>
+                <h3 style="margin: 0; color: #18181B; font-size: 1.15rem; font-weight: 600;">Generated Voyage Procurement Plans</h3>
             </div>
-            <span style="color: #A9C1D6; font-size: 0.85rem;">Evaluation Engine: <b>3 Strategic Options Generated</b></span>
+            <span style="color: #6B6B73; font-size: 0.85rem;">Evaluation Engine: <b>3 Strategic Options Generated</b></span>
         </div>
         """,
         unsafe_allow_html=True,
@@ -3260,23 +2999,23 @@ def render_shipment_planner():
     # Automated Capacity Feasibility Audit Callout
     st.markdown(
         f"""
-        <div class="panel-card" style="margin-bottom: 16px; padding: 12px 18px; border-left: 4px solid #20BCEB;">
-            <b style="color: #20BCEB; font-size: 0.95rem;">Fleet Capacity Feasibility Check (Cargo Shortfall: {calc_shortfall:,} tonnes):</b>
+        <div class="panel-card" style="margin-bottom: 16px; padding: 12px 18px; border-left: 4px solid #372580;">
+            <b style="color: #18181B; font-size: 0.92rem;">Fleet Capacity Feasibility Check (Cargo Shortfall: {calc_shortfall:,} tonnes):</b>
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 8px; font-size: 0.88rem;">
                 <div style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 8px 12px;">
-                    <b style="color: #FF5C67;">2 × Supramax (116,000 t)</b><br>
-                    <span style="color: #FF5C67; font-weight: 700;">● INFEASIBLE</span><br>
-                    <span style="color: #A9C1D6; font-size: 0.82rem;">Deficit: 14,000 tonnes</span>
+                    <b style="color: #D95C5C;">2 × Supramax (116,000 t)</b><br>
+                    <span style="color: #D95C5C; font-weight: 700;">● INFEASIBLE</span><br>
+                    <span style="color: #6B6B73; font-size: 0.82rem;">Deficit: 14,000 tonnes</span>
                 </div>
                 <div style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; padding: 8px 12px;">
-                    <b style="color: #16C79A;">2 × Panamax (164,000 t)</b><br>
-                    <span style="color: #16C79A; font-weight: 700;">● FEASIBLE</span><br>
-                    <span style="color: #A9C1D6; font-size: 0.82rem;">79.3% Utilization • Recommended</span>
+                    <b style="color: #15803D;">2 × Panamax (164,000 t)</b><br>
+                    <span style="color: #48A868; font-weight: 700;">● FEASIBLE</span><br>
+                    <span style="color: #6B6B73; font-size: 0.82rem;">79.3% Utilization • Recommended</span>
                 </div>
                 <div style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; padding: 8px 12px;">
-                    <b style="color: #16C79A;">1 × Capesize (180,000 t)</b><br>
-                    <span style="color: #16C79A; font-weight: 700;">● FEASIBLE</span><br>
-                    <span style="color: #A9C1D6; font-size: 0.82rem;">72.2% Utilization • Lowest Cost</span>
+                    <b style="color: #15803D;">1 × Capesize (180,000 t)</b><br>
+                    <span style="color: #48A868; font-weight: 700;">● FEASIBLE</span><br>
+                    <span style="color: #6B6B73; font-size: 0.82rem;">72.2% Utilization • Lowest Cost</span>
                 </div>
             </div>
         </div>
@@ -3309,7 +3048,7 @@ def render_shipment_planner():
         "Lowest Cost": {
             "name": "Lowest Cost",
             "badge": "LOWEST COST",
-            "badge_color": "#16C79A",
+            "badge_color": "#48A868",
             "vessel_type": "Capesize",
             "vessel_count": 1,
             "combined_capacity": p1_cap,
@@ -3327,7 +3066,7 @@ def render_shipment_planner():
         "Lowest Risk": {
             "name": "Lowest Risk",
             "badge": "LOWEST RISK",
-            "badge_color": "#20BCEB",
+            "badge_color": "#372580",
             "vessel_type": "Panamax",
             "vessel_count": 2,
             "combined_capacity": p2_cap,
@@ -3345,7 +3084,7 @@ def render_shipment_planner():
         "Balanced Recommended": {
             "name": "Balanced Recommended",
             "badge": "RECOMMENDED",
-            "badge_color": "#16C79A",
+            "badge_color": "#48A868",
             "vessel_type": "Panamax",
             "vessel_count": 2,
             "combined_capacity": p3_cap,
@@ -3370,25 +3109,25 @@ def render_shipment_planner():
         p1 = PLAN_DATA["Lowest Cost"]
         st.markdown(
             f"""
-            <div class="panel-card" style="height: 100%; border-top: 4px solid #16C79A;">
+            <div class="panel-card" style="height: 100%; border: 1px solid #E4E4E8; border-top: 4px solid #48A868; background: #FFFFFF;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <b style="color: #16C79A; font-size: 1.05rem;">1. Lowest Cost</b>
-                    <span style="background: rgba(45,212,191,0.15); color: #16C79A; font-size: 0.72rem; font-weight: 700; padding: 2px 7px; border-radius: 4px;">{p1['badge']}</span>
+                    <b style="color: #15803D; font-size: 1.05rem;">1. Lowest Cost</b>
+                    <span style="background: #EDF7F0; color: #15803D; font-size: 0.72rem; font-weight: 700; padding: 2px 7px; border-radius: 4px;">{p1['badge']}</span>
                 </div>
-                <div style="font-size: 1.35rem; font-weight: 700; color: #ffffff; margin-bottom: 2px;">{p1['vessel_count']} × {p1['vessel_type']}</div>
-                <div style="color: #A9C1D6; font-size: 0.84rem; margin-bottom: 12px;">Discharge: <b>{p1['port']} Port</b></div>
-                <hr style="border: none; border-top: 1px solid #1C5877; margin: 8px 0;" />
+                <div style="font-size: 1.35rem; font-weight: 700; color: #18181B; margin-bottom: 2px;">{p1['vessel_count']} × {p1['vessel_type']}</div>
+                <div style="color: #6B6B73; font-size: 0.84rem; margin-bottom: 12px;">Discharge: <b>{p1['port']} Port</b></div>
+                <hr style="border: none; border-top: 1px solid #ECECF0; margin: 8px 0;" />
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 0.85rem;">
-                    <div><span style="color: #A9C1D6;">Capacity:</span> <b style="color: #F8FAFC;">{p1['combined_capacity']:,} t</b></div>
-                    <div><span style="color: #A9C1D6;">Utilization:</span> <b style="color: #20BCEB;">{p1['utilization']}%</b></div>
-                    <div><span style="color: #A9C1D6;">Charter Date:</span> <b style="color: #F8FAFC;">{p1['charter_date']}</b></div>
-                    <div><span style="color: #A9C1D6;">Arrival:</span> <b style="color: #16C79A;">{p1['expected_arrival']}</b></div>
-                    <div><span style="color: #A9C1D6;">Est. Cost:</span> <b style="color: #16C79A;">₹{p1['cost_cr']:.2f} Cr</b></div>
-                    <div><span style="color: #A9C1D6;">Savings:</span> <b style="color: #16C79A;">₹{p1['savings_cr']:.2f} Cr</b></div>
-                    <div><span style="color: #A9C1D6;">Risk Score:</span> <b style="color: #F4B942;">{p1['risk_score']}/100</b></div>
-                    <div><span style="color: #A9C1D6;">Duration:</span> <b style="color: #F8FAFC;">{p1['duration']} days</b></div>
+                    <div><span style="color: #6B6B73;">Capacity:</span> <b style="color: #18181B;">{p1['combined_capacity']:,} t</b></div>
+                    <div><span style="color: #6B6B73;">Utilization:</span> <b style="color: #372580;">{p1['utilization']}%</b></div>
+                    <div><span style="color: #6B6B73;">Charter Date:</span> <b style="color: #18181B;">{p1['charter_date']}</b></div>
+                    <div><span style="color: #6B6B73;">Arrival:</span> <b style="color: #48A868;">{p1['expected_arrival']}</b></div>
+                    <div><span style="color: #6B6B73;">Est. Cost:</span> <b style="color: #48A868;">₹{p1['cost_cr']:.2f} Cr</b></div>
+                    <div><span style="color: #6B6B73;">Savings:</span> <b style="color: #48A868;">₹{p1['savings_cr']:.2f} Cr</b></div>
+                    <div><span style="color: #6B6B73;">Risk Score:</span> <b style="color: #F6B51B;">{p1['risk_score']}/100</b></div>
+                    <div><span style="color: #6B6B73;">Duration:</span> <b style="color: #18181B;">{p1['duration']} days</b></div>
                 </div>
-                <div style="margin-top: 12px; text-align: center; padding: 4px 8px; border-radius: 6px; background: rgba(52,211,153,0.1); color: #16C79A; font-weight: 700; font-size: 0.84rem;">
+                <div style="margin-top: 12px; text-align: center; padding: 4px 8px; border-radius: 6px; background: #EDF7F0; color: #15803D; font-weight: 600; font-size: 0.84rem;">
                     Feasibility: {p1['status']}
                 </div>
             </div>
@@ -3401,25 +3140,25 @@ def render_shipment_planner():
         p2 = PLAN_DATA["Lowest Risk"]
         st.markdown(
             f"""
-            <div class="panel-card" style="height: 100%; border-top: 4px solid #20BCEB;">
+            <div class="panel-card" style="height: 100%; border: 1px solid #E4E4E8; border-top: 4px solid #372580; background: #FFFFFF;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <b style="color: #20BCEB; font-size: 1.05rem;">2. Lowest Risk</b>
-                    <span style="background: rgba(56,189,248,0.15); color: #20BCEB; font-size: 0.72rem; font-weight: 700; padding: 2px 7px; border-radius: 4px;">{p2['badge']}</span>
+                    <b style="color: #372580; font-size: 1.05rem;">2. Lowest Risk</b>
+                    <span style="background: #F0EEF9; color: #372580; font-size: 0.72rem; font-weight: 700; padding: 2px 7px; border-radius: 4px;">{p2['badge']}</span>
                 </div>
-                <div style="font-size: 1.35rem; font-weight: 700; color: #ffffff; margin-bottom: 2px;">{p2['vessel_count']} × {p2['vessel_type']}</div>
-                <div style="color: #A9C1D6; font-size: 0.84rem; margin-bottom: 12px;">Discharge: <b>{p2['port']} Port</b></div>
-                <hr style="border: none; border-top: 1px solid #1C5877; margin: 8px 0;" />
+                <div style="font-size: 1.35rem; font-weight: 700; color: #18181B; margin-bottom: 2px;">{p2['vessel_count']} × {p2['vessel_type']}</div>
+                <div style="color: #6B6B73; font-size: 0.84rem; margin-bottom: 12px;">Discharge: <b>{p2['port']} Port</b></div>
+                <hr style="border: none; border-top: 1px solid #ECECF0; margin: 8px 0;" />
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 0.85rem;">
-                    <div><span style="color: #A9C1D6;">Capacity:</span> <b style="color: #F8FAFC;">{p2['combined_capacity']:,} t</b></div>
-                    <div><span style="color: #A9C1D6;">Utilization:</span> <b style="color: #20BCEB;">{p2['utilization']}%</b></div>
-                    <div><span style="color: #A9C1D6;">Charter Date:</span> <b style="color: #F8FAFC;">{p2['charter_date']}</b></div>
-                    <div><span style="color: #A9C1D6;">Arrival:</span> <b style="color: #16C79A;">{p2['expected_arrival']}</b></div>
-                    <div><span style="color: #A9C1D6;">Est. Cost:</span> <b style="color: #16C79A;">₹{p2['cost_cr']:.2f} Cr</b></div>
-                    <div><span style="color: #A9C1D6;">Savings:</span> <b style="color: #16C79A;">₹{p2['savings_cr']:.2f} Cr</b></div>
-                    <div><span style="color: #A9C1D6;">Risk Score:</span> <b style="color: #20BCEB;">{p2['risk_score']}/100</b></div>
-                    <div><span style="color: #A9C1D6;">Duration:</span> <b style="color: #F8FAFC;">{p2['duration']} days</b></div>
+                    <div><span style="color: #6B6B73;">Capacity:</span> <b style="color: #18181B;">{p2['combined_capacity']:,} t</b></div>
+                    <div><span style="color: #6B6B73;">Utilization:</span> <b style="color: #372580;">{p2['utilization']}%</b></div>
+                    <div><span style="color: #6B6B73;">Charter Date:</span> <b style="color: #18181B;">{p2['charter_date']}</b></div>
+                    <div><span style="color: #6B6B73;">Arrival:</span> <b style="color: #48A868;">{p2['expected_arrival']}</b></div>
+                    <div><span style="color: #6B6B73;">Est. Cost:</span> <b style="color: #48A868;">₹{p2['cost_cr']:.2f} Cr</b></div>
+                    <div><span style="color: #6B6B73;">Savings:</span> <b style="color: #48A868;">₹{p2['savings_cr']:.2f} Cr</b></div>
+                    <div><span style="color: #6B6B73;">Risk Score:</span> <b style="color: #372580;">{p2['risk_score']}/100</b></div>
+                    <div><span style="color: #6B6B73;">Duration:</span> <b style="color: #18181B;">{p2['duration']} days</b></div>
                 </div>
-                <div style="margin-top: 12px; text-align: center; padding: 4px 8px; border-radius: 6px; background: rgba(52,211,153,0.1); color: #16C79A; font-weight: 700; font-size: 0.84rem;">
+                <div style="margin-top: 12px; text-align: center; padding: 4px 8px; border-radius: 6px; background: #EDF7F0; color: #15803D; font-weight: 600; font-size: 0.84rem;">
                     Feasibility: {p2['status']}
                 </div>
             </div>
@@ -3432,25 +3171,25 @@ def render_shipment_planner():
         p3 = PLAN_DATA["Balanced Recommended"]
         st.markdown(
             f"""
-            <div class="panel-card" style="height: 100%; border: 2px solid #168CE3; background: linear-gradient(180deg, #103451 0%, #0D2B46 100%);">
+            <div class="panel-card" style="height: 100%; border: 2px solid #372580; background: #FFFFFF; box-shadow: 0 2px 8px rgba(55,37,128,0.08);">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <b style="color: #16C79A; font-size: 1.05rem;">3. Balanced Recommended</b>
-                    <span style="background: rgba(52,211,153,0.2); color: #16C79A; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; border: 1px solid #16C79A;">{p3['badge']}</span>
+                    <b style="color: #372580; font-size: 1.05rem;">3. Balanced Recommended</b>
+                    <span style="background: #372580; color: #FFFFFF; font-size: 0.72rem; font-weight: 600; padding: 2px 8px; border-radius: 4px;">{p3['badge']}</span>
                 </div>
-                <div style="font-size: 1.35rem; font-weight: 700; color: #ffffff; margin-bottom: 2px;">{p3['vessel_count']} × {p3['vessel_type']}</div>
-                <div style="color: #20BCEB; font-size: 0.84rem; margin-bottom: 12px;">Discharge: <b>{p3['port']} Port</b></div>
-                <hr style="border: none; border-top: 1px solid #168CE3; margin: 8px 0;" />
+                <div style="font-size: 1.35rem; font-weight: 700; color: #18181B; margin-bottom: 2px;">{p3['vessel_count']} × {p3['vessel_type']}</div>
+                <div style="color: #6B6B73; font-size: 0.84rem; margin-bottom: 12px;">Discharge: <b>{p3['port']} Port</b></div>
+                <hr style="border: none; border-top: 1px solid #ECECF0; margin: 8px 0;" />
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 0.85rem;">
-                    <div><span style="color: #A9C1D6;">Capacity:</span> <b style="color: #F8FAFC;">{p3['combined_capacity']:,} t</b></div>
-                    <div><span style="color: #A9C1D6;">Utilization:</span> <b style="color: #16C79A; font-weight: 700;">{p3['utilization']}%</b></div>
-                    <div><span style="color: #A9C1D6;">Charter Date:</span> <b style="color: #F8FAFC;">{p3['charter_date']}</b></div>
-                    <div><span style="color: #A9C1D6;">Arrival:</span> <b style="color: #16C79A;">{p3['expected_arrival']}</b></div>
-                    <div><span style="color: #A9C1D6;">Est. Cost:</span> <b style="color: #20BCEB; font-weight: 700;">₹{p3['cost_cr']:.2f} Cr</b></div>
-                    <div><span style="color: #A9C1D6;">Savings:</span> <b style="color: #16C79A; font-weight: 700;">₹{p3['savings_cr']:.2f} Cr</b></div>
-                    <div><span style="color: #A9C1D6;">Risk Score:</span> <b style="color: #16C79A;">{p3['risk_score']}/100</b></div>
-                    <div><span style="color: #A9C1D6;">Duration:</span> <b style="color: #F8FAFC;">{p3['duration']} days</b></div>
+                    <div><span style="color: #6B6B73;">Capacity:</span> <b style="color: #18181B;">{p3['combined_capacity']:,} t</b></div>
+                    <div><span style="color: #6B6B73;">Utilization:</span> <b style="color: #48A868; font-weight: 700;">{p3['utilization']}%</b></div>
+                    <div><span style="color: #6B6B73;">Charter Date:</span> <b style="color: #18181B;">{p3['charter_date']}</b></div>
+                    <div><span style="color: #6B6B73;">Arrival:</span> <b style="color: #48A868;">{p3['expected_arrival']}</b></div>
+                    <div><span style="color: #6B6B73;">Est. Cost:</span> <b style="color: #372580; font-weight: 700;">₹{p3['cost_cr']:.2f} Cr</b></div>
+                    <div><span style="color: #6B6B73;">Savings:</span> <b style="color: #48A868; font-weight: 700;">₹{p3['savings_cr']:.2f} Cr</b></div>
+                    <div><span style="color: #6B6B73;">Risk Score:</span> <b style="color: #48A868;">{p3['risk_score']}/100</b></div>
+                    <div><span style="color: #6B6B73;">Duration:</span> <b style="color: #18181B;">{p3['duration']} days</b></div>
                 </div>
-                <div style="margin-top: 12px; text-align: center; padding: 4px 8px; border-radius: 6px; background: rgba(52,211,153,0.18); color: #16C79A; font-weight: 700; font-size: 0.84rem; border: 1px solid rgba(52,211,153,0.4);">
+                <div style="margin-top: 12px; text-align: center; padding: 6px 8px; border-radius: 6px; background: #EDF7F0; color: #15803D; font-weight: 600; font-size: 0.84rem; border: 1px solid rgba(72,168,104,0.3);">
                     Feasibility: {p3['status']}
                 </div>
             </div>
@@ -3464,8 +3203,8 @@ def render_shipment_planner():
     st.markdown(
         """
         <div style="display: flex; align-items: center; gap: 10px; margin-top: 24px; margin-bottom: 12px;">
-            <span style="background: #168CE3; color: #ffffff; font-weight: 700; font-size: 0.8rem; padding: 3px 9px; border-radius: 6px;">STEP 4</span>
-            <h3 style="margin: 0; color: #20BCEB; font-size: 1.15rem;">Confirm & Commit Voyage Execution</h3>
+            <span style="background: #372580; color: #FFFFFF; font-weight: 600; font-size: 0.78rem; padding: 3px 8px; border-radius: 4px;">STEP 4</span>
+            <h3 style="margin: 0; color: #18181B; font-size: 1.15rem; font-weight: 600;">Confirm & Commit Voyage Execution</h3>
         </div>
         """,
         unsafe_allow_html=True,
@@ -3501,9 +3240,9 @@ def render_shipment_planner():
 
         st.markdown(
             f"""
-            <div style="background: rgba(8, 145, 178, 0.12); border-left: 4px solid #168CE3; padding: 12px 16px; border-radius: 6px; margin-top: 12px; margin-bottom: 16px;">
-                <b style="color: #20BCEB; font-size: 0.95rem;">Why This Plan ({selected_plan['name']}):</b>
-                <div style="color: #A9C1D6; font-size: 0.9rem; line-height: 1.6; margin-top: 4px;">{why_text.strip()}</div>
+            <div style="background: #F0EEF9; border-left: 4px solid #372580; padding: 12px 16px; border-radius: 6px; margin-top: 12px; margin-bottom: 16px;">
+                <b style="color: #372580; font-size: 0.95rem;">Why This Plan ({selected_plan['name']}):</b>
+                <div style="color: #6B6B73; font-size: 0.9rem; line-height: 1.6; margin-top: 4px;">{why_text.strip()}</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -3562,12 +3301,12 @@ def render_shipment_planner():
             cp = st.session_state["confirmed_plan"]
             st.markdown(
                 f"""
-                <div style="margin-top: 16px; padding: 14px 18px; border-radius: 8px; background: rgba(16, 185, 129, 0.15); border: 1px solid #16C79A;">
+                <div style="margin-top: 16px; padding: 14px 18px; border-radius: 8px; background: #EDF7F0; border: 1px solid rgba(72,168,104,0.4);">
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <span style="font-size: 1.2rem;">🎉</span>
-                        <b style="color: #16C79A; font-size: 1.02rem;">Plan Successfully Confirmed & Committed to Session State!</b>
+                        <b style="color: #48A868; font-size: 1.02rem;">Plan Successfully Confirmed & Committed to Session State!</b>
                     </div>
-                    <div style="color: #A9C1D6; font-size: 0.9rem; margin-top: 6px; line-height: 1.5;">
+                    <div style="color: #6B6B73; font-size: 0.9rem; margin-top: 6px; line-height: 1.5;">
                         <b>Fixture Allocation:</b> {cp['vessel_count']} × {cp['vessel_type']} ({cp['combined_capacity']:,} t capacity) &bull;
                         <b>Destination:</b> {cp['port']} Port &bull;
                         <b>Arrival ETA:</b> {cp['expected_arrival']} ({cp['duration']} days) &bull;
@@ -3631,7 +3370,7 @@ def render_optimization_hub():
         with left:
             st.subheader("Cost Component Breakdown")
             fig2 = px.bar(cost_df, x="Cost (₹ Cr)", y="Component", orientation="h", color="Component")
-            fig2.update_layout(showlegend=False, height=350, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="#0D2B46", font_color="white")
+            fig2.update_layout(showlegend=False, height=350, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="#FFFFFF", font_color="white")
             st.plotly_chart(fig2, width="stretch")
         with right:
             st.subheader("Top Ranked Feasible Voyage Plans")
@@ -3655,13 +3394,13 @@ def render_vessel_intelligence():
     st.markdown('<div class="panel-card"><b>Vessel Fleet Intelligence</b> — Dry bulk carrier specifications, charter tariffs, capacity classes, and deadweight optimization.</div>', unsafe_allow_html=True)
 
     # Isometric Vessel Silhouettes Grid
-    st.markdown('<h4 style="color: #20BCEB; font-size: 1.05rem; margin-top: 14px; margin-bottom: 8px;">🚢 Bulk Carrier Class Silhouettes & Scale Specifications</h4>', unsafe_allow_html=True)
+    st.markdown('<h4 style="color: #18181B; font-size: 1.02rem; margin-top: 14px; margin-bottom: 8px;">🚢 Bulk Carrier Class Silhouettes & Scale Specifications</h4>', unsafe_allow_html=True)
     vc1, vc2, vc3, vc4 = st.columns(4, gap="medium")
     v_classes = [
-        {"name": "Handysize", "cap": "35,000 DWT", "hatches": 4, "w": 95, "charter": "₹1.45 Cr", "draft": "10.0m", "badge": "Shallow Port", "color": "#20BCEB"},
-        {"name": "Supramax", "cap": "58,000 DWT", "hatches": 5, "w": 125, "charter": "₹1.85 Cr", "draft": "12.8m", "badge": "Geared", "color": "#168CE3"},
-        {"name": "Panamax", "cap": "82,000 DWT", "hatches": 7, "w": 160, "charter": "₹2.20 Cr", "draft": "14.5m", "badge": "★ Optimal", "color": "#16C79A"},
-        {"name": "Capesize", "cap": "180,000 DWT", "hatches": 9, "w": 210, "charter": "₹3.80 Cr", "draft": "18.2m", "badge": "Deepwater", "color": "#F4B942"},
+        {"name": "Handysize", "cap": "35,000 DWT", "hatches": 4, "w": 95, "charter": "₹1.45 Cr", "draft": "10.0m", "badge": "Shallow Port", "color": "#5746A5"},
+        {"name": "Supramax", "cap": "58,000 DWT", "hatches": 5, "w": 125, "charter": "₹1.85 Cr", "draft": "12.8m", "badge": "Geared", "color": "#372580"},
+        {"name": "Panamax", "cap": "82,000 DWT", "hatches": 7, "w": 160, "charter": "₹2.20 Cr", "draft": "14.5m", "badge": "★ Optimal", "color": "#48A868"},
+        {"name": "Capesize", "cap": "180,000 DWT", "hatches": 9, "w": 210, "charter": "₹3.80 Cr", "draft": "18.2m", "badge": "Deepwater", "color": "#F6B51B"},
     ]
     cols = [vc1, vc2, vc3, vc4]
     for idx, vc in enumerate(v_classes):
@@ -3671,18 +3410,18 @@ def render_vessel_intelligence():
         hatch_rects = []
         for i in range(hatches):
             hx = 16 + i * hatch_w + 1.5
-            hatch_rects.append(f'<rect x="{hx:.1f}" y="9" width="{hatch_w - 3:.1f}" height="9" rx="1.5" fill="#168CE3" stroke="#20BCEB" stroke-width="0.8" />')
+            hatch_rects.append(f'<rect x="{hx:.1f}" y="9" width="{hatch_w - 3:.1f}" height="9" rx="1.5" fill="#5746A5" stroke="#D9D4EE" stroke-width="0.8" />')
         hatch_svg = "".join(hatch_rects)
 
         svg_markup = f'''
         <svg viewBox="0 0 240 42" width="100%" height="42" xmlns="http://www.w3.org/2000/svg" style="display: block; margin: 6px auto;">
-          <line x1="8" y1="32" x2="232" y2="32" stroke="#1C5877" stroke-width="1.2" stroke-dasharray="3,3" />
-          <path d="M 12 28 L {w - 14} 28 L {w} 16 L 15 16 Z" fill="#103451" stroke="#1C5877" stroke-width="1.2" />
-          <line x1="12" y1="28" x2="{w - 14}" y2="28" stroke="#FF5C67" stroke-width="2.2" stroke-linecap="round" />
+          <line x1="8" y1="32" x2="232" y2="32" stroke="#ECECF0" stroke-width="1.2" stroke-dasharray="3,3" />
+          <path d="M 12 28 L {w - 14} 28 L {w} 16 L 15 16 Z" fill="#372580" stroke="#5746A5" stroke-width="1.2" />
+          <line x1="12" y1="28" x2="{w - 14}" y2="28" stroke="#F6B51B" stroke-width="2.2" stroke-linecap="round" />
           {hatch_svg}
-          <polygon points="15,16 15,6 23,6 23,16" fill="#f8fafc" stroke="#A9C1D6" stroke-width="0.8" />
-          <rect x="17" y="8" width="4" height="2.5" fill="#168CE3" />
-          <line x1="19" y1="6" x2="19" y2="2" stroke="#A9C1D6" stroke-width="1" />
+          <polygon points="15,16 15,6 23,6 23,16" fill="#FFFFFF" stroke="#E4E4E8" stroke-width="0.8" />
+          <rect x="17" y="8" width="4" height="2.5" fill="#372580" />
+          <line x1="19" y1="6" x2="19" y2="2" stroke="#92929A" stroke-width="1" />
         </svg>
         '''
         with cols[idx]:
@@ -3690,14 +3429,14 @@ def render_vessel_intelligence():
                 f'''
                 <div class="vessel-card-container">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                        <b style="color: #f8fafc; font-size: 1.05rem;">{vc["name"]}</b>
+                        <b style="color: #18181B; font-size: 1.02rem;">{vc["name"]}</b>
                         <span style="background: rgba(56,189,248,0.15); color: {vc["color"]}; border: 1px solid {vc["color"]}55; padding: 1px 6px; border-radius: 4px; font-size: 0.72rem; font-weight: 600;">{vc["badge"]}</span>
                     </div>
-                    <div style="color: #20BCEB; font-size: 0.95rem; font-weight: 700;">{vc["cap"]}</div>
+                    <div style="color: #372580; font-size: 0.95rem; font-weight: 600;">{vc["cap"]}</div>
                     {svg_markup}
-                    <div style="font-size: 0.82rem; color: #A9C1D6; margin-top: 4px; border-top: 1px solid rgba(28,96,123,0.3); padding-top: 6px;">
-                        <div style="display: flex; justify-content: space-between;"><span>Charter Cost:</span><b style="color: #F8FAFC;">{vc["charter"]}</b></div>
-                        <div style="display: flex; justify-content: space-between; margin-top: 2px;"><span>Max Draft:</span><b style="color: #F8FAFC;">{vc["draft"]}</b></div>
+                    <div style="font-size: 0.82rem; color: #6B6B73; margin-top: 4px; border-top: 1px solid #ECECF0; padding-top: 6px;">
+                        <div style="display: flex; justify-content: space-between;"><span>Charter Cost:</span><b style="color: #18181B;">{vc["charter"]}</b></div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 2px;"><span>Max Draft:</span><b style="color: #18181B;">{vc["draft"]}</b></div>
                     </div>
                 </div>
                 ''',
@@ -3726,8 +3465,8 @@ def render_vessel_intelligence():
         st.dataframe(pd.DataFrame(class_stats), hide_index=True, width="stretch")
         st.markdown(
             """
-            <div style="margin-top: 8px; padding: 8px 12px; border-radius: 6px; background: rgba(8,145,178,0.12); border-left: 3px solid #168CE3; font-size: 0.82rem; color: #A9C1D6;">
-                <b>Feasibility Rule:</b> 2 × Supramax (116,000 t) is <span style="color: #FF5C67; font-weight: 700;">Infeasible (Deficit: 14,000 t)</span> for 130,000 t shortfall. 2 × Panamax (164,000 t, 79.3% util) and 1 × Capesize (180,000 t, 72.2% util) are Feasible.
+            <div style="margin-top: 8px; padding: 8px 12px; border-radius: 6px; background: #F0EEF9; border-left: 3px solid #372580; font-size: 0.82rem; color: #6B6B73;">
+                <b>Feasibility Rule:</b> 2 × Supramax (116,000 t) is <span style="color: #D95C5C; font-weight: 700;">Infeasible (Deficit: 14,000 t)</span> for 130,000 t shortfall. 2 × Panamax (164,000 t, 79.3% util) and 1 × Capesize (180,000 t, 72.2% util) are Feasible.
             </div>
             """,
             unsafe_allow_html=True,
@@ -3742,10 +3481,10 @@ def render_vessel_intelligence():
         size="Capacity",
         color="Class",
         title="Vessel Capacity (DWT) vs Charter Cost per Voyage (₹ Cr)",
-        color_discrete_sequence=["#20BCEB", "#168CE3", "#16C79A", "#F4B942", "#FF5C67"],
+        color_discrete_sequence=["#372580", "#5746A5", "#D9D4EE", "#F6B51B", "#48A868"],
     )
     v_fig.update_traces(textposition="top center")
-    v_fig.update_layout(height=380, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="#0D2B46", font_color="white")
+    v_fig.update_layout(height=380, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="#FFFFFF", font_color="white")
     st.plotly_chart(v_fig, width="stretch")
 
 
@@ -3759,23 +3498,23 @@ def render_port_intelligence():
     # Lightweight Pseudo-3D Maritime Route Simulation Visual
     st.markdown(
         """
-        <div style="width: 100%; margin: 12px 0 20px 0; border-radius: 14px; border: 1px solid rgba(56,189,248,0.25); background: linear-gradient(180deg, #081F35 0%, #041525 100%); padding: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(28,96,123,0.4); padding-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+        <div style="width: 100%; margin: 12px 0 20px 0; border-radius: 8px; border: 1px solid #E4E4E8; background: #FFFFFF; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #ECECF0; padding-bottom: 8px; flex-wrap: wrap; gap: 8px;">
             <div>
-                <b style="color: #20BCEB; font-size: 1.02rem;">🚢 Indian Ocean Shipping Corridor Simulation</b>
-                <span style="color: #A9C1D6; font-size: 0.85rem; margin-left: 8px;">Richards Bay (ZA) → Indian East Coast</span>
+                <b style="color: #372580; font-size: 1.02rem;">🚢 Indian Ocean Shipping Corridor Simulation</b>
+                <span style="color: #6B6B73; font-size: 0.85rem; margin-left: 8px;">Richards Bay (ZA) → Indian East Coast</span>
             </div>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <span style="background: rgba(16,185,129,0.15); color: #16C79A; border: 1px solid rgba(16,185,129,0.3); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Sea State: Normal (1.4m)</span>
-                <span style="background: rgba(56,189,248,0.15); color: #20BCEB; border: 1px solid rgba(56,189,248,0.3); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Distance: 4,620 NM</span>
+                <span style="background: #EDF7F0; color: #15803D; border: 1px solid rgba(72,168,104,0.3); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Sea State: Normal (1.4m)</span>
+                <span style="background: #F0EEF9; color: #372580; border: 1px solid rgba(56,189,248,0.3); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Distance: 4,620 NM</span>
             </div>
         </div>
         <svg class="maritime-route-svg" viewBox="0 0 920 250" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" style="display: block;">
           <defs>
             <linearGradient id="corridorGlow" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#168CE3" stop-opacity="0.4" />
-              <stop offset="50%" stop-color="#20BCEB" stop-opacity="0.9" />
-              <stop offset="100%" stop-color="#16C79A" stop-opacity="0.9" />
+              <stop offset="0%" stop-color="#D9D4EE" stop-opacity="0.4" />
+              <stop offset="50%" stop-color="#372580" stop-opacity="0.9" />
+              <stop offset="100%" stop-color="#48A868" stop-opacity="0.9" />
             </linearGradient>
             <filter id="routeBlur">
               <feGaussianBlur stdDeviation="2.5" result="blur" />
@@ -3784,7 +3523,7 @@ def render_port_intelligence():
           </defs>
 
           <!-- Nautical grid & bathymetry rings -->
-          <g stroke="#1C5877" stroke-width="0.8" opacity="0.3" fill="none">
+          <g stroke="#ECECF0" stroke-width="0.8" opacity="0.8" fill="none">
             <circle cx="110" cy="190" r="40" stroke-dasharray="2,4" />
             <circle cx="110" cy="190" r="80" stroke-dasharray="2,4" />
             <circle cx="780" cy="75" r="50" stroke-dasharray="2,4" />
@@ -3799,9 +3538,9 @@ def render_port_intelligence():
 
           <!-- Animated Vessel traversing route -->
           <g>
-            <path d="M -16,5 L 14,5 L 20,-1 L -14,-1 Z" fill="#168CE3" stroke="#20BCEB" stroke-width="1" />
-            <rect x="-10" y="-5" width="6" height="4" fill="#f8fafc" />
-            <rect x="0" y="-5" width="6" height="4" fill="#f8fafc" />
+            <path d="M -16,5 L 14,5 L 20,-1 L -14,-1 Z" fill="#372580" stroke="#5746A5" stroke-width="1" />
+            <rect x="-10" y="-5" width="6" height="4" fill="#FFFFFF" />
+            <rect x="0" y="-5" width="6" height="4" fill="#FFFFFF" />
             <polygon points="-14,-1 -14,-9 -9,-9 -9,-1" fill="#ffffff" />
             <animateMotion dur="16s" repeatCount="indefinite" rotate="auto">
               <mpath href="#nauticalLane" />
@@ -3810,46 +3549,46 @@ def render_port_intelligence():
 
           <!-- Origin Marker: Richards Bay -->
           <g transform="translate(110, 190)">
-            <circle r="16" fill="#168CE3" opacity="0.15" />
-            <circle r="7" fill="#103451" stroke="#20BCEB" stroke-width="2" />
+            <circle r="16" fill="#D9D4EE" opacity="0.3" />
+            <circle r="7" fill="#372580" stroke="#D9D4EE" stroke-width="2" />
             <circle r="2.5" fill="#ffffff" />
-            <text x="-12" y="24" fill="#f8fafc" font-size="12" font-weight="700" font-family="system-ui, sans-serif">Richards Bay</text>
-            <text x="-12" y="38" fill="#20BCEB" font-size="10" font-family="system-ui, sans-serif">28°48'S, 32°06'E • Coal Terminal</text>
+            <text x="-12" y="24" fill="#18181B" font-size="12" font-weight="600" font-family="system-ui, sans-serif">Richards Bay</text>
+            <text x="-12" y="38" fill="#6B6B73" font-size="10" font-family="system-ui, sans-serif">28°48'S, 32°06'E • Coal Terminal</text>
           </g>
 
           <!-- Waypoint Indicator: Equator Transit -->
           <g transform="translate(480, 120)">
-            <circle r="4" fill="#20BCEB" opacity="0.8" />
-            <text x="0" y="-12" fill="#A9C1D6" font-size="9" text-anchor="middle" font-family="system-ui, sans-serif">Mid-Ocean Corridor</text>
-            <text x="0" y="20" fill="#7895AC" font-size="9" text-anchor="middle" font-family="system-ui, sans-serif">Transit Day 8 • Fair Seas</text>
+            <circle r="4" fill="#372580" opacity="0.8" />
+            <text x="0" y="-12" fill="#6B6B73" font-size="9" text-anchor="middle" font-family="system-ui, sans-serif">Mid-Ocean Corridor</text>
+            <text x="0" y="20" fill="#92929A" font-size="9" text-anchor="middle" font-family="system-ui, sans-serif">Transit Day 8 • Fair Seas</text>
           </g>
 
           <!-- Destination Nodes: Indian East Coast Ports -->
           <!-- 1. Paradip (Primary) -->
           <g transform="translate(780, 75)">
-            <circle r="18" fill="#16C79A" opacity="0.2" />
-            <circle r="8" fill="#16C79A" stroke="#16C79A" stroke-width="2" />
+            <circle r="18" fill="#EDF7F0" opacity="0.6" />
+            <circle r="8" fill="#48A868" stroke="#FFFFFF" stroke-width="2" />
             <circle r="3" fill="#ffffff" />
-            <rect x="18" y="-16" width="112" height="42" rx="6" fill="rgba(6,27,46,0.9)" stroke="#16C79A" stroke-width="1" />
-            <text x="26" y="-2" fill="#f8fafc" font-size="11" font-weight="700" font-family="system-ui, sans-serif">Paradip Port ★</text>
-            <text x="26" y="10" fill="#16C79A" font-size="9" font-family="system-ui, sans-serif">Draft: 180K DWT (Deep)</text>
-            <text x="26" y="21" fill="#A9C1D6" font-size="8.5" font-family="system-ui, sans-serif">Waiting: 3.0d • ₹110/t</text>
+            <rect x="18" y="-16" width="112" height="42" rx="6" fill="#FFFFFF" stroke="#48A868" stroke-width="1" />
+            <text x="26" y="-2" fill="#18181B" font-size="11" font-weight="600" font-family="system-ui, sans-serif">Paradip Port ★</text>
+            <text x="26" y="10" fill="#48A868" font-size="9" font-family="system-ui, sans-serif">Draft: 180K DWT (Deep)</text>
+            <text x="26" y="21" fill="#6B6B73" font-size="8.5" font-family="system-ui, sans-serif">Waiting: 3.0d • ₹110/t</text>
           </g>
 
           <!-- 2. Visakhapatnam (Secondary) -->
           <g transform="translate(740, 135)">
-            <circle r="5" fill="#F4B942" stroke="#F4B942" stroke-width="1.5" />
-            <rect x="12" y="-14" width="112" height="32" rx="4" fill="rgba(6,27,46,0.85)" stroke="#F4B942" stroke-width="0.8" />
-            <text x="18" y="-2" fill="#f8fafc" font-size="10" font-weight="600" font-family="system-ui, sans-serif">Visakhapatnam</text>
-            <text x="18" y="10" fill="#F4B942" font-size="8.5" font-family="system-ui, sans-serif">Draft: 150K • Waiting: 5.0d</text>
+            <circle r="5" fill="#F6B51B" stroke="#FFFFFF" stroke-width="1.5" />
+            <rect x="12" y="-14" width="112" height="32" rx="4" fill="#FFFFFF" stroke="#F6B51B" stroke-width="1" />
+            <text x="18" y="-2" fill="#18181B" font-size="10" font-weight="600" font-family="system-ui, sans-serif">Visakhapatnam</text>
+            <text x="18" y="10" fill="#F6B51B" font-size="8.5" font-family="system-ui, sans-serif">Draft: 150K • Waiting: 5.0d</text>
           </g>
 
           <!-- 3. Dhamra (Alternative) -->
           <g transform="translate(800, 30)">
-            <circle r="5" fill="#20BCEB" stroke="#168CE3" stroke-width="1.5" />
-            <rect x="12" y="-12" width="105" height="30" rx="4" fill="rgba(6,27,46,0.85)" stroke="#168CE3" stroke-width="0.8" />
-            <text x="18" y="-1" fill="#f8fafc" font-size="10" font-weight="600" font-family="system-ui, sans-serif">Dhamra Port</text>
-            <text x="18" y="10" fill="#20BCEB" font-size="8.5" font-family="system-ui, sans-serif">Draft: 180K • Waiting: 2.0d</text>
+            <circle r="5" fill="#5746A5" stroke="#FFFFFF" stroke-width="1.5" />
+            <rect x="12" y="-12" width="105" height="30" rx="4" fill="#FFFFFF" stroke="#372580" stroke-width="1" />
+            <text x="18" y="-1" fill="#18181B" font-size="10" font-weight="600" font-family="system-ui, sans-serif">Dhamra Port</text>
+            <text x="18" y="10" fill="#372580" font-size="8.5" font-family="system-ui, sans-serif">Draft: 180K • Waiting: 2.0d</text>
           </g>
         </svg>
         </div>
