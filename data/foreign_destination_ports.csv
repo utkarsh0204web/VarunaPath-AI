@@ -1,0 +1,8 @@
+Port Name,Country,Max Draft (m),Discharge Rate (t/day),Port Tariff (INR/t),Average Waiting Days,Congestion Risk Score,Distance from East Coast (nm),Supported Commodities,Dataset Classification
+Singapore,Singapore,18.5,45000,140,1.5,0.04,1550,"Iron Ore Pellets,Finished Steel / Coils,Bauxite,Granite / Stone",Prototype Data
+Chittagong,Bangladesh,11.0,18000,125,4.0,0.12,450,"Finished Steel / Coils,Cement / Clinker,Agricultural Produce",Prototype Data
+Port Klang,Malaysia,16.5,35000,130,2.0,0.05,1400,"Iron Ore Pellets,Finished Steel / Coils,Bauxite,Granite / Stone",Prototype Data
+Colombo,Sri Lanka,17.5,40000,120,1.5,0.05,950,"Finished Steel / Coils,Granite / Stone,Agricultural Produce",Prototype Data
+Jebel Ali,United Arab Emirates,17.0,38000,155,2.5,0.06,2350,"Granite / Stone,Finished Steel / Coils,Petroleum Products",Prototype Data
+Rotterdam,Netherlands,24.0,60000,180,2.0,0.05,7800,"Iron Ore Pellets,Agricultural Produce,Chemicals",Prototype Data
+Qingdao,China,19.5,50000,160,3.5,0.07,4200,"Iron Ore Pellets,Bauxite,Finished Steel / Coils",Prototype Data

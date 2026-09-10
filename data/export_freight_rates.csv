@@ -1,0 +1,8 @@
+Commodity,Destination Market,Typical Vessel Class,Benchmark Freight (INR/t),Volatility Index (1-100),Freight Direction,Dataset Classification
+Iron Ore Pellets,Southeast Asia,Panamax,1150,32,Stable,Prototype Data
+Iron Ore Pellets,East Asia (China),Capesize,1450,45,Moderately Rising,Prototype Data
+Finished Steel / Coils,South Asia,Supramax,850,28,Stable,Prototype Data
+Finished Steel / Coils,Middle East,Panamax,1280,36,Softening,Prototype Data
+Bauxite,Southeast Asia,Panamax,1100,30,Stable,Prototype Data
+Granite / Stone,Middle East,Supramax,1350,34,Firm,Prototype Data
+Agricultural Produce,Europe,Panamax,2250,52,Volatile,Prototype Data

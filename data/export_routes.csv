@@ -1,0 +1,13 @@
+Route ID,Loading Port,Destination Port,Distance (nm),Sailing Days (12.5 kts),Weather Risk Score,Canal / Chokepoint,Dataset Classification
+RT-EXP-01,Paradip,Singapore,1550,5.2,0.04,Malacca Strait Approach,Prototype Data
+RT-EXP-02,Paradip,Chittagong,450,1.5,0.06,Bay of Bengal Coastal,Prototype Data
+RT-EXP-03,Paradip,Port Klang,1400,4.7,0.04,Andaman Sea Corridor,Prototype Data
+RT-EXP-04,Paradip,Colombo,950,3.2,0.04,Sri Lanka East Coast,Prototype Data
+RT-EXP-05,Paradip,Jebel Ali,2350,7.8,0.06,Arabian Sea Transit,Prototype Data
+RT-EXP-06,Paradip,Rotterdam,7800,26.0,0.07,Suez Canal / Bab el-Mandeb,Prototype Data
+RT-EXP-07,Paradip,Qingdao,4200,14.0,0.08,South China Sea Transit,Prototype Data
+RT-EXP-08,Visakhapatnam,Singapore,1520,5.1,0.04,Malacca Strait Approach,Prototype Data
+RT-EXP-09,Visakhapatnam,Chittagong,520,1.7,0.06,Bay of Bengal Coastal,Prototype Data
+RT-EXP-10,Visakhapatnam,Jebel Ali,2280,7.6,0.06,Arabian Sea Transit,Prototype Data
+RT-EXP-11,Dhamra,Singapore,1580,5.3,0.04,Malacca Strait Approach,Prototype Data
+RT-EXP-12,Dhamra,Qingdao,4250,14.2,0.08,South China Sea Transit,Prototype Data

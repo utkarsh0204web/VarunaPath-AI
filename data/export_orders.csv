@@ -1,0 +1,6 @@
+Order ID,Buyer Reference,Buyer Country,Commodity,Order Quantity,Ready Inventory,Planned Production,Reserved Domestic,Cargo Ready Date,Laycan Start,Laycan End,Deadline Days,Incoterm,Selling Price INR/t,Internal Cost INR/t,Dataset Classification
+EXP-ORD-2026-0881,Apex Global Metals Pte,Singapore,Iron Ore Pellets,100000,70000,20000,10000,2026-09-15,2026-09-18,2026-09-24,25,CFR,6800,4200,Prototype Data
+EXP-ORD-2026-0882,Bengal Steel Mills Ltd,Bangladesh,Finished Steel / Coils,45000,30000,15000,5000,2026-09-12,2026-09-14,2026-09-20,18,CIF,52000,41000,Prototype Data
+EXP-ORD-2026-0883,Malacca Minerals Berhad,Malaysia,Bauxite,80000,60000,25000,10000,2026-09-20,2026-09-22,2026-09-28,22,FOB,3400,2100,Prototype Data
+EXP-ORD-2026-0884,Emirates Industrial Raw,United Arab Emirates,Granite / Stone,60000,40000,20000,10000,2026-09-16,2026-09-19,2026-09-26,30,CFR,4800,3100,Prototype Data
+EXP-ORD-2026-0885,Rotterdam Bulk Traders NV,Netherlands,Agricultural Produce,50000,35000,15000,5000,2026-09-25,2026-09-28,2026-10-05,40,CIF,28500,22000,Prototype Data

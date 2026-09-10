@@ -1,0 +1,6 @@
+Vessel Name,Vessel Class,DWT Capacity (tonnes),Draft (m),Daily Charter Cost (Cr),Vessel Reliability Score,Speed (knots),Bunker Cons (t/day),Dataset Classification
+MV Eastern Glory,Supramax,58000,12.8,0.038,0.06,12.5,24.0,Prototype Data
+MV Bengal Pioneer,Supramax,58000,12.8,0.039,0.07,12.5,24.5,Prototype Data
+MV Kalinga Express,Panamax,82000,14.5,0.043,0.05,13.0,31.0,Prototype Data
+MV Coromandel Star,Panamax,82000,14.5,0.044,0.05,13.0,31.5,Prototype Data
+MV Bharat Samudra,Capesize,180000,18.2,0.105,0.08,13.5,52.0,Prototype Data

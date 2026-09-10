@@ -1,0 +1,10 @@
+Cost Component,Inland Rate (INR/t),Port Rate (INR/t),Documentation Fee (Cr),Insurance Rate (% of Cargo),Demurrage Daily (Cr),Incoterm Applicability,Dataset Classification
+Inland Transportation,450,0,0.00,0.00%,0.00,"FOB, CFR, CIF",Prototype Data
+Yard Storage & Handling,65,0,0.00,0.00%,0.00,"FOB, CFR, CIF",Prototype Data
+Indian Port Loading & Wharfage,0,95,0.00,0.00%,0.00,"FOB, CFR, CIF",Prototype Data
+Export Customs & Documentation,0,0,0.02,0.00%,0.00,"FOB, CFR, CIF",Prototype Data
+Ocean Charter Freight,0,0,0.00,0.00%,0.00,"CFR, CIF",Prototype Data
+Bunker Fuel Surcharge,0,0,0.00,0.00%,0.00,"CFR, CIF",Prototype Data
+Marine Cargo Insurance,0,0,0.00,0.35%,0.00,CIF,Prototype Data
+Port Waiting & Demurrage,0,0,0.00,0.00%,0.02,"CFR, CIF",Prototype Data
+Route Operational Risk Buffer,0,0,0.00,0.00%,0.00,"FOB, CFR, CIF",Prototype Data

@@ -1,0 +1,10 @@
+Document ID,Document Name,Authority / Issuer,Mandatory Status,Prototype Default Status,Description,Dataset Classification
+DOC-01,Commercial Invoice,Exporter / Seller,Mandatory,Ready,Official bill of sale stating unit price and total invoice value,Prototype Data
+DOC-02,Packing List,Warehouse / Shipper,Mandatory,Ready,Itemized weights package count and container/hatch allocation,Prototype Data
+DOC-03,Shipping Bill,Indian Customs (ICEGATE),Mandatory,Uploaded,Export declaration filed with Indian Customs authorities,Prototype Data
+DOC-04,Bill of Lading,Master / Carrier Agent,Mandatory,Under Review,Legal title contract of carriage and receipt of cargo,Prototype Data
+DOC-05,Certificate of Origin,Export Inspection Council / Chamber,Mandatory,Ready,Proof of Indian origin for tariff preferential treatment,Prototype Data
+DOC-06,Marine Insurance Certificate,Insurance Underwriter,Conditional (CIF),Uploaded,Coverage certificate protecting against marine transit perils,Prototype Data
+DOC-07,Inspection & Quality Certificate,Independent Surveyor (SGS/Bureau Veritas),Mandatory,Ready,Independent cargo quality and moisture specification audit,Prototype Data
+DOC-08,Export Purchase Order / Contract,Buyer / Foreign Principal,Mandatory,Ready,Signed commercial agreement governing terms and delivery,Prototype Data
+DOC-09,FEMA Bank Realization Form,Authorized Dealer Bank,Mandatory,Not Uploaded,Export proceeds realization documentation under FEMA,Prototype Data

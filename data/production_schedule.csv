@@ -1,0 +1,6 @@
+Schedule ID,Commodity,Production Unit,Daily Output (tonnes),Target Completion Date,Committed Quantity (tonnes),Production Risk,Dataset Classification
+SCH-PROD-01,Iron Ore Pellets,Kalinganagar Pelletizer 2,4000,2026-09-20,20000,0.05,Prototype Data
+SCH-PROD-02,Finished Steel / Coils,Vizag Rolling Mill 3,2500,2026-09-18,15000,0.06,Prototype Data
+SCH-PROD-03,Bauxite,Koraput Beneficiation Plant,5000,2026-09-25,25000,0.08,Prototype Data
+SCH-PROD-04,Granite / Stone,Ongole Processing Quarry,3500,2026-09-22,20000,0.05,Prototype Data
+SCH-PROD-05,Agricultural Produce,Godavari Agro Processing Unit,2500,2026-09-28,15000,0.07,Prototype Data

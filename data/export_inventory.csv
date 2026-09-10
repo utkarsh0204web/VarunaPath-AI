@@ -1,0 +1,6 @@
+Commodity,Plant / Stockyard Location,Current Stock (tonnes),Quality Grade,Reserved Domestic (tonnes),Available for Export (tonnes),Storage Cost INR/t/day,Dataset Classification
+Iron Ore Pellets,Paradip Pellet Terminal Yard,70000,64% Fe Commercial,10000,60000,1.20,Prototype Data
+Finished Steel / Coils,Visakhapatnam Steel Yard,30000,IS 2062 HR Coils,5000,25000,2.50,Prototype Data
+Bauxite,Dhamra Bulk Cargo Yard,60000,Al2O3 48% Bauxite,10000,50000,1.10,Prototype Data
+Granite / Stone,Krishnapatnam Mineral Depot,40000,Raw Granite Blocks,10000,30000,1.40,Prototype Data
+Agricultural Produce,Chennai Agro Storage Shed,35000,Non-Basmati Grain,5000,30000,3.00,Prototype Data
