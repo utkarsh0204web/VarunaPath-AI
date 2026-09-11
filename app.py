@@ -4399,8 +4399,10 @@ def render_shipment_planner():
         sp_inv = st.session_state.get("inventory", 40000)
         sp_saf = st.session_state.get("safety", 20000)
         sp_dl = st.session_state.get("deadline", 45)
-        sp_max_budget = st.session_state.get("max_budget", 32.0)
+        sp_budget = float(st.session_state.get("max_budget", 32.0))
+        sp_max_budget = sp_budget
         sp_max_risk = st.session_state.get("max_risk", 50)
+        sp_min_util = float(st.session_state.get("minimum_vessel_utilization", 70.0))
 
         # STEP 1: CARGO REQUIREMENT & POSITIVE INVENTORY DISPLAY
         st.markdown(
